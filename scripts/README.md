@@ -307,3 +307,23 @@ uv run scripts/compare_cue_bearing_pairs.py \
 ```
 
 Scores the cue pairs with a paired bootstrap, a within-pair arm-swap permutation, and McNemar, and breaks the result down by cue category. Read the placebo line first: non-dialect unit error should not differ between arms.
+
+## Cue Error Types
+
+```bash
+uv run scripts/classify_cue_error_types.py \
+  research/experiments/runs/aihub_119_cue_bearing_split \
+  --output-dir research/experiments/runs/aihub_119_cue_error_types
+```
+
+Use this before quoting any cue-loss number as AICC damage. A cue counted as lost by string matching may simply have been written in its standard form, which preserves the business meaning. This resolves each cue's eojeol pair from the labels and sorts outcomes into `dialect_surface_preserved`, `standard_normalised`, and `cue_absent`; only the last is damage. On the round 6 split, that halves the apparent gap. It also decomposes the result by cohort, giving the Busan-versus-other test at cue level.
+
+To restrict a cue split to particular categories, pass `--category` to the split builder, repeatable:
+
+```bash
+uv run scripts/build_cue_bearing_dialect_split.py \
+  data/raw/aihub_gyeongsang_119 \
+  research/experiments/runs/aihub_119_busan_slice/manifest.jsonl.gz \
+  --output-dir research/experiments/runs/aihub_119_negation_cue_split \
+  --category negation --max-pairs 300
+```

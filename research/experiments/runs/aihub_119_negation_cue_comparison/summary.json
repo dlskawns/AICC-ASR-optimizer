@@ -1,0 +1,176 @@
+{
+  "analysis": "within_speaker_within_category_cue_bearing_dialect_comparison",
+  "random_seed": 20260818,
+  "label_status": "weak_preannotation_not_gold",
+  "results": [
+    {
+      "model": "faster_whisper_medium",
+      "pairs": 185,
+      "distinct_speakers": 185,
+      "cohort_counts": {
+        "busan": 103,
+        "gyeongsang_other": 82
+      },
+      "dialect_arm_cues": 185,
+      "plain_arm_cues": 185,
+      "cue_loss": {
+        "dialect_arm_rate": 0.2648648648648649,
+        "plain_arm_rate": 0.03783783783783784,
+        "difference": 0.22702702702702704,
+        "difference_ci95": {
+          "low": 0.16216216216216217,
+          "high": 0.2918918918918919
+        },
+        "crosses_zero": false,
+        "draws": 10000
+      },
+      "cue_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 0,
+        "two_sided_p_value": 4.999750012499375e-05,
+        "p_note": "resolution_floor_reached"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 45,
+        "plain_arm_only_lost": 3,
+        "both_lost": 4,
+        "neither_lost": 133,
+        "discordant_pairs": 48,
+        "mcnemar_chi2_continuity_corrected": 35.020833333333336,
+        "mcnemar_p_approx": 3.2619654086775864e-09
+      },
+      "cue_loss_by_category": {
+        "negation": {
+          "pairs": 185,
+          "dialect_arm_cue_loss": 0.2648648648648649,
+          "plain_arm_cue_loss": 0.03783783783783784
+        }
+      },
+      "placebo_plain_unit_error": {
+        "dialect_arm_rate": 0.1469135802469136,
+        "plain_arm_rate": 0.13308977035490605,
+        "difference": 0.013823809892007544,
+        "difference_ci95": {
+          "low": -0.013498083051251376,
+          "high": 0.04061560813033323
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      }
+    },
+    {
+      "model": "faster_whisper_large_v3",
+      "pairs": 185,
+      "distinct_speakers": 185,
+      "cohort_counts": {
+        "busan": 103,
+        "gyeongsang_other": 82
+      },
+      "dialect_arm_cues": 185,
+      "plain_arm_cues": 185,
+      "cue_loss": {
+        "dialect_arm_rate": 0.2648648648648649,
+        "plain_arm_rate": 0.032432432432432434,
+        "difference": 0.23243243243243245,
+        "difference_ci95": {
+          "low": 0.16756756756756758,
+          "high": 0.3027027027027027
+        },
+        "crosses_zero": false,
+        "draws": 10000
+      },
+      "cue_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 0,
+        "two_sided_p_value": 4.999750012499375e-05,
+        "p_note": "resolution_floor_reached"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 46,
+        "plain_arm_only_lost": 3,
+        "both_lost": 3,
+        "neither_lost": 133,
+        "discordant_pairs": 49,
+        "mcnemar_chi2_continuity_corrected": 36.0,
+        "mcnemar_p_approx": 1.973175290075403e-09
+      },
+      "cue_loss_by_category": {
+        "negation": {
+          "pairs": 185,
+          "dialect_arm_cue_loss": 0.2648648648648649,
+          "plain_arm_cue_loss": 0.032432432432432434
+        }
+      },
+      "placebo_plain_unit_error": {
+        "dialect_arm_rate": 0.15123456790123457,
+        "plain_arm_rate": 0.13987473903966596,
+        "difference": 0.01135982886156861,
+        "difference_ci95": {
+          "low": -0.015939353427205996,
+          "high": 0.03949425993741046
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      }
+    },
+    {
+      "model": "wav2vec2_korean",
+      "pairs": 185,
+      "distinct_speakers": 185,
+      "cohort_counts": {
+        "busan": 103,
+        "gyeongsang_other": 82
+      },
+      "dialect_arm_cues": 185,
+      "plain_arm_cues": 185,
+      "cue_loss": {
+        "dialect_arm_rate": 0.6648648648648648,
+        "plain_arm_rate": 0.3891891891891892,
+        "difference": 0.27567567567567564,
+        "difference_ci95": {
+          "low": 0.17297297297297298,
+          "high": 0.372972972972973
+        },
+        "crosses_zero": false,
+        "draws": 10000
+      },
+      "cue_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 0,
+        "two_sided_p_value": 4.999750012499375e-05,
+        "p_note": "resolution_floor_reached"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 77,
+        "plain_arm_only_lost": 26,
+        "both_lost": 46,
+        "neither_lost": 36,
+        "discordant_pairs": 103,
+        "mcnemar_chi2_continuity_corrected": 24.271844660194176,
+        "mcnemar_p_approx": 8.365294421002614e-07
+      },
+      "cue_loss_by_category": {
+        "negation": {
+          "pairs": 185,
+          "dialect_arm_cue_loss": 0.6648648648648648,
+          "plain_arm_cue_loss": 0.3891891891891892
+        }
+      },
+      "placebo_plain_unit_error": {
+        "dialect_arm_rate": 0.5993827160493828,
+        "plain_arm_rate": 0.5678496868475992,
+        "difference": 0.03153302920178358,
+        "difference_ci95": {
+          "low": -0.0083410749102601,
+          "high": 0.07214782777425233
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      }
+    }
+  ],
+  "numpy_version": "2.4.6"
+}
