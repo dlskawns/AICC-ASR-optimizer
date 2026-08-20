@@ -1,5 +1,7 @@
 # Pilot Round 5: 방언 표지가 AICC critical span 손실을 늘리는가
 
+> **정정 있음.** 이 문서의 수치는 정렬을 쓰지 않는 판정 기준으로 계산됐다. 정렬 기준 재계산은 [control_pairs_aligned](../aihub_119_control_pairs_aligned/README.md)에 있으며, 영점 결론은 그대로다. 현재 인용 기준은 [현재 결과](../aihub_119_current_results/README.md).
+
 Round 2~4는 방언 표지와 AICC 손상의 연결을 **span 표면 겹침**으로 재려 했고, 세 번 다 실패했다. 표본을 50 → 300발화로 6배 늘려도 겹치는 span은 4개에서 5개로만 늘었다. 원인이 표본 크기가 아니라 설계였다.
 
 Round 5는 질문을 발화 수준으로 바꾸고, 화자 내 짝지음으로 답했다.

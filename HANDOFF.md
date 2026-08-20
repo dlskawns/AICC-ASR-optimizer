@@ -1,6 +1,6 @@
 # Research Session Handoff
 
-Updated: 2026-08-20 KST
+Updated: 2026-08-21 KST
 
 This is the first file a new agent/session should read after `AGENTS.md`.
 
@@ -13,18 +13,19 @@ ASR is substantially less stable on dialect-marked eojeol units than on non-dial
 1. [AGENTS.md](AGENTS.md): mandatory lab rules, agent roles, and output shape.
 2. [This handoff](HANDOFF.md): current state, claims, risks, and next steps.
 3. [Dialect attribution probe README](research/experiments/runs/aihub_119_dialect_attribution_probe/README.md): run-level status and reproduction commands.
-4. [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md): the corrected string-matching rules and every number they change. This overrides figures printed in rounds 1 through 8.
-5. [Pilot round 8 report](research/experiments/runs/aihub_119_pilot_round8/README.md): what a lost cue becomes, substitution versus deletion.
-6. [Pilot round 7 report](research/experiments/runs/aihub_119_pilot_round7/README.md): how much of the round 6 loss is real damage, negation generalisation, and cue-level cohort test.
-7. [Pilot round 6 report](research/experiments/runs/aihub_119_pilot_round6/README.md): cue-bearing dialect eojeols, the positive result that completes the round 4-5-6 arc.
-8. [Pilot round 5 report](research/experiments/runs/aihub_119_pilot_round5/README.md): within-speaker paired test of dialect versus AICC critical-span loss.
-9. [Pilot round 4 report](research/experiments/runs/aihub_119_pilot_round4/README.md): the 300-utterance speaker-disjoint holdout.
-10. [Pilot round 3 report](research/experiments/runs/aihub_119_pilot_round3/README.md): mining-rule repair and the non-Whisper Korean baseline.
-11. [Pilot round 2 report](research/experiments/runs/aihub_119_pilot_round2/README.md): clustered significance, model-scale ablation, and the critical-span metric audit.
-12. [Pilot conclusion report](research/experiments/runs/aihub_119_dialect_attribution_probe/pilot_conclusion_report.md): round 1 conclusion, plots, and paper-safe interpretation. Partly superseded by rounds 2 and 3.
-13. [Text-only audit report](research/experiments/runs/aihub_119_dialect_attribution_probe/text_audit_report.md): refined harmful-vs-acceptable semantic audit.
-14. [Audio review packet](research/experiments/runs/aihub_119_dialect_audio_review/README.md): the 16-unit human/audio confirmation packet and reviewer protocol.
-15. [Next actions](research/experiments/runs/aihub_119_next_actions/README.md): current task queue and download stop point.
+4. [Current results](research/experiments/runs/aihub_119_current_results/README.md): every finding on one scoring standard. **Quote from here.** Rounds 1 through 8 are a chronological log whose in-body figures predate the corrections.
+5. [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md): what changed across four corrections and why.
+6. [Pilot round 8 report](research/experiments/runs/aihub_119_pilot_round8/README.md): what a lost cue becomes, substitution versus deletion.
+7. [Pilot round 7 report](research/experiments/runs/aihub_119_pilot_round7/README.md): how much of the round 6 loss is real damage, negation generalisation, and cue-level cohort test.
+8. [Pilot round 6 report](research/experiments/runs/aihub_119_pilot_round6/README.md): cue-bearing dialect eojeols, the positive result that completes the round 4-5-6 arc.
+9. [Pilot round 5 report](research/experiments/runs/aihub_119_pilot_round5/README.md): within-speaker paired test of dialect versus AICC critical-span loss.
+10. [Pilot round 4 report](research/experiments/runs/aihub_119_pilot_round4/README.md): the 300-utterance speaker-disjoint holdout.
+11. [Pilot round 3 report](research/experiments/runs/aihub_119_pilot_round3/README.md): mining-rule repair and the non-Whisper Korean baseline.
+12. [Pilot round 2 report](research/experiments/runs/aihub_119_pilot_round2/README.md): clustered significance, model-scale ablation, and the critical-span metric audit.
+13. [Pilot conclusion report](research/experiments/runs/aihub_119_dialect_attribution_probe/pilot_conclusion_report.md): round 1 conclusion, plots, and paper-safe interpretation. Partly superseded by rounds 2 and 3.
+14. [Text-only audit report](research/experiments/runs/aihub_119_dialect_attribution_probe/text_audit_report.md): refined harmful-vs-acceptable semantic audit.
+15. [Audio review packet](research/experiments/runs/aihub_119_dialect_audio_review/README.md): the 16-unit human/audio confirmation packet and reviewer protocol.
+16. [Next actions](research/experiments/runs/aihub_119_next_actions/README.md): current task queue and download stop point.
 
 Optional background:
 
@@ -47,7 +48,7 @@ Safe current claims:
 
 > Measuring the dialect-to-AICC-damage link through surface overlap between critical spans and dialect eojeols does not work, and more data does not fix it. Going from 50 to 300 utterances moved the overlapping-span count only from 4 to 5 of 93, because AICC markers and dialect-marked eojeols barely co-occur on the surface in this corpus.
 
-> Rebuilt at utterance level, the link is not there at the resolution this pilot can see. In 63 within-speaker pairs, an utterance carrying dialect marking loses no more AICC critical spans than the same speaker's length-matched dialect-free utterance: +0.028 [-0.056, 0.114] for `medium`, -0.018 [-0.102, 0.066] for `large-v3`, +0.023 [-0.151, 0.198] for wav2vec2, with signs disagreeing and a clean placebo on non-dialect unit error. The dialect penalty appears to be local to the dialect tokens rather than a whole-utterance degradation.
+> Rebuilt at utterance level, the link is not there at the resolution this pilot can see. In 63 within-speaker pairs, an utterance carrying dialect marking loses no more AICC critical spans than the same speaker's length-matched dialect-free utterance. Rescored by alignment: +0.029 [-0.092, 0.147] for `medium`, -0.015 [-0.113, 0.080] for `large-v3`, +0.024 [-0.147, 0.193] for wav2vec2, with signs disagreeing and a clean placebo on non-dialect unit error. This is the only result the four corrections left essentially unchanged. The dialect penalty is local to the dialect tokens rather than a whole-utterance degradation.
 
 > When a confirmation cue is itself a dialect-marked eojeol, it is damaged far more often. Scored by alignment, damage rates in the dialect arm versus the plain arm are 0.346 against 0.115 for `medium`, 0.288 against 0.111 for `large-v3`, and 0.823 against 0.576 for wav2vec2, gaps of +0.230, +0.177, and +0.247, all excluding zero with McNemar p from 1.4e-08 to 1.7e-06. The placebo on non-dialect unit error is null throughout. Read with the round 5 null, the dialect penalty is local to dialect tokens and turns into AICC damage only where those tokens carry business cues.
 
@@ -131,6 +132,11 @@ Round 2, all automatic and requiring no human review:
 - The AICC critical-span metric was rebuilt after a substring-based first pass produced three artifacts: numeral-notation false losses, single-syllable false preservations, and phantom labels.
 - After repair, critical-span strict loss is 0.103 [0.019, 0.203] for `medium` and 0.069 [0.000, 0.161] for `large-v3`, over 58 scorable spans.
 - Amount spans, previously reported at 91.7% loss, are at 0 loss once numerals are compared by value.
+
+Consolidation, after the corrections:
+
+- Every finding was brought onto the alignment standard and collected in one document, `aihub_119_current_results`, which is now the place to quote from.
+- Round 5's control pairs were rescored by alignment as the last holdout: +0.029, -0.015, +0.024, all crossing zero, placebos null. The only result the corrections left essentially unchanged.
 
 Metric correction, applied after round 8, in four parts:
 
@@ -226,7 +232,9 @@ Run directory:
 
 Primary reports:
 
+- [Current results](research/experiments/runs/aihub_119_current_results/README.md)
 - [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md)
+- [Control pairs rescored by alignment](research/experiments/runs/aihub_119_control_pairs_aligned/README.md)
 - [Aligned unit scoring, pilot](research/experiments/runs/aihub_119_aligned_pilot/README.md)
 - [Aligned unit scoring, holdout](research/experiments/runs/aihub_119_aligned_holdout/README.md)
 - [Aligned cue scoring, confirmation](research/experiments/runs/aihub_119_cue_aligned/README.md)
@@ -287,6 +295,7 @@ Machine-readable summaries:
 - `research/experiments/runs/aihub_119_aligned_holdout/summary.json`
 - `research/experiments/runs/aihub_119_cue_aligned/summary.json`
 - `research/experiments/runs/aihub_119_negation_cue_aligned/summary.json`
+- `research/experiments/runs/aihub_119_control_pairs_aligned/summary.json`
 - `research/experiments/runs/aihub_119_holdout_critical_spans/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_pairs/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_comparison/summary.json`

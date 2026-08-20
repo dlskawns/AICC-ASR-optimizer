@@ -358,3 +358,16 @@ uv run scripts/score_cues_by_alignment.py \
 ```
 
 This is the quoting standard for cue-level results, replacing `compare_cue_bearing_pairs.py` and `classify_cue_substitution.py`, which searched the whole hypothesis for a surface. Here the reference eojeol sequence is aligned to the hypothesis tokens and each cue is judged against its aligned token only, giving five outcomes: dialect surface kept, normalised to standard, cue morpheme only, substituted, deleted. The first three preserve business meaning. Substitution versus deletion falls out of the alignment rather than being inferred from surviving neighbours, so every case resolves; the neighbour method left about two thirds unresolved and its surviving sample leaned toward substitutions.
+
+## Control Pairs Scored By Alignment
+
+```bash
+uv run scripts/score_spans_by_alignment.py \
+  research/experiments/runs/aihub_119_dialect_control_pairs/pair_manifest.jsonl \
+  --case-dir research/experiments/runs/aihub_119_speaker_independent_split \
+  --case-annotations research/experiments/runs/aihub_119_holdout_critical_spans/remined_annotations.local.jsonl \
+  --control-dir research/experiments/runs/aihub_119_dialect_control_pairs \
+  --output-dir research/experiments/runs/aihub_119_control_pairs_aligned
+```
+
+The alignment-standard replacement for `compare_dialect_control_pairs.py`. Each critical span is located at its evidence eojeol and judged only against the token aligned to that position. This is the utterance-level test of whether dialect marking anywhere in a sentence costs AICC spans; it came back null under both the old and the new rule.
