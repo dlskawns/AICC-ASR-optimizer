@@ -327,3 +327,13 @@ uv run scripts/build_cue_bearing_dialect_split.py \
   --output-dir research/experiments/runs/aihub_119_negation_cue_split \
   --category negation --max-pairs 300
 ```
+
+## Cue Substitution Versus Deletion
+
+```bash
+uv run scripts/classify_cue_substitution.py \
+  research/experiments/runs/aihub_119_cue_bearing_split \
+  --output-dir research/experiments/runs/aihub_119_cue_substitution
+```
+
+Use this to find out what a damaged cue became. Deletion leaves the cue position empty, which downstream can notice; substitution puts another word there, which reads as a confident wrong answer. The verdict anchors on the cue's surviving neighbour eojeols, and cases where the neighbours are also lost, or the gap exceeds three tokens, are reported as `context_lost` rather than forced into a class. Expect a low resolution rate: roughly two thirds of absent cues cannot be aligned, and far more for a CTC model whose orthography drifts from the reference. The per-case inventory of replacement surfaces is transcript-derived and stays local.
