@@ -337,3 +337,14 @@ uv run scripts/classify_cue_substitution.py \
 ```
 
 Use this to find out what a damaged cue became. Deletion leaves the cue position empty, which downstream can notice; substitution puts another word there, which reads as a confident wrong answer. The verdict anchors on the cue's surviving neighbour eojeols, and cases where the neighbours are also lost, or the gap exceeds three tokens, are reported as `context_lost` rather than forced into a class. Expect a low resolution rate: roughly two thirds of absent cues cannot be aligned, and far more for a CTC model whose orthography drifts from the reference. The per-case inventory of replacement surfaces is transcript-derived and stays local.
+
+## Aligned Unit Scoring
+
+```bash
+uv run scripts/score_units_by_alignment.py \
+  research/experiments/runs/aihub_119_speaker_independent_split/asr_input_manifest.local.jsonl \
+  research/experiments/runs/aihub_119_speaker_independent_split/faster_whisper_medium.local.jsonl \
+  --output-dir research/experiments/runs/aihub_119_aligned_holdout
+```
+
+This is the quoting standard for dialect versus non-dialect unit error rates. Prefer it over `run_dialect_significance_tests.py`, which searches for a reference surface anywhere in the hypothesis and so lets a one-syllable unit match any eojeol beginning with it; half the dialect units here are one syllable. This script aligns the reference eojeol sequence to the hypothesis tokens by edit distance, with substitution cost taken from character similarity, and judges each unit only against the token aligned to its position. Keeping both scripts is deliberate: running them side by side gives the sensitivity analysis over scoring rules.

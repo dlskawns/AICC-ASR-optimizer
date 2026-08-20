@@ -1,0 +1,288 @@
+{
+  "analysis": "unit_scoring_by_sequence_alignment",
+  "scoring_rule": "reference eojeols aligned to hypothesis tokens by edit distance; each unit judged against its aligned token only",
+  "models": [
+    "faster-whisper:medium",
+    "faster-whisper:large-v3",
+    "wav2vec2:wav2vec2-large-xlsr-korean"
+  ],
+  "results": [
+    {
+      "model": "faster-whisper:medium",
+      "utterances": 50,
+      "missing_asr_outputs": 0,
+      "dialect_units": 66,
+      "plain_units": 471,
+      "dialect_error_units": 31,
+      "plain_error_units": 129,
+      "point_estimates": {
+        "dialect_unit_error_rate": 0.4696969696969697,
+        "plain_unit_error_rate": 0.27388535031847133,
+        "difference": 0.1958116193784984,
+        "ratio": 1.714940098661029,
+        "odds_ratio_pooled": 2.348172757475083
+      },
+      "cluster_bootstrap": {
+        "draws": 10000,
+        "dialect_error_rate_ci95": {
+          "low": 0.34424948770491803,
+          "high": 0.589041095890411,
+          "draws_used": 10000
+        },
+        "plain_error_rate_ci95": {
+          "low": 0.2186776245701863,
+          "high": 0.3333497053045184,
+          "draws_used": 10000
+        },
+        "difference_ci95": {
+          "low": 0.06301027624570503,
+          "high": 0.3266629632288256,
+          "draws_used": 10000
+        },
+        "ratio_ci95": {
+          "low": 1.2133770908938695,
+          "high": 2.3418857583193424,
+          "draws_used": 10000
+        },
+        "odds_ratio_ci95": {
+          "low": 1.3342465476136927,
+          "high": 4.094850513573,
+          "draws_used": 10000
+        },
+        "difference_bootstrap_se": 0.06736567320732006,
+        "difference_draws_at_or_below_zero": 12
+      },
+      "permutation_test": {
+        "draws": 20000,
+        "test": "within_utterance_conditional_permutation_of_dialect_flag",
+        "observed_difference": 0.1958116193784984,
+        "null_difference_mean": 0.025683019687319064,
+        "null_difference_sd": 0.05737744159880157,
+        "composition_adjusted_difference": 0.17012859969117933,
+        "composition_share_of_raw_difference": 0.13116187777230168,
+        "informative_utterances": 47,
+        "extreme_draws": 42,
+        "two_sided_p_value": 0.0021498925053747312,
+        "p_value_note": "add_one_estimator"
+      },
+      "mantel_haenszel_by_utterance": {
+        "odds_ratio": 2.2458587798082714,
+        "log_odds_ratio_se": 0.2845910547880411,
+        "ci95": {
+          "low": 1.2856822491531408,
+          "high": 3.923116821566312
+        },
+        "z": 2.8429845717824334,
+        "two_sided_p_approx": 0.004469323384027172,
+        "strata_used": 50
+      },
+      "naive_unit_independent_test": {
+        "test": "two_proportion_z_units_treated_as_independent",
+        "z": 3.257446989078858,
+        "two_sided_p_approx": 0.0011241925392568393,
+        "difference_se": 0.060111989553472384
+      },
+      "design_effect_vs_naive": 1.2559001256360707,
+      "cohort_contrast": {
+        "comparable": true,
+        "busan_utterances": 25,
+        "other_utterances": 25,
+        "busan_dialect_error_rate": 0.5294117647058824,
+        "other_dialect_error_rate": 0.40625,
+        "difference": 0.12316176470588236,
+        "difference_ci95": {
+          "low": -0.11862422130714807,
+          "high": 0.3653416655571826,
+          "draws_used": 10000
+        },
+        "bootstrap_sign_crossing_fraction": 0.1608
+      },
+      "unit_outcome_rule": "dialect_unit_correct_if_dialect_or_standard_surface_present_plain_unit_correct_if_standard_surface_present"
+    },
+    {
+      "model": "faster-whisper:large-v3",
+      "utterances": 50,
+      "missing_asr_outputs": 0,
+      "dialect_units": 66,
+      "plain_units": 471,
+      "dialect_error_units": 29,
+      "plain_error_units": 109,
+      "point_estimates": {
+        "dialect_unit_error_rate": 0.4393939393939394,
+        "plain_unit_error_rate": 0.23142250530785563,
+        "difference": 0.20797143408608376,
+        "ratio": 1.8986655546288573,
+        "odds_ratio_pooled": 2.603025043392016
+      },
+      "cluster_bootstrap": {
+        "draws": 10000,
+        "dialect_error_rate_ci95": {
+          "low": 0.3278617863199548,
+          "high": 0.5573770491803278,
+          "draws_used": 10000
+        },
+        "plain_error_rate_ci95": {
+          "low": 0.18064370494429474,
+          "high": 0.2869757174392936,
+          "draws_used": 10000
+        },
+        "difference_ci95": {
+          "low": 0.08055011346222249,
+          "high": 0.3382108543656736,
+          "draws_used": 10000
+        },
+        "ratio_ci95": {
+          "low": 1.3166657455170718,
+          "high": 2.6813533634334408,
+          "draws_used": 10000
+        },
+        "odds_ratio_ci95": {
+          "low": 1.4834341819992642,
+          "high": 4.6150259410562064,
+          "draws_used": 10000
+        },
+        "difference_bootstrap_se": 0.06535773583461119,
+        "difference_draws_at_or_below_zero": 3
+      },
+      "permutation_test": {
+        "draws": 20000,
+        "test": "within_utterance_conditional_permutation_of_dialect_flag",
+        "observed_difference": 0.20797143408608376,
+        "null_difference_mean": 0.0237933555298205,
+        "null_difference_sd": 0.05529792761134977,
+        "composition_adjusted_difference": 0.18417807855626325,
+        "composition_share_of_raw_difference": 0.11440684454756381,
+        "informative_utterances": 46,
+        "extreme_draws": 22,
+        "two_sided_p_value": 0.0011499425028748563,
+        "p_value_note": "add_one_estimator"
+      },
+      "mantel_haenszel_by_utterance": {
+        "odds_ratio": 2.423890465038531,
+        "log_odds_ratio_se": 0.28690086754030475,
+        "ci95": {
+          "low": 1.3813319006533078,
+          "high": 4.253318832154661
+        },
+        "z": 3.085992339745429,
+        "two_sided_p_approx": 0.00202874048658086,
+        "strata_used": 50
+      },
+      "naive_unit_independent_test": {
+        "test": "two_proportion_z_units_treated_as_independent",
+        "z": 3.6211562083555027,
+        "two_sided_p_approx": 0.0002932893550868832,
+        "difference_se": 0.05743232882530938
+      },
+      "design_effect_vs_naive": 1.2950339195836544,
+      "cohort_contrast": {
+        "comparable": true,
+        "busan_utterances": 25,
+        "other_utterances": 25,
+        "busan_dialect_error_rate": 0.5,
+        "other_dialect_error_rate": 0.375,
+        "difference": 0.125,
+        "difference_ci95": {
+          "low": -0.10682506307821696,
+          "high": 0.3563218390804597,
+          "draws_used": 10000
+        },
+        "bootstrap_sign_crossing_fraction": 0.1452
+      },
+      "unit_outcome_rule": "dialect_unit_correct_if_dialect_or_standard_surface_present_plain_unit_correct_if_standard_surface_present"
+    },
+    {
+      "model": "wav2vec2:wav2vec2-large-xlsr-korean",
+      "utterances": 50,
+      "missing_asr_outputs": 0,
+      "dialect_units": 66,
+      "plain_units": 471,
+      "dialect_error_units": 57,
+      "plain_error_units": 309,
+      "point_estimates": {
+        "dialect_unit_error_rate": 0.8636363636363636,
+        "plain_unit_error_rate": 0.6560509554140127,
+        "difference": 0.20758540822235094,
+        "ratio": 1.3164165931156224,
+        "odds_ratio_pooled": 3.320388349514563
+      },
+      "cluster_bootstrap": {
+        "draws": 10000,
+        "dialect_error_rate_ci95": {
+          "low": 0.7777777777777778,
+          "high": 0.9393939393939394,
+          "draws_used": 10000
+        },
+        "plain_error_rate_ci95": {
+          "low": 0.6064498970487303,
+          "high": 0.7049891540130152,
+          "draws_used": 10000
+        },
+        "difference_ci95": {
+          "low": 0.1069316495062961,
+          "high": 0.30088414721345175,
+          "draws_used": 10000
+        },
+        "ratio_ci95": {
+          "low": 1.1560867023043915,
+          "high": 1.4844583989264173,
+          "draws_used": 10000
+        },
+        "odds_ratio_ci95": {
+          "low": 1.7401515799274163,
+          "high": 8.348265050167218,
+          "draws_used": 10000
+        },
+        "difference_bootstrap_se": 0.04955464121585502,
+        "difference_draws_at_or_below_zero": 0
+      },
+      "permutation_test": {
+        "draws": 20000,
+        "test": "within_utterance_conditional_permutation_of_dialect_flag",
+        "observed_difference": 0.20758540822235094,
+        "null_difference_mean": 0.02791687898089176,
+        "null_difference_sd": 0.057520961861989364,
+        "composition_adjusted_difference": 0.17966852924145918,
+        "composition_share_of_raw_difference": 0.1344838214783823,
+        "informative_utterances": 50,
+        "extreme_draws": 25,
+        "two_sided_p_value": 0.0012999350032498376,
+        "p_value_note": "add_one_estimator"
+      },
+      "mantel_haenszel_by_utterance": {
+        "odds_ratio": 2.980503289656304,
+        "log_odds_ratio_se": 0.3745613371432268,
+        "ci95": {
+          "low": 1.430396894842017,
+          "high": 6.210444032481765
+        },
+        "z": 2.9156564415668917,
+        "two_sided_p_approx": 0.0035494111059988257,
+        "strata_used": 50
+      },
+      "naive_unit_independent_test": {
+        "test": "two_proportion_z_units_treated_as_independent",
+        "z": 3.390219275086353,
+        "two_sided_p_approx": 0.0006983673932631281,
+        "difference_se": 0.061230673115402985
+      },
+      "design_effect_vs_naive": 0.654983869811826,
+      "cohort_contrast": {
+        "comparable": true,
+        "busan_utterances": 25,
+        "other_utterances": 25,
+        "busan_dialect_error_rate": 0.8823529411764706,
+        "other_dialect_error_rate": 0.84375,
+        "difference": 0.03860294117647056,
+        "difference_ci95": {
+          "low": -0.12144225230414747,
+          "high": 0.19550342130987297,
+          "draws_used": 10000
+        },
+        "bootstrap_sign_crossing_fraction": 0.3201
+      },
+      "unit_outcome_rule": "dialect_unit_correct_if_dialect_or_standard_surface_present_plain_unit_correct_if_standard_surface_present"
+    }
+  ],
+  "numpy_version": "2.5.2"
+}

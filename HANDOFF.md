@@ -37,9 +37,13 @@ Optional background:
 
 Safe current claims:
 
-> ASR shows high surface instability on dialect-marked eojeols compared with non-dialect eojeols, and the gap survives utterance-level clustering in every baseline and both splits. On a 300-utterance holdout that shares no recording with the pilot, the cluster bootstrap 95% CI on the difference is [0.386, 0.501] for `faster-whisper:medium`, [0.401, 0.514] for `faster-whisper:large-v3`, and [0.271, 0.341] for `wav2vec2-large-xlsr-korean`; utterance-stratified odds ratios are 6.73, 7.65, and 7.29, and error-rate ratios are 3.18x, 3.41x, and 1.50x. A within-utterance permutation of the dialect flag never reached the observed gap in 20000 draws for any model. Text-only audit suggests many surface mismatches are acceptable standard or colloquial normalizations, so AICC evaluation must isolate harmful semantic shifts rather than treating every dialect-surface mismatch as task failure.
+> ASR shows high surface instability on dialect-marked eojeols compared with non-dialect eojeols, and the gap survives utterance-level clustering in every baseline and both splits. Scored by sequence alignment, the strictest of three rules tried, the 300-utterance holdout gives difference 95% CIs of [0.367, 0.480] for `faster-whisper:medium`, [0.386, 0.496] for `faster-whisper:large-v3`, and [0.238, 0.313] for `wav2vec2-large-xlsr-korean`; ratios are 2.81x, 3.05x, and 1.44x, and utterance-stratified odds ratios 6.08, 7.15, and 5.41.
 
-> The dialect penalty is neither a model-capacity artifact, nor a Whisper artifact, nor a pilot-sample artifact. It reproduces in a Korean-specialised CTC architecture, and on the speaker-disjoint holdout it grows rather than shrinks: `medium` goes from 2.08x to 3.18x and `large-v3` from 2.21x to 3.41x.
+> The gap is robust to how it is measured. Three progressively stricter scoring rules give holdout ratios of 4.05x, 3.18x, 2.81x for `medium` and 4.02x, 3.41x, 3.05x for `large-v3`. Every tightening shrinks the effect and none removes it; all six model-by-split combinations still exclude zero and stay significant under within-utterance permutation, at p below 5e-05 on the holdout and 1.1e-03 to 2.1e-03 on the smaller pilot. That convergence is itself evidence, and belongs in the paper as a sensitivity analysis.
+
+> Text-only audit suggests many surface mismatches are acceptable standard or colloquial normalizations, so AICC evaluation must isolate harmful semantic shifts rather than treating every dialect-surface mismatch as task failure.
+
+> The dialect penalty is neither a model-capacity artifact, nor a Whisper artifact, nor a pilot-sample artifact. It reproduces in a Korean-specialised CTC architecture, and on the speaker-disjoint holdout it grows rather than shrinks: `medium` goes from 1.71x to 2.81x and `large-v3` from 1.90x to 3.05x.
 
 > Measuring the dialect-to-AICC-damage link through surface overlap between critical spans and dialect eojeols does not work, and more data does not fix it. Going from 50 to 300 utterances moved the overlapping-span count only from 4 to 5 of 93, because AICC markers and dialect-marked eojeols barely co-occur on the surface in this corpus.
 
@@ -59,7 +63,7 @@ Safe current claims:
 
 Do not yet claim:
 
-- Busan dialect is uniquely harder than other Gyeongsang dialects. On the holdout, all three baselines straddle zero and disagree on sign: +0.000 [-0.110, 0.106], +0.023 [-0.085, 0.131], -0.034 [-0.092, 0.021]. This is a powered null, not an unknown.
+- Busan dialect is uniquely harder than other Gyeongsang dialects. On the holdout, all three baselines straddle zero and disagree on sign: +0.023 [-0.082, 0.129], +0.040 [-0.064, 0.141], -0.028 [-0.092, 0.032]. This is a powered null, not an unknown, and it has held under all three scoring rules.
 - Every dialect ASR surface error harms AICC text analytics.
 - The critical-span loss rate is an AICC task failure rate. The labels are weak and unreviewed.
 - Dialect marking has no effect on AICC critical-span loss. Round 5 detected none at utterance level, but round 6 found a large effect once the cue word itself is dialect-marked. The correct statement is that the effect is local, not absent.
@@ -128,7 +132,16 @@ Round 2, all automatic and requiring no human review:
 - After repair, critical-span strict loss is 0.103 [0.019, 0.203] for `medium` and 0.069 [0.000, 0.161] for `large-v3`, over 58 scorable spans.
 - Amount spans, previously reported at 91.7% loss, are at 0 loss once numerals are compared by value.
 
-Metric correction, applied after round 8, in two parts:
+Metric correction, applied after round 8, in three parts:
+
+Part 3, sequence alignment, now the quoting standard:
+
+- Even the eojeol-boundary rule ignores position, so a one-syllable unit still matched any eojeol starting with it. Half the dialect units are one syllable.
+- Reference eojeols are now aligned to hypothesis tokens by edit distance, with substitution cost from character similarity, and each unit is judged only against its aligned token.
+- Holdout: dialect versus plain 0.659/0.234, 0.656/0.215, 0.901/0.623; ratios 2.81x, 3.05x, 1.44x; odds ratios 6.08, 7.15, 5.41; permutation p below 5e-05 throughout.
+- Pilot: ratios 1.71x, 1.90x, 1.32x, permutation p from 1.1e-03 to 2.1e-03.
+- The three rules together form a sensitivity analysis: holdout `medium` reads 4.05x, 3.18x, 2.81x as the rule tightens, and never loses significance.
+
 
 Part 2, unit-level error rates:
 
@@ -206,6 +219,8 @@ Run directory:
 Primary reports:
 
 - [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md)
+- [Aligned unit scoring, pilot](research/experiments/runs/aihub_119_aligned_pilot/README.md)
+- [Aligned unit scoring, holdout](research/experiments/runs/aihub_119_aligned_holdout/README.md)
 - [Pilot round 8 report](research/experiments/runs/aihub_119_pilot_round8/README.md)
 - [Cue substitution, confirmation split](research/experiments/runs/aihub_119_cue_substitution/README.md)
 - [Cue substitution, negation split](research/experiments/runs/aihub_119_negation_substitution/README.md)
@@ -258,6 +273,8 @@ Machine-readable summaries:
 - `research/experiments/runs/aihub_119_critical_span_remined_wav2vec2/summary.json`
 - `research/experiments/runs/aihub_119_speaker_independent_split/summary.json`
 - `research/experiments/runs/aihub_119_holdout_significance/summary.json`
+- `research/experiments/runs/aihub_119_aligned_pilot/summary.json`
+- `research/experiments/runs/aihub_119_aligned_holdout/summary.json`
 - `research/experiments/runs/aihub_119_holdout_critical_spans/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_pairs/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_comparison/summary.json`
@@ -380,6 +397,7 @@ Everything reachable without a human has been done through round 3: `large-v3` a
 - Any figure printed in rounds 1 through 8 that came from string matching is superseded by the metric correction document. Two separate biases were found, both one-sided in favour of a larger dialect gap. The mined cue carries the standard spelling, so a perfectly transcribed dialect form was scored as a loss, and that bias fell only on the dialect arm. Quote the metric correction document instead.
 - The thesis has to be narrow to be true. The AICC angle cannot rest on whole-utterance degradation, which round 5 rules out. It rests on the dialect tokens themselves and on the cue positions they land on.
 - The round 5 null is underpowered against small effects, roughly below 0.10.
+- Three successive corrections all pushed the same way, shrinking the dialect gap. Treat any remaining surface-matching judgement in this repository as suspect until it has been checked against alignment.
 - Absolute error rates are not comparable across the three baselines; the wav2vec2 CTC output differs in orthography and training domain. Only within-model contrasts are.
 - Dataset licensing and raw transcript handling remain restricted; keep `.local.*` files out of shareable artifacts.
 
