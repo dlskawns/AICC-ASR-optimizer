@@ -1,0 +1,47 @@
+{
+  "cohort_counts": {
+    "busan": 19705,
+    "gyeongsang_other": 17859
+  },
+  "category_counts": {
+    "busan:lexical_replacement": 9817,
+    "gyeongsang_other:lexical_replacement": 9644,
+    "busan:ending_or_particle_variant": 4065,
+    "busan:vowel_shift": 3383,
+    "gyeongsang_other:ending_or_particle_variant": 3206,
+    "gyeongsang_other:prefix_or_stem_variant": 2442,
+    "gyeongsang_other:vowel_shift": 2418,
+    "busan:prefix_or_stem_variant": 2269,
+    "busan:coda_shift": 165,
+    "gyeongsang_other:coda_shift": 143,
+    "gyeongsang_other:same_surface": 6,
+    "busan:same_surface": 6
+  },
+  "slice_counts": {
+    "gyeongsang_other:lexical_replacement": 9644,
+    "busan_strict:lexical_replacement": 7099,
+    "gyeongsang_other:ending_or_particle_variant": 3206,
+    "busan_strict:ending_or_particle_variant": 3073,
+    "busan_strict:vowel_shift": 2585,
+    "gyeongsang_other:prefix_or_stem_variant": 2442,
+    "gyeongsang_other:vowel_shift": 2418,
+    "busan_residence:lexical_replacement": 2376,
+    "busan_strict:prefix_or_stem_variant": 1739,
+    "busan_residence:ending_or_particle_variant": 921,
+    "busan_residence:vowel_shift": 769,
+    "busan_residence:prefix_or_stem_variant": 469,
+    "busan_any:lexical_replacement": 342,
+    "gyeongsang_other:coda_shift": 143,
+    "busan_strict:coda_shift": 138,
+    "busan_any:ending_or_particle_variant": 71,
+    "busan_any:prefix_or_stem_variant": 61,
+    "busan_any:vowel_shift": 29,
+    "busan_residence:coda_shift": 25,
+    "gyeongsang_other:same_surface": 6,
+    "busan_residence:same_surface": 3,
+    "busan_strict:same_surface": 3,
+    "busan_any:coda_shift": 2
+  },
+  "unique_pattern_count": 5235,
+  "numpy_version": "2.4.6"
+}

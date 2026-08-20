@@ -1,0 +1,23 @@
+{
+  "input_rows": 398,
+  "preannotated_rows": 398,
+  "domain_counts": {
+    "other": 240,
+    "billing": 82,
+    "cancellation": 60,
+    "reservation": 9,
+    "delivery": 4,
+    "plan_change": 2,
+    "technical_support": 1
+  },
+  "critical_span_counts": {
+    "negation": 178,
+    "confirmation": 174,
+    "amount": 92,
+    "date_time": 87,
+    "intent_cue": 83
+  },
+  "raw_text_policy": "Weak preannotations are local-only and contain transcript text.",
+  "gold_status": "not_gold_human_review_required",
+  "numpy_version": "2.4.6"
+}

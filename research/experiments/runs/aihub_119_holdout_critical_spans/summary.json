@@ -1,0 +1,59 @@
+{
+  "analysis": "critical_span_remine_with_eojeol_boundary_rules",
+  "label_status": "weak_preannotation_not_gold",
+  "utterances": 300,
+  "old_rule": {
+    "description": "substring containment anywhere in the transcript",
+    "category_counts": {},
+    "spans": 0,
+    "phantom_labels": 0,
+    "phantom_rate": 0.0,
+    "phantom_by_category": {}
+  },
+  "new_rule": {
+    "description": "eojeol-initial cue match with per-cue exact/prefix mode, token-wise amount matching",
+    "category_counts": {
+      "negation": 48,
+      "confirmation": 42,
+      "date_time": 2,
+      "intent_cue": 1
+    },
+    "spans": 93,
+    "phantom_labels": 0,
+    "phantom_rate": 0.0,
+    "phantom_by_category": {}
+  },
+  "cue_rules": {
+    "negation:exact": [
+      "안",
+      "못"
+    ],
+    "negation:prefix": [
+      "없",
+      "아니",
+      "불가"
+    ],
+    "intent_cue:prefix": [
+      "가입",
+      "결제",
+      "문의",
+      "배송",
+      "변경",
+      "예약",
+      "요금",
+      "취소",
+      "환불",
+      "해지"
+    ],
+    "confirmation:exact": [
+      "네",
+      "예"
+    ],
+    "confirmation:prefix": [
+      "아니",
+      "맞",
+      "그렇"
+    ]
+  },
+  "numpy_version": "2.4.6"
+}

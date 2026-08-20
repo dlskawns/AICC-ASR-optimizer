@@ -1,0 +1,35 @@
+{
+  "selected_rows": 510,
+  "samples_per_group": 50,
+  "seed": 119,
+  "candidate_pool_counts": {
+    "busan:coda_shift": 122,
+    "busan:ending_or_particle_variant": 3281,
+    "busan:lexical_replacement": 8219,
+    "busan:prefix_or_stem_variant": 1687,
+    "busan:same_surface": 5,
+    "busan:vowel_shift": 2648,
+    "gyeongsang_other:coda_shift": 119,
+    "gyeongsang_other:ending_or_particle_variant": 2712,
+    "gyeongsang_other:lexical_replacement": 8367,
+    "gyeongsang_other:prefix_or_stem_variant": 1960,
+    "gyeongsang_other:same_surface": 5,
+    "gyeongsang_other:vowel_shift": 1935
+  },
+  "selected_counts": {
+    "busan:coda_shift": 50,
+    "busan:ending_or_particle_variant": 50,
+    "busan:lexical_replacement": 50,
+    "busan:prefix_or_stem_variant": 50,
+    "busan:vowel_shift": 50,
+    "gyeongsang_other:coda_shift": 50,
+    "gyeongsang_other:ending_or_particle_variant": 50,
+    "gyeongsang_other:lexical_replacement": 50,
+    "gyeongsang_other:prefix_or_stem_variant": 50,
+    "gyeongsang_other:vowel_shift": 50,
+    "busan:same_surface": 5,
+    "gyeongsang_other:same_surface": 5
+  },
+  "raw_text_policy": "Raw transcript text is stored only in semantic_review_queue.local.jsonl.",
+  "numpy_version": "2.4.6"
+}

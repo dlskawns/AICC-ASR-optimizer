@@ -1,0 +1,44 @@
+{
+  "audit_type": "llm_assisted_text_only_not_gold",
+  "audited_units": 66,
+  "status_counts": {
+    "meaning_preserved_or_acceptable_normalization": 50,
+    "potentially_harmful_semantic_shift": 9,
+    "low_impact_discourse_or_hedge_loss": 7
+  },
+  "status_rates": {
+    "meaning_preserved_or_acceptable_normalization": 0.7575757575757576,
+    "potentially_harmful_semantic_shift": 0.13636363636363635,
+    "low_impact_discourse_or_hedge_loss": 0.10606060606060606
+  },
+  "potentially_harmful_units": 9,
+  "potentially_harmful_unit_rate": 0.13636363636363635,
+  "low_impact_units": 7,
+  "low_impact_unit_rate": 0.10606060606060606,
+  "meaning_preserved_or_acceptable_units": 50,
+  "meaning_preserved_or_acceptable_rate": 0.7575757575757576,
+  "raw_missing_or_substituted_units": 30,
+  "raw_missing_or_substituted_rate": 0.45454545454545453,
+  "harmful_candidate_rows": 9,
+  "status_by_category": {
+    "vowel_shift:meaning_preserved_or_acceptable_normalization": 14,
+    "lexical_replacement:meaning_preserved_or_acceptable_normalization": 13,
+    "prefix_or_stem_variant:meaning_preserved_or_acceptable_normalization": 12,
+    "ending_or_particle_variant:meaning_preserved_or_acceptable_normalization": 11,
+    "ending_or_particle_variant:low_impact_discourse_or_hedge_loss": 4,
+    "lexical_replacement:potentially_harmful_semantic_shift": 3,
+    "prefix_or_stem_variant:potentially_harmful_semantic_shift": 3,
+    "lexical_replacement:low_impact_discourse_or_hedge_loss": 2,
+    "ending_or_particle_variant:potentially_harmful_semantic_shift": 2,
+    "vowel_shift:potentially_harmful_semantic_shift": 1,
+    "prefix_or_stem_variant:low_impact_discourse_or_hedge_loss": 1
+  },
+  "status_by_automatic_outcome": {
+    "standard_normalized:meaning_preserved_or_acceptable_normalization": 21,
+    "surface_preserved:meaning_preserved_or_acceptable_normalization": 15,
+    "missing_or_substituted:meaning_preserved_or_acceptable_normalization": 14,
+    "missing_or_substituted:potentially_harmful_semantic_shift": 9,
+    "missing_or_substituted:low_impact_discourse_or_hedge_loss": 7
+  },
+  "interpretation": "Raw dialect surface mismatch remains high, but text-only semantic audit reduces potentially harmful dialect-unit candidates from 30 to 9."
+}

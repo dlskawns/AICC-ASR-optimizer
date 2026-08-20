@@ -1,0 +1,162 @@
+{
+  "date": "2026-08-13",
+  "status": "faster_whisper_medium_dialect_attribution_probe_evaluated",
+  "completed_without_large_download": [
+    "normalized_gold_review_queue",
+    "gold_freeze_dry_run",
+    "candidate_audio_subset_request_manifest",
+    "bad_input_cli_checks",
+    "json_and_schema_validation",
+    "validation_audio_download",
+    "validation_audio_zip_integrity_check",
+    "label_audio_stem_match_check",
+    "pilot_audio_subset_extraction",
+    "pilot_audio_wave_header_validation",
+    "pilot_review_clip_extraction",
+    "pilot_candidate_annotation_schema_validation",
+    "pilot_gold_freeze_dry_run",
+    "dialect_attribution_probe_manifest",
+    "dialect_attribution_probe_smoke_test",
+    "whisper_proto_runtime_check",
+    "faster_whisper_pilot_asr_runner"
+  ],
+  "completed_after_download_approval": [
+    "faster_whisper_medium_model_download",
+    "faster_whisper_medium_local_only_load_check",
+    "faster_whisper_medium_pilot_asr",
+    "faster_whisper_medium_dialect_attribution_eval",
+    "dialect_asr_error_analysis",
+    "dialect_asr_text_only_semantic_audit"
+  ],
+  "current_counts": {
+    "gold_review_queue_rows": 398,
+    "review_status_unreviewed": 398,
+    "frozen_gold_rows": 0,
+    "audio_subset_request_rows": 398,
+    "validation_audio_wav_files": 843,
+    "matched_label_audio_stems": 843,
+    "pilot_review_rows": 50,
+    "pilot_rows_with_audio_path": 50,
+    "pilot_unique_wav_files": 46,
+    "pilot_unique_audio_duration_minutes": 857.67,
+    "pilot_review_clips": 50,
+    "pilot_clip_duration_minutes": 4.58,
+    "pilot_candidate_schema_errors": 0,
+    "pilot_accepted_rows": 0,
+    "dialect_attribution_manifest_rows": 50,
+    "dialect_marked_eojeol_units": 66,
+    "non_dialect_eojeol_units": 471,
+    "asr_evaluated_utterances": 50,
+    "asr_missing_outputs": 0,
+    "dialect_unit_error_rate": 0.45454545454545453,
+    "dialect_surface_preservation_rate": 0.22727272727272727,
+    "dialect_standard_normalization_rate": 0.3181818181818182,
+    "dialect_surface_change_rate": 0.7727272727272727,
+    "plain_unit_error_rate": 0.17197452229299362,
+    "dialect_plain_error_rate_difference": 0.2825709322524609,
+    "dialect_to_plain_error_rate_ratio": 2.6430876580898386,
+    "dialect_plain_odds_ratio": 4.012345679012346,
+    "dialect_plain_odds_ratio_ci95_low": 2.337231365323513,
+    "dialect_plain_odds_ratio_ci95_high": 6.888029181338956,
+    "dialect_plain_two_proportion_z": 5.309220463934385,
+    "dialect_plain_two_sided_p_approx": 1.1009509668309497e-07,
+    "faster_whisper_medium_total_asr_seconds": 152.181,
+    "faster_whisper_medium_avg_asr_seconds": 3.044,
+    "text_audit_units": 66,
+    "text_audit_meaning_preserved_or_acceptable_units": 50,
+    "text_audit_meaning_preserved_or_acceptable_rate": 0.7575757575757576,
+    "text_audit_low_impact_units": 7,
+    "text_audit_low_impact_rate": 0.10606060606060606,
+    "text_audit_potentially_harmful_units": 9,
+    "text_audit_potentially_harmful_rate": 0.13636363636363635,
+    "local_available_space_after_validation": "88 GiB",
+    "local_available_space_after_medium_model": "86 GiB"
+  },
+  "next_tasks": [
+    {
+      "order": 1,
+      "task": "human_audio_review_text_audit_candidates",
+      "input": "research/experiments/runs/aihub_119_dialect_attribution_probe/dialect_asr_text_audit.local.jsonl",
+      "output": "gold decision for 9 potentially harmful and 7 low-impact dialect ASR candidates",
+      "download_required": false,
+      "blocked_by": "human/audio review of restricted transcript rows"
+    },
+    {
+      "order": 2,
+      "task": "human_review_pilot_reviewer_sheet",
+      "input": "research/experiments/runs/aihub_119_pilot_review_packet/pilot_reviewer_sheet.local.tsv",
+      "audio_clips": "data/interim/aihub_119_pilot_clips",
+      "output": "accepted or rejected decisions copied back into the pilot JSONL queue",
+      "download_required": false
+    },
+    {
+      "order": 3,
+      "task": "freeze_accepted_pilot_annotations",
+      "command": "uv run scripts/freeze_gold_annotations.py research/experiments/runs/aihub_119_pilot_audio_subset/pilot_gold_review_queue.local.jsonl --output-dir research/experiments/runs/aihub_119_pilot_gold_freeze",
+      "download_required": false
+    },
+    {
+      "order": 4,
+      "task": "run_second_asr_baseline",
+      "download_required": false,
+      "blocked_by": "pilot rubric stabilization"
+    },
+    {
+      "order": 5,
+      "task": "stabilize_annotation_rubric_against_full_review_queue",
+      "input": "research/experiments/runs/aihub_119_gold_review/gold_review_queue.local.jsonl",
+      "download_required": false,
+      "blocked_by": "pilot review decisions"
+    },
+    {
+      "order": 6,
+      "task": "download_training_audio_archives",
+      "download_required": true,
+      "stop_reason": "not needed before validation pilot baseline"
+    },
+    {
+      "order": 7,
+      "task": "human_review_full_gold_review_queue",
+      "input": "research/experiments/runs/aihub_119_gold_review/gold_review_queue.local.jsonl",
+      "download_required": false,
+      "blocked_by": "pilot rubric stabilization"
+    }
+  ],
+  "validation_audio_archive": {
+    "dataset": "AI-Hub 119 validation source audio",
+    "filekey": "572714",
+    "archive": "(비식별화완료)경상도_2.zip",
+    "size": "28 GB",
+    "status": "downloaded_and_validated",
+    "audio_file_count": 843,
+    "label_audio_stem_matches": 843
+  },
+  "whisper_proto_runtime_check": {
+    "path": "../japko/whisper_proto",
+    "runtime": "faster-whisper",
+    "runtime_version": "1.2.1",
+    "configured_model": "medium",
+    "model_cache_status": "cached",
+    "checked_model_aliases": [
+      "tiny",
+      "base",
+      "small",
+      "medium",
+      "large-v1",
+      "large-v2",
+      "large-v3",
+      "large"
+    ],
+    "download_started": true,
+    "model_cache_size": "1.4G",
+    "asr_runner": "scripts/run_faster_whisper_pilot_asr.py",
+    "asr_output": "research/experiments/runs/aihub_119_dialect_attribution_probe/faster_whisper_medium.local.jsonl",
+    "error_analysis_summary": "research/experiments/runs/aihub_119_dialect_attribution_probe/dialect_asr_error_analysis_summary.json",
+    "text_audit_summary": "research/experiments/runs/aihub_119_dialect_attribution_probe/dialect_asr_text_audit_summary.json"
+  },
+  "next_large_download_stop_point": {
+    "dataset": "AI-Hub 119 training source audio",
+    "status": "not_started",
+    "reason": "training audio is not needed before validation pilot baseline"
+  }
+}

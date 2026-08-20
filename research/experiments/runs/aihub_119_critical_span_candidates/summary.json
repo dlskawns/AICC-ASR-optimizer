@@ -1,0 +1,38 @@
+{
+  "selected_rows": 398,
+  "samples_per_cell": 40,
+  "seed": 119,
+  "candidate_pool_counts": {
+    "busan:amount": 95,
+    "busan:confirmation": 2885,
+    "busan:date_time": 94,
+    "busan:intent_cue": 87,
+    "busan:negation": 3198,
+    "gyeongsang_other:amount": 57,
+    "gyeongsang_other:confirmation": 2579,
+    "gyeongsang_other:date_time": 83,
+    "gyeongsang_other:intent_cue": 92,
+    "gyeongsang_other:negation": 2811
+  },
+  "selected_critical_span_counts": {
+    "date_time": 198,
+    "amount": 187,
+    "negation": 178,
+    "confirmation": 174,
+    "intent_cue": 83
+  },
+  "selected_cohort_counts": {
+    "gyeongsang_other": 200,
+    "busan": 198
+  },
+  "selected_primary_dialect_counts": {
+    "lexical_replacement": 166,
+    "ending_or_particle_variant": 100,
+    "vowel_shift": 69,
+    "prefix_or_stem_variant": 61,
+    "same_surface": 1,
+    "coda_shift": 1
+  },
+  "raw_text_policy": "Raw transcript text is stored only in critical_span_review_queue.local.jsonl.",
+  "numpy_version": "2.4.6"
+}

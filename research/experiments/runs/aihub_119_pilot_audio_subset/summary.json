@@ -1,0 +1,19 @@
+{
+  "pilot_rows": 50,
+  "audio_present_rows": 50,
+  "unique_audio_files": 46,
+  "cohort_counts": {
+    "busan": 25,
+    "gyeongsang_other": 25
+  },
+  "critical_category_counts": {
+    "negation": 17,
+    "confirmation": 17,
+    "intent_cue": 15,
+    "date_time": 12,
+    "amount": 11
+  },
+  "audio_dir": "data/interim/aihub_119_pilot_audio",
+  "gold_status": "pilot_review_only_not_frozen_gold",
+  "numpy_version": "2.4.6"
+}

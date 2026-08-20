@@ -1,0 +1,53 @@
+{
+  "evaluated_utterances": 50,
+  "missing_asr_outputs": 0,
+  "dialect_units": 66,
+  "plain_units": 471,
+  "dialect_surface_preservation_rate": 0.22727272727272727,
+  "dialect_standard_normalization_rate": 0.3181818181818182,
+  "dialect_unit_error_rate": 0.45454545454545453,
+  "plain_unit_error_rate": 0.17197452229299362,
+  "dialect_plain_error_rate_difference": 0.2825709322524609,
+  "dialect_to_plain_error_rate_ratio": 2.6430876580898386,
+  "dialect_plain_odds_ratio": 4.012345679012346,
+  "dialect_plain_odds_ratio_ci95": {
+    "low": 2.337231365323513,
+    "high": 6.888029181338956
+  },
+  "dialect_plain_two_proportion_z": 5.309220463934385,
+  "dialect_plain_two_sided_p_approx": 1.1009509668309497e-07,
+  "model_counts": {
+    "faster-whisper:medium": 50
+  },
+  "outcome_counts": {
+    "plain_total": 471,
+    "plain:standard_preserved": 390,
+    "cohort:gyeongsang_other:plain:standard_preserved": 201,
+    "cohort:busan:plain:standard_preserved": 189,
+    "plain:plain_error": 81,
+    "dialect_total": 66,
+    "cohort:gyeongsang_other:plain:plain_error": 41,
+    "cohort:busan:plain:plain_error": 40,
+    "dialect:missing_or_substituted": 30,
+    "dialect:standard_normalized": 21,
+    "category:lexical_replacement:dialect:missing_or_substituted": 17,
+    "cohort:busan:dialect:missing_or_substituted": 16,
+    "dialect:surface_preserved": 15,
+    "cohort:gyeongsang_other:dialect:missing_or_substituted": 14,
+    "cohort:busan:dialect:standard_normalized": 13,
+    "cohort:gyeongsang_other:dialect:surface_preserved": 10,
+    "category:prefix_or_stem_variant:dialect:standard_normalized": 8,
+    "cohort:gyeongsang_other:dialect:standard_normalized": 8,
+    "category:ending_or_particle_variant:dialect:standard_normalized": 7,
+    "category:vowel_shift:dialect:standard_normalized": 6,
+    "category:ending_or_particle_variant:dialect:missing_or_substituted": 6,
+    "category:vowel_shift:dialect:surface_preserved": 6,
+    "cohort:busan:dialect:surface_preserved": 5,
+    "category:prefix_or_stem_variant:dialect:surface_preserved": 4,
+    "category:prefix_or_stem_variant:dialect:missing_or_substituted": 4,
+    "category:ending_or_particle_variant:dialect:surface_preserved": 4,
+    "category:vowel_shift:dialect:missing_or_substituted": 3,
+    "category:lexical_replacement:dialect:surface_preserved": 1
+  },
+  "numpy_version": "2.4.6"
+}

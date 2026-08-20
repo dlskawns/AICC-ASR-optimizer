@@ -1,0 +1,20 @@
+{
+  "review_rows": 50,
+  "accepted_rows": 0,
+  "clip_rows": 50,
+  "clip_dir": "data/interim/aihub_119_pilot_clips",
+  "total_clip_duration_minutes": 4.58,
+  "cohort_counts": {
+    "busan": 25,
+    "gyeongsang_other": 25
+  },
+  "critical_category_counts": {
+    "negation": 17,
+    "confirmation": 17,
+    "intent_cue": 15,
+    "date_time": 13,
+    "amount": 12
+  },
+  "baseline_status": "blocked_by_unreviewed_gold",
+  "numpy_version": "2.4.6"
+}

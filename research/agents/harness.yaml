@@ -1,0 +1,62 @@
+name: busan_aicc_research_harness
+language: ko
+objective: "Build a top-tier-paper-oriented research loop for Korean dialect-robust AICC speech understanding."
+default_output_contract:
+  - Verdict
+  - Evidence
+  - Claims
+  - Open Risks
+  - Next Leads
+global_constraints:
+  - "Do not assume Busan/Gyeongsang speech is harder for ASR; verify it."
+  - "Treat all uncited paper names and numeric claims as candidate until source-verified."
+  - "Novelty must be argued against task, data, method, metrics, and deployment condition."
+  - "Every proposed experiment must report at least one semantic-critical or downstream metric, not only WER/CER."
+  - "If an idea is close to prior work, reframe or mark it as low novelty."
+roles:
+  literature_mapper:
+    prompt_file: literature_mapper.md
+    owns:
+      - "paper discovery"
+      - "citation relationship graph"
+      - "prior-work threat mapping"
+  novelty_reviewer:
+    prompt_file: novelty_reviewer.md
+    owns:
+      - "novelty attack"
+      - "reviewer rejection risks"
+  dataset_auditor:
+    prompt_file: dataset_auditor.md
+    owns:
+      - "dataset feasibility"
+      - "license and annotation checks"
+  experiment_designer:
+    prompt_file: experiment_designer.md
+    owns:
+      - "baseline matrix"
+      - "ablation design"
+      - "statistical validity"
+  aicc_task_designer:
+    prompt_file: aicc_task_designer.md
+    owns:
+      - "semantic-critical taxonomy"
+      - "TA task design"
+  phonology_bridge:
+    prompt_file: phonology_bridge.md
+    owns:
+      - "Korean phonology and dialect phenomena"
+      - "selective allophone ASR bridge"
+  paper_reviewer:
+    prompt_file: paper_reviewer.md
+    owns:
+      - "ACL/EMNLP/Interspeech/ICASSP style critique"
+      - "acceptance risk"
+cycle:
+  - "Extract claims from new idea or source."
+  - "Send source and method claims to literature_mapper."
+  - "Send dataset claims to dataset_auditor."
+  - "Send proposed novelty to novelty_reviewer."
+  - "Send surviving method candidates to experiment_designer and phonology_bridge."
+  - "Send task/metric candidates to aicc_task_designer."
+  - "Send synthesized proposal to paper_reviewer."
+  - "Archive sources, update claim status, rank next leads."

@@ -1,0 +1,26 @@
+{
+  "numpy_version": "2.4.6",
+  "file_count": 1,
+  "speaker_count_with_region": 2,
+  "utterance_count_with_transcript": 2,
+  "region_counts": {
+    "birthplace": {
+      "부산": 1,
+      "대구": 1
+    },
+    "principal_residence": {
+      "부산": 1,
+      "대구": 1
+    },
+    "current_residence": {
+      "부산": 2
+    }
+  },
+  "field_counts": {
+    "dialect_form": 2,
+    "standard_form": 2,
+    "eojeolList": 2
+  },
+  "total_eojeols_seen": 10,
+  "dialect_eojeols_seen": 2
+}

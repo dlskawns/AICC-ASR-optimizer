@@ -1,0 +1,30 @@
+{
+  "packet_type": "human_audio_review_of_text_audit_candidates",
+  "audited_units_total": 66,
+  "review_units": 16,
+  "status_counts": {
+    "potentially_harmful_semantic_shift": 9,
+    "low_impact_discourse_or_hedge_loss": 7
+  },
+  "cohort_counts": {
+    "busan": 9,
+    "gyeongsang_other": 7
+  },
+  "category_counts": {
+    "ending_or_particle_variant": 6,
+    "lexical_replacement": 5,
+    "prefix_or_stem_variant": 4,
+    "vowel_shift": 1
+  },
+  "utterance_counts": 14,
+  "clips_present": 16,
+  "clips_missing": 0,
+  "allowed_reviewer_decisions": [
+    "harmful",
+    "acceptable",
+    "artifact",
+    "unclear"
+  ],
+  "review_status": "unreviewed",
+  "gold_status": "not_gold_until_human_audio_review_completed"
+}

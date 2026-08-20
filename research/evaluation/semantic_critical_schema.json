@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.sogang-paper/semantic-critical-aicc.schema.json",
+  "title": "Semantic-Critical AICC ASR Annotation",
+  "type": "object",
+  "required": [
+    "utterance_id",
+    "audio_path",
+    "dialect_transcript",
+    "standard_transcript",
+    "domain",
+    "intent",
+    "critical_spans"
+  ],
+  "properties": {
+    "utterance_id": {
+      "type": "string"
+    },
+    "audio_path": {
+      "type": "string",
+      "description": "Local path only. Do not publish restricted audio paths."
+    },
+    "speaker_region": {
+      "type": "string",
+      "description": "Busan, Daegu, Ulsan, Gyeongbuk, Gyeongnam, unknown, or dataset-native region label."
+    },
+    "speaker_age_band": {
+      "type": "string"
+    },
+    "acoustic_condition": {
+      "type": "string",
+      "enum": [
+        "clean",
+        "telephone_bandlimited",
+        "noise",
+        "overlap",
+        "fast_speech",
+        "call_real",
+        "unknown"
+      ]
+    },
+    "dialect_transcript": {
+      "type": "string"
+    },
+    "standard_transcript": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string",
+      "enum": [
+        "cancellation",
+        "billing",
+        "delivery",
+        "reservation",
+        "plan_change",
+        "complaint",
+        "technical_support",
+        "other"
+      ]
+    },
+    "intent": {
+      "type": "string"
+    },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "span_text": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "critical_spans": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "span_text",
+          "category",
+          "business_risk"
+        ],
+        "properties": {
+          "span_text": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "negation",
+              "amount",
+              "date_time",
+              "entity",
+              "intent_cue",
+              "confirmation",
+              "other"
+            ]
+          },
+          "business_risk": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "expected_asr_preservation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "clarification_required": {
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

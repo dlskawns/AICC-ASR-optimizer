@@ -1,0 +1,210 @@
+papers:
+  - id: sd_qa_2021
+    status: verified
+    title: "SD-QA: Spoken Dialectal Question Answering for the Real World"
+    year: 2021
+    venue: "Findings of EMNLP"
+    url: "https://arxiv.org/abs/2109.12072"
+    doi: null
+    relation: "Korean dialect speech -> ASR -> downstream QA; directly threatens/grounds the ASR-to-task framing."
+    novelty_threat: "Shows dialectal spoken QA already exists; Busan-AICC must differ by AICC condition, semantic-critical errors, and TA task success."
+    verified_notes: "Constructs spoken QA over five languages and 24 dialects, including Korean KOR-C and KOR-SE. Shows ASR quality and QA quality are generally related within language varieties, but task is QA, not AICC TA."
+    next_check: "Read tables for exact Korean WER and F1 values before citing numeric results."
+  - id: korean_whisper_coda_2026
+    status: verified
+    title: "Whisper automatic speech recognition errors in Korean complex coda recognition: Syllable coda phonotactics and dialectal variation"
+    year: 2026
+    venue: "Phonetics and Speech Sciences"
+    url: "https://www.eksss.org/archive/view_article?pid=pss-18-1-55"
+    doi: "10.13064/KSSS.2026.18.1.055"
+    relation: "Korean Whisper dialect/coda error analysis; close prior work for phonological ASR error analysis."
+    novelty_threat: "If confirmed, pure Gyeongsang ASR error analysis is insufficiently novel."
+    verified_notes: "Uses NIKL Daily Conversation Corpus 2022, 54,536 utterances, Seoul vs Gyeongsang grouped over Busan/Daegu/Gyeongnam/Gyeongbuk/Ulsan, Whisper small/medium/large-v2/large-v3, and complex-coda error analysis."
+    next_check: "Extract full tables and statistical tests from PDF before writing paper related work."
+  - id: asr_robust_slu_contrastive_2022
+    status: verified
+    title: "ASR-robust spoken language understanding via contrastive learning"
+    year: 2022
+    venue: "Interspeech"
+    url: "https://www.isca-archive.org/interspeech_2022/chang22c_interspeech.html"
+    doi: "10.21437/Interspeech.2022-781"
+    relation: "Clean transcript and ASR transcript representations are aligned for robust SLU."
+    novelty_threat: "TA robustness cannot be claimed as novel unless tied to Korean dialect/AICC semantic-critical errors."
+    verified_notes: "Focuses on utterance representations robust to ASR errors using contrastive objective plus supervised contrastive learning and self-distillation."
+    next_check: "Read full paper for datasets and whether slot filling is evaluated."
+  - id: c2a_slu_2023
+    status: verified
+    title: "C²A-SLU: Cross and Contrastive Attention for Improving ASR Robustness in Spoken Language Understanding"
+    year: 2023
+    venue: "Interspeech"
+    url: "https://www.isca-archive.org/interspeech_2023/cheng23c_interspeech.html"
+    doi: "10.21437/Interspeech.2023-93"
+    relation: "Learns differences between clean and ASR transcripts for ASR-robust SLU."
+    novelty_threat: "ASR-robust SLU is established; Busan-AICC needs stronger domain/task specificity."
+    verified_notes: "Reports three-dataset experiments and 3.4% relative accuracy improvement over the previous best model on SLURP."
+    next_check: "Read full paper for whether metrics include both intent and slot."
+  - id: moe_slu_2024
+    status: verified
+    title: "MoE-SLU: Towards ASR-Robust Spoken Language Understanding via Mixture-of-Experts"
+    year: 2024
+    venue: "Findings of ACL"
+    url: "https://aclanthology.org/2024.findings-acl.882/"
+    doi: "10.18653/v1/2024.findings-acl.882"
+    relation: "ASR-robust task-oriented SLU with mixture-of-experts over generated, ASR, and clean transcripts."
+    novelty_threat: "Mixture-of-experts for ASR-robust SLU is already published; Busan-AICC MoE must be grounded in dialect/AICC semantic-critical structure."
+    verified_notes: "Uses generated transcripts, ASR transcripts, clean manual transcripts, and JSD regularization."
+    next_check: "Compare proposed semantic-critical model against MoE-SLU as downstream baseline."
+  - id: accent_adapter_hubert_2023
+    status: verified
+    title: "Don't Stop Self-Supervision: Accent Adaptation of Speech Representations via Residual Adapters"
+    year: 2023
+    venue: "Interspeech"
+    url: "https://www.isca-archive.org/interspeech_2023/bhatia23_interspeech.html"
+    doi: "10.21437/Interspeech.2023-2192"
+    relation: "Accent adaptation via residual adapters."
+    novelty_threat: "Adapter adaptation alone is not novel."
+    verified_notes: "HuBERT-based accent-specific residual adapters; reports mean WERR of 22.7% for accent-specific adapters."
+    next_check: "Read whether speakers/accents are native vs non-native and how inference selects adapters."
+  - id: mas_lora_2025
+    status: verified
+    title: "Mixture of LoRA Experts for Low-Resourced Multi-Accent Automatic Speech Recognition"
+    year: 2025
+    venue: "Interspeech"
+    url: "https://arxiv.org/abs/2505.20006"
+    doi: "10.21437/Interspeech.2025-775"
+    relation: "Accent-specific LoRA mixture for Whisper or ASR."
+    novelty_threat: "Dialect-specific LoRA/MoE is likely crowded."
+    verified_notes: "Introduces Mixture of Accent-Specific LoRAs for low-resource multi-accent Whisper ASR on L2-ARCTIC."
+    next_check: "Read full Interspeech version and cite exact WER tables."
+  - id: gloria_2026
+    status: verified
+    title: "GLoRIA: Gated Low-Rank Interpretable Adaptation for Dialectal ASR"
+    year: 2026
+    venue: "ICASSP"
+    url: "https://arxiv.org/html/2603.02464v1"
+    doi: null
+    relation: "Uses geographic metadata to gate LoRA updates."
+    novelty_threat: "Metadata-gated dialect adaptation may already exist."
+    verified_notes: "Uses coordinate/geographical metadata to gate low-rank updates in a pre-trained encoder and reports gains on GCND."
+    next_check: "Verify final ICASSP 2026 camera-ready DOI and compare geospatial metadata assumptions to Korean region metadata."
+  - id: moe_ctc_2026
+    status: verified
+    title: "Mixture-of-Experts with Intermediate CTC Supervision for Accented Speech Recognition"
+    year: 2026
+    venue: "ACL"
+    url: "https://aclanthology.org/2026.acl-long.1194/"
+    doi: "10.18653/v1/2026.acl-long.1194"
+    relation: "Accent-aware routing during training transitions to label-free routing for inference; expert CTC heads align routing with transcription quality."
+    novelty_threat: "Accent-aware MoE with CTC supervision is strong prior art; new work needs a different objective such as semantic-critical AICC loss or Korean phonological selectivity."
+    verified_notes: "Reports up to 29.3% relative WER reduction over FastConformer baselines on MCV-Accent."
+    next_check: "Read architecture and loss details before proposing an MoE variant."
+  - id: nbest_t5_2023
+    status: verified
+    title: "N-best T5 for ASR error correction"
+    year: 2023
+    venue: "Interspeech"
+    url: "https://www.isca-archive.org/interspeech_2023/ma23e_interspeech.html"
+    doi: "10.21437/Interspeech.2023-1616"
+    relation: "Uses N-best hypotheses/lattice information instead of 1-best transcript."
+    novelty_threat: "N-best correction alone is established."
+    verified_notes: "Uses ASR N-best lists as T5 input and constrained decoding based on N-best list or ASR lattice."
+    next_check: "Use as prior art for N-best/confidence-aware clarification, not as the main novelty."
+  - id: kebap_2023
+    status: verified
+    title: "KEBAP: Korean Error Explainable Benchmark Dataset for ASR and Post-processing"
+    year: 2023
+    venue: "EMNLP"
+    url: "https://aclanthology.org/2023.emnlp-main.292/"
+    doi: "10.18653/v1/2023.emnlp-main.292"
+    relation: "Korean ASR explainable evaluation with speech-level resources and text-level error types."
+    novelty_threat: "Fine-grained Korean ASR error evaluation exists; Busan-AICC must focus on dialect/AICC semantic-critical errors rather than generic Korean explainability."
+    verified_notes: "Defines 37 speech-level resources across noise/speaker categories and 13 text-level error types; validates commercial ASR systems."
+    next_check: "Align Busan-AICC error taxonomy with or distinguish from KEBAP categories."
+  - id: semantic_metric_asr_2023
+    status: verified
+    title: "Perceptual and Task-Oriented Assessment of a Semantic Metric for ASR Evaluation"
+    year: 2023
+    venue: "Interspeech"
+    url: "https://www.isca-archive.org/interspeech_2023/rugayan23_interspeech.html"
+    doi: "10.21437/Interspeech.2023-1778"
+    relation: "Shows why WER is insufficient and evaluates a semantic metric against downstream NER and sentiment tasks."
+    novelty_threat: "Semantic ASR evaluation is known; Busan-AICC needs domain-specific semantic-critical metrics."
+    verified_notes: "Compares Aligned Semantic Distance with WER using human perception and downstream NLP tasks."
+    next_check: "Consider ASD-style metric as a baseline, not the final task metric."
+  - id: clovacall_2020
+    status: verified
+    title: "ClovaCall: Korean Goal-Oriented Dialog Speech Corpus for Automatic Speech Recognition of Contact Centers"
+    year: 2020
+    venue: "Interspeech"
+    url: "https://arxiv.org/abs/2004.09367"
+    doi: null
+    relation: "Korean call-based goal-oriented dialog corpus for contact-center ASR."
+    novelty_threat: "Korean AICC ASR dataset work already exists; dialect and semantic-critical downstream evaluation must be the differentiator."
+    verified_notes: "Restaurant reservation domain, more than 11,000 people, around 60k short sentence/utterance pairs via call."
+    next_check: "Check license and whether dialect metadata exists in released files."
+  - id: korean_allophone_asr_2008
+    status: verified
+    title: "Effects of allophones on the performance of Korean speech recognition"
+    year: 2008
+    venue: "Interspeech"
+    url: "https://www.isca-archive.org/interspeech_2008/hong08_interspeech.html"
+    doi: null
+    relation: "Direct prior art for Korean allophone-based ASR units."
+    novelty_threat: "Allophone modeling for Korean ASR is old prior art; novelty must be selective, dialect-error-driven, and modern encoder auxiliary modeling."
+    verified_notes: "Compares phoneme-like units and 31 allophone-based PLU sets using Korean allophonic constraints."
+    next_check: "Read PDF for the five allophonic constraints and map to Gyeongsang error taxonomy."
+  - id: korean_grapheme_asr_2019
+    status: verified
+    title: "Korean speech recognition based on grapheme"
+    year: 2019
+    venue: "Journal of the Acoustical Society of Korea"
+    url: "https://www.jask.or.kr/articles/article/bQA1/"
+    doi: "10.7776/ASK.2019.38.5.601"
+    relation: "Korean grapheme/phoneme modeling-unit comparison."
+    novelty_threat: "Korean modeling-unit design is established; proposed work needs dialect and semantic-critical evidence."
+    verified_notes: "Shows grapheme-based ASR without G2P can learn pronunciation rules when sufficient data exists."
+    next_check: "Compare with selective allophone auxiliary task under limited dialect/AICC data."
+  - id: k_wav2vec2_2021
+    status: verified
+    title: "K-Wav2vec 2.0: Automatic Speech Recognition based on Joint Decoding of Graphemes and Syllables"
+    year: 2021
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2110.05172"
+    doi: null
+    relation: "Korean ASR multi-task hierarchical grapheme/syllable architecture; includes ClovaCall."
+    novelty_threat: "Korean multi-level unit ASR exists; allophone proposal must explain why dialect-specific auxiliary supervision adds value."
+    verified_notes: "Proposes multi-task hierarchical architecture and joint decoder for Korean writing structure."
+    next_check: "Use as baseline inspiration for multi-task unit hierarchy."
+  - id: gyeongsang_vowel_phone_2023
+    status: verified
+    title: "Analyzing vowel variation in Korean dialects using phone recognition"
+    year: 2023
+    venue: "Phonetics and Speech Sciences"
+    url: "https://www.eksss.org/archive/view_article?pid=pss-15-4-101"
+    doi: null
+    relation: "Uses phone recognition errors to analyze Gyeongsang and Jeolla vowel variation."
+    novelty_threat: "Phone-recognition-based Korean dialect variation analysis exists; Busan-AICC must connect phonological errors to ASR and downstream task failures."
+    verified_notes: "Reports dialect-common monophthongization and Gyeongsang-specific vowel changes such as /we/ to [e] and /ʌ/ to [ɯ]."
+    next_check: "Read methods and determine whether its phone recognizer can support labeling."
+datasets:
+  - id: ai_hub_gyeongsang
+    status: verified
+    name: "AI-Hub Korean Gyeongsang dialect speech corpus"
+    url: "https://aihub.or.kr/aidata/33981"
+    relation: "Potential primary dataset with dialect_form and standard_form annotations."
+    verified_notes: "Official page verifies clean collection conditions, 2,000+ speakers, 3,000+ hours, 500k+ word-level dialect/standard pairs, JSON format, and Conformer CER 5.28 / WER 14.68 performance indicators."
+    next_check: "Download guide after approval and verify Busan-specific metadata."
+  - id: ai_hub_senior_gangwon_gyeongsang
+    status: verified
+    name: "AI-Hub middle-aged/older Korean dialect data (Gangwon, Gyeongsang)"
+    url: "https://www.aihub.or.kr/aihubdata/data/view.do?aihubDataSe=realm&currMenu=&dataSetSn=71517&topMenu="
+    relation: "Potential age/dialect robustness dataset."
+    verified_notes: "Official page verifies 2,004.3 total hours and 1,202.9 Gyeongsang hours, WAV/JSON format, and 50+ speaker focus."
+    next_check: "Check exact city/region and Busan representation after download approval."
+  - id: clovacall_dataset
+    status: verified
+    name: "ClovaCall"
+    url: "https://github.com/clovaai/ClovaCall"
+    relation: "Korean call/contact-center ASR baseline dataset without verified dialect labels."
+    verified_notes: "Goal-oriented restaurant reservation call corpus released with baseline code."
+    next_check: "Inspect metadata for channel properties and any regional/dialect fields."

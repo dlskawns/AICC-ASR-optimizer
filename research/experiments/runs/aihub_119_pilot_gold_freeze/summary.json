@@ -1,0 +1,13 @@
+{
+  "input_rows": 50,
+  "accepted_rows": 0,
+  "schema_error_count": 0,
+  "review_status_counts": {
+    "unreviewed": 50
+  },
+  "domain_counts": {},
+  "critical_span_counts": {},
+  "rows_with_audio_path": 0,
+  "gold_status": "no_frozen_gold_rows",
+  "numpy_version": "2.4.6"
+}

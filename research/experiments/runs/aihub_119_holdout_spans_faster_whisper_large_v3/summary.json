@@ -1,0 +1,120 @@
+{
+  "model": "faster-whisper:large-v3",
+  "label_status": "weak_preannotation_not_gold",
+  "utterances": 63,
+  "skipped_annotations": 0,
+  "labelled_critical_spans": 93,
+  "phantom_labels": 0,
+  "phantom_label_rate": 0.0,
+  "phantom_label_category_counts": {},
+  "scorable_critical_spans": 93,
+  "match_type_counts": {
+    "eojeol_initial": 82,
+    "absent": 11
+  },
+  "strict_loss_rate": 0.11827956989247312,
+  "strict_loss_rate_ci95": {
+    "low": 0.05319148936170213,
+    "high": 0.1956521739130435,
+    "clusters": 63,
+    "draws": 10000
+  },
+  "inclusive_loss_rate": 0.11827956989247312,
+  "loss_by_category": {
+    "negation": {
+      "labelled_spans": 48,
+      "phantom_labels": 0,
+      "scorable_spans": 48,
+      "preserved": 47,
+      "ambiguous": 0,
+      "absent": 1,
+      "strict_loss_rate": 0.020833333333333332,
+      "inclusive_loss_rate": 0.020833333333333332
+    },
+    "confirmation": {
+      "labelled_spans": 42,
+      "phantom_labels": 0,
+      "scorable_spans": 42,
+      "preserved": 32,
+      "ambiguous": 0,
+      "absent": 10,
+      "strict_loss_rate": 0.23809523809523808,
+      "inclusive_loss_rate": 0.23809523809523808
+    },
+    "date_time": {
+      "labelled_spans": 2,
+      "phantom_labels": 0,
+      "scorable_spans": 2,
+      "preserved": 2,
+      "ambiguous": 0,
+      "absent": 0,
+      "strict_loss_rate": 0.0,
+      "inclusive_loss_rate": 0.0
+    },
+    "intent_cue": {
+      "labelled_spans": 1,
+      "phantom_labels": 0,
+      "scorable_spans": 1,
+      "preserved": 1,
+      "ambiguous": 0,
+      "absent": 0,
+      "strict_loss_rate": 0.0,
+      "inclusive_loss_rate": 0.0
+    }
+  },
+  "loss_by_cohort": {
+    "busan": {
+      "labelled_spans": 49,
+      "phantom_labels": 0,
+      "scorable_spans": 49,
+      "preserved": 45,
+      "ambiguous": 0,
+      "absent": 4,
+      "strict_loss_rate": 0.08163265306122448,
+      "inclusive_loss_rate": 0.08163265306122448
+    },
+    "gyeongsang_other": {
+      "labelled_spans": 44,
+      "phantom_labels": 0,
+      "scorable_spans": 44,
+      "preserved": 37,
+      "ambiguous": 0,
+      "absent": 7,
+      "strict_loss_rate": 0.1590909090909091,
+      "inclusive_loss_rate": 0.1590909090909091
+    }
+  },
+  "absent_span_category_counts": {
+    "confirmation": 10,
+    "negation": 1
+  },
+  "ambiguous_span_category_counts": {},
+  "dialect_marked_contrast": {
+    "comparable": true,
+    "metric": "strict_loss_rate",
+    "underpowered": true,
+    "underpowered_rule": "fewer_than_10_spans_or_5_utterances_in_an_arm",
+    "dialect_marked_utterances": 3,
+    "dialect_marked_spans": 5,
+    "dialect_marked_loss_rate": 0.0,
+    "plain_spans": 88,
+    "plain_loss_rate": 0.125,
+    "difference": -0.125,
+    "difference_ci95": {
+      "low": -0.20481927710843373,
+      "high": -0.05747126436781609
+    },
+    "difference_crosses_zero": false
+  },
+  "slot_spans": 45,
+  "slot_phantom_labels": 0,
+  "slot_strict_loss_rate": 0.2222222222222222,
+  "match_rules": {
+    "numeral_equivalent": "span and hypothesis express the same parsed number, across Sino-Korean and Arabic notation",
+    "eojeol_initial": "some hypothesis eojeol starts with the span surface",
+    "substring_only": "span surface appears mid-eojeol only, so the hit is not trustworthy",
+    "unresolved_numeral": "span reads as a spoken number list that neither path can settle",
+    "absent": "no match",
+    "phantom_label": "the weak annotation never named a real eojeol in the reference, so the span cannot score anything"
+  }
+}

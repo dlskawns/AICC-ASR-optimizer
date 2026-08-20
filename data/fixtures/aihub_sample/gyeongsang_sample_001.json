@@ -1,0 +1,122 @@
+{
+  "id": "fixture-dialog-001",
+  "meta": {
+    "title": "Busan AICC pilot fixture",
+    "creator": "local-fixture",
+    "year": "2026",
+    "category": "구어 > 사적 대화 > AICC 파일럿"
+  },
+  "speaker": [
+    {
+      "id": "spk-busan-001",
+      "age": "50대",
+      "occupation": "회사원",
+      "sex": "F",
+      "birthplace": "부산",
+      "principal_residence": "부산",
+      "current_residence": "부산",
+      "education": "대졸"
+    },
+    {
+      "id": "spk-daegu-001",
+      "age": "40대",
+      "occupation": "자영업",
+      "sex": "M",
+      "birthplace": "대구",
+      "principal_residence": "대구",
+      "current_residence": "부산",
+      "education": "고졸"
+    }
+  ],
+  "setting": {
+    "environment": "clean",
+    "topic": "AICC cancellation and billing pilot"
+  },
+  "relation": "고객-상담사",
+  "utterance": [
+    {
+      "id": "pilot-0001",
+      "form": "해지 안 된다 캤나?",
+      "standard_form": "해지가 안 된다고 했나요?",
+      "dialect_form": "해지 안 된다 캤나?",
+      "speaker_id": "spk-busan-001",
+      "start": 0.0,
+      "end": 1.8,
+      "note": "negation critical span",
+      "eojeolList": [
+        {
+          "id": 1,
+          "eojeol": "해지",
+          "standard": "해지",
+          "isDialect": false
+        },
+        {
+          "id": 2,
+          "eojeol": "안",
+          "standard": "안",
+          "isDialect": false
+        },
+        {
+          "id": 3,
+          "eojeol": "된다",
+          "standard": "된다",
+          "isDialect": false
+        },
+        {
+          "id": 4,
+          "eojeol": "캤나",
+          "standard": "했나요",
+          "isDialect": true
+        }
+      ]
+    },
+    {
+      "id": "pilot-0002",
+      "form": "이번 달 요금이 15만 원 맞나?",
+      "standard_form": "이번 달 요금이 15만 원 맞나요?",
+      "dialect_form": "이번 달 요금이 15만 원 맞나?",
+      "speaker_id": "spk-daegu-001",
+      "start": 2.1,
+      "end": 4.0,
+      "note": "amount critical span",
+      "eojeolList": [
+        {
+          "id": 1,
+          "eojeol": "이번",
+          "standard": "이번",
+          "isDialect": false
+        },
+        {
+          "id": 2,
+          "eojeol": "달",
+          "standard": "달",
+          "isDialect": false
+        },
+        {
+          "id": 3,
+          "eojeol": "요금이",
+          "standard": "요금이",
+          "isDialect": false
+        },
+        {
+          "id": 4,
+          "eojeol": "15만",
+          "standard": "15만",
+          "isDialect": false
+        },
+        {
+          "id": 5,
+          "eojeol": "원",
+          "standard": "원",
+          "isDialect": false
+        },
+        {
+          "id": 6,
+          "eojeol": "맞나",
+          "standard": "맞나요",
+          "isDialect": true
+        }
+      ]
+    }
+  ]
+}

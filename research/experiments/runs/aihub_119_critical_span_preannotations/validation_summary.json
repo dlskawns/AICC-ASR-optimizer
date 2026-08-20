@@ -1,0 +1,35 @@
+{
+  "rows": 398,
+  "valid_rows": 398,
+  "invalid_rows": 0,
+  "schema_error_count": 0,
+  "first_error": null,
+  "domain_counts": {
+    "other": 240,
+    "billing": 82,
+    "cancellation": 60,
+    "reservation": 9,
+    "delivery": 4,
+    "plan_change": 2,
+    "technical_support": 1
+  },
+  "acoustic_condition_counts": {
+    "unknown": 398
+  },
+  "critical_span_counts": {
+    "negation": 178,
+    "confirmation": 174,
+    "amount": 92,
+    "date_time": 87,
+    "intent_cue": 83
+  },
+  "slot_name_counts": {
+    "confirmation": 174,
+    "amount": 92,
+    "date_time": 87,
+    "intent_cue": 83
+  },
+  "rows_with_audio_path": 0,
+  "gold_status": "candidate_only_until_human_review",
+  "numpy_version": "2.4.6"
+}

@@ -1,0 +1,33 @@
+{
+  "manifest_rows": 50,
+  "dialect_units": 66,
+  "plain_units": 471,
+  "cohort_counts": {
+    "busan": 25,
+    "gyeongsang_other": 25
+  },
+  "problem_definition_status": "asr_outputs_evaluated",
+  "numpy_version": "2.4.6",
+  "evaluated_utterances": 50,
+  "missing_asr_outputs": 0,
+  "dialect_unit_error_rate": 0.0,
+  "dialect_surface_change_rate": 0.9696969696969697,
+  "plain_unit_error_rate": 0.006369426751592357,
+  "attribution_counts": {
+    "gyeongsang_other:plain_total": 242,
+    "busan:plain_total": 229,
+    "busan:dialect_total": 34,
+    "busan:dialect_standard_normalized": 33,
+    "gyeongsang_other:dialect_total": 32,
+    "gyeongsang_other:dialect_standard_normalized": 31,
+    "busan:utterances": 25,
+    "gyeongsang_other:utterances": 25,
+    "category:lexical_replacement:total": 18,
+    "category:ending_or_particle_variant:total": 17,
+    "category:prefix_or_stem_variant:total": 16,
+    "category:vowel_shift:total": 15,
+    "gyeongsang_other:plain_error": 3,
+    "busan:dialect_surface_preserved": 1,
+    "gyeongsang_other:dialect_surface_preserved": 1
+  }
+}

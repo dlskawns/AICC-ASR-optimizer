@@ -1,0 +1,27 @@
+{
+  "date": "2026-08-12",
+  "status": "downloaded_and_validated",
+  "dataset_id": "119",
+  "filekey": "572714",
+  "archive": "(비식별화완료)경상도_2.zip",
+  "local_path": "data/raw/aihub_gyeongsang_119_validation_audio/014.한국어_방언_발화_데이터(경상도)/01.데이터/2.Validation/(new3)원천데이터/(비식별화완료)경상도_2.zip",
+  "zip_size_bytes": 29919002736,
+  "uncompressed_size_bytes": 29918857982,
+  "audio_file_count": 843,
+  "audio_suffix_counts": {
+    ".wav": 843
+  },
+  "label_json_count": 843,
+  "matched_label_audio_stems": 843,
+  "labels_without_audio": 0,
+  "audio_without_label": 0,
+  "integrity_check": "unzip -tq passed",
+  "remaining_part_files": 0,
+  "zero_byte_files": 0,
+  "disk_after_validation": {
+    "available": "88 GiB",
+    "data_raw_size": "28 GiB"
+  },
+  "training_audio_downloaded": false,
+  "next_action": "Do not extract full archive yet. Freeze gold rows first, then extract or map only the matching audio subset."
+}

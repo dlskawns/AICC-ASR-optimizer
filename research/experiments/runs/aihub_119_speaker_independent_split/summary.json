@@ -1,0 +1,31 @@
+{
+  "split": "speaker_disjoint_holdout_from_pilot",
+  "candidate_pool": 25911,
+  "selected_utterances": 300,
+  "target_per_cohort": 150,
+  "max_utterances_per_speaker": 2,
+  "excluded_pilot_recordings": 46,
+  "distinct_speakers": 300,
+  "distinct_recordings": 159,
+  "cohort_counts": {
+    "busan": 150,
+    "gyeongsang_other": 150
+  },
+  "age_band_counts": {
+    "20대": 205,
+    "30대": 58,
+    "50대": 19,
+    "10대": 15,
+    "60대 이상": 3
+  },
+  "sex_counts": {
+    "여성": 228,
+    "남성": 72
+  },
+  "dialect_units": 352,
+  "plain_units": 2525,
+  "total_clip_minutes": 26.47,
+  "clip_dir": "data/interim/aihub_119_holdout_clips",
+  "gold_status": "not_gold_no_human_review",
+  "numpy_version": "2.4.6"
+}

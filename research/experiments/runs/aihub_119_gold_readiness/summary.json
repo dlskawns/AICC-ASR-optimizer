@@ -1,0 +1,76 @@
+{
+  "date": "2026-08-11",
+  "status": "label_side_ready_for_human_gold_review",
+  "pre_data_analysis_decision": "Extra label-only mining was needed and completed. More label-only mining is not needed before human review.",
+  "inputs_checked": {
+    "semantic_review_pack_rows": 510,
+    "semantic_review_pack_weak_preannotations": 160,
+    "critical_span_candidate_rows": 398,
+    "critical_span_preannotation_valid_rows": 398,
+    "critical_span_preannotation_schema_errors": 0
+  },
+  "critical_span_candidate_pool_counts": {
+    "busan:amount": 95,
+    "busan:confirmation": 2885,
+    "busan:date_time": 94,
+    "busan:intent_cue": 87,
+    "busan:negation": 3198,
+    "gyeongsang_other:amount": 57,
+    "gyeongsang_other:confirmation": 2579,
+    "gyeongsang_other:date_time": 83,
+    "gyeongsang_other:intent_cue": 92,
+    "gyeongsang_other:negation": 2811
+  },
+  "selected_critical_span_counts": {
+    "negation": 178,
+    "confirmation": 174,
+    "amount": 92,
+    "date_time": 87,
+    "intent_cue": 83
+  },
+  "selected_cohort_counts": {
+    "gyeongsang_other": 200,
+    "busan": 198
+  },
+  "selected_primary_dialect_counts": {
+    "lexical_replacement": 166,
+    "ending_or_particle_variant": 100,
+    "vowel_shift": 69,
+    "prefix_or_stem_variant": 61,
+    "same_surface": 1,
+    "coda_shift": 1
+  },
+  "needed_items_before_asr_experiment": [
+    {
+      "item": "human_reviewed_gold_annotations",
+      "status": "missing",
+      "source": "research/experiments/runs/aihub_119_critical_span_preannotations/weak_semantic_preannotations.local.jsonl",
+      "reason": "weak preannotations are schema-valid but not gold"
+    },
+    {
+      "item": "audio_paths_for_frozen_gold_subset",
+      "status": "missing",
+      "source": "AI-Hub 119 source audio subset",
+      "reason": "rows_with_audio_path is currently 0"
+    },
+    {
+      "item": "aicc_domain_grounding",
+      "status": "partially_missing",
+      "source": "ClovaCall or internal AICC task labels",
+      "reason": "AI-Hub 119 is dialect-rich but not a contact-center corpus"
+    },
+    {
+      "item": "speaker_independent_split_key",
+      "status": "partial",
+      "source": "AI-Hub metadata",
+      "reason": "speaker IDs in validation labels are local role IDs; file/session-level split is available as fallback"
+    },
+    {
+      "item": "asr_model_outputs",
+      "status": "missing",
+      "source": "Whisper/Korean Conformer baseline runs after audio subset download",
+      "reason": "semantic-critical ASR metrics require recognized transcripts"
+    }
+  ],
+  "next_action": "Human-review the 398 critical-span preannotations, freeze a first gold subset, then download only the matching audio subset."
+}

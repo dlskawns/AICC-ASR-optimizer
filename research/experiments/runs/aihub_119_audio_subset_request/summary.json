@@ -1,0 +1,13 @@
+{
+  "input_rows": 398,
+  "manifest_rows": 398,
+  "include_unreviewed": true,
+  "review_status_counts": {
+    "unreviewed": 398
+  },
+  "required_audio_filekey": "572714",
+  "required_audio_archive": "(비식별화완료)경상도_2.zip",
+  "required_audio_archive_size": "28 GB",
+  "download_decision": "stop_before_download_large_archive",
+  "numpy_version": "2.4.6"
+}
