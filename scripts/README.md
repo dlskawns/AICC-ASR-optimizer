@@ -261,3 +261,28 @@ uv run scripts/validate_semantic_annotations.py \
 ```
 
 Use this after human review to validate schema conformance and summarize domain, critical-span, slot, and audio-path coverage without printing transcript text.
+
+## Dialect Control Pairs
+
+```bash
+uv run scripts/build_dialect_control_pairs.py \
+  research/experiments/runs/aihub_119_speaker_independent_split/asr_input_manifest.local.jsonl \
+  research/experiments/runs/aihub_119_holdout_critical_spans/remined_annotations.local.jsonl \
+  research/experiments/runs/aihub_119_busan_slice/manifest.jsonl.gz \
+  --output-dir research/experiments/runs/aihub_119_dialect_control_pairs
+```
+
+Use this to ask whether dialect marking damages AICC critical spans. Do not use surface overlap between a critical span and a dialect eojeol: the two barely co-occur, and going from 50 to 300 utterances moved the overlapping-span count only from 4 to 5. This builds the comparison at utterance level instead, pairing each dialect-bearing utterance with a length-matched dialect-free utterance from the same speaker in the same recording, so speaker, channel, session, and topic are fixed inside a pair. Manifests are local-only.
+
+## Dialect Control Pair Comparison
+
+```bash
+uv run scripts/compare_dialect_control_pairs.py \
+  research/experiments/runs/aihub_119_dialect_control_pairs/pair_manifest.jsonl \
+  --case-dir research/experiments/runs/aihub_119_speaker_independent_split \
+  --case-annotations research/experiments/runs/aihub_119_holdout_critical_spans/remined_annotations.local.jsonl \
+  --control-dir research/experiments/runs/aihub_119_dialect_control_pairs \
+  --output-dir research/experiments/runs/aihub_119_dialect_control_comparison
+```
+
+Scores the pairs with a paired bootstrap, a within-pair arm-swap permutation, and McNemar. Read the placebo line first: non-dialect unit error should be similar in both arms, and if it is not, the pairs differ in something beyond dialect marking and the critical-span number cannot be trusted.

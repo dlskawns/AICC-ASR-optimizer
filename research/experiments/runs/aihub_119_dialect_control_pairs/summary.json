@@ -1,0 +1,20 @@
+{
+  "design": "within_speaker_pairing_dialect_bearing_versus_dialect_free",
+  "label_status": "weak_preannotation_not_gold",
+  "case_utterances_offered": 63,
+  "pairs_built": 63,
+  "unpaired_cases": 0,
+  "distinct_speakers": 63,
+  "distinct_recordings": 56,
+  "cohort_counts": {
+    "busan": 33,
+    "gyeongsang_other": 30
+  },
+  "control_critical_spans": 88,
+  "mean_case_eojeols": 10.714285714285714,
+  "mean_control_eojeols": 10.571428571428571,
+  "mean_length_difference": -0.14285714285714285,
+  "total_control_clip_minutes": 5.67,
+  "clip_dir": "data/interim/aihub_119_control_clips",
+  "matching_rule": "same recording, same speaker, zero dialect eojeols, length-closest, at least one minable critical span"
+}

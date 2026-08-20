@@ -1,0 +1,155 @@
+{
+  "analysis": "within_speaker_paired_dialect_versus_control",
+  "random_seed": 20260818,
+  "label_status": "weak_preannotation_not_gold",
+  "results": [
+    {
+      "model": "faster_whisper_medium",
+      "pairs": 63,
+      "distinct_speakers": 63,
+      "cohort_counts": {
+        "busan": 33,
+        "gyeongsang_other": 30
+      },
+      "dialect_arm_spans": 93,
+      "control_arm_spans": 88,
+      "critical_span_loss": {
+        "case_rate": 0.10752688172043011,
+        "control_rate": 0.07954545454545454,
+        "difference": 0.027981427174975565,
+        "difference_ci95": {
+          "low": -0.05635172016080967,
+          "high": 0.11363728302441894
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      },
+      "critical_span_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 11082,
+        "two_sided_p_value": 0.5541222938853058,
+        "p_note": "add_one_estimator"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 7,
+        "control_arm_only_lost": 5,
+        "both_lost": 2,
+        "neither_lost": 49,
+        "discordant_pairs": 12,
+        "mcnemar_chi2_continuity_corrected": 0.08333333333333333,
+        "mcnemar_p_approx": 0.7728299926844475
+      },
+      "placebo_plain_unit_error": {
+        "case_rate": 0.17326732673267325,
+        "control_rate": 0.15915915915915915,
+        "difference": 0.014108167573514102,
+        "difference_ci95": {
+          "low": -0.02931760574178226,
+          "high": 0.05785229788523768
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      }
+    },
+    {
+      "model": "faster_whisper_large_v3",
+      "pairs": 63,
+      "distinct_speakers": 63,
+      "cohort_counts": {
+        "busan": 33,
+        "gyeongsang_other": 30
+      },
+      "dialect_arm_spans": 93,
+      "control_arm_spans": 88,
+      "critical_span_loss": {
+        "case_rate": 0.11827956989247312,
+        "control_rate": 0.13636363636363635,
+        "difference": -0.01808406647116323,
+        "difference_ci95": {
+          "low": -0.10227272727272727,
+          "high": 0.06616209078003198
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      },
+      "critical_span_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 14084,
+        "two_sided_p_value": 0.7042147892605369,
+        "p_note": "add_one_estimator"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 5,
+        "control_arm_only_lost": 7,
+        "both_lost": 5,
+        "neither_lost": 46,
+        "discordant_pairs": 12,
+        "mcnemar_chi2_continuity_corrected": 0.08333333333333333,
+        "mcnemar_p_approx": 0.7728299926844475
+      },
+      "placebo_plain_unit_error": {
+        "case_rate": 0.15016501650165018,
+        "control_rate": 0.17567567567567569,
+        "difference": -0.025510659174025507,
+        "difference_ci95": {
+          "low": -0.06824118549993782,
+          "high": 0.01765859704489389
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      }
+    },
+    {
+      "model": "wav2vec2_korean",
+      "pairs": 63,
+      "distinct_speakers": 63,
+      "cohort_counts": {
+        "busan": 33,
+        "gyeongsang_other": 30
+      },
+      "dialect_arm_spans": 93,
+      "control_arm_spans": 88,
+      "critical_span_loss": {
+        "case_rate": 0.3978494623655914,
+        "control_rate": 0.375,
+        "difference": 0.022849462365591378,
+        "difference_ci95": {
+          "low": -0.15098821838638782,
+          "high": 0.19803420381310408
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      },
+      "critical_span_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 16214,
+        "two_sided_p_value": 0.8107094645267736,
+        "p_note": "add_one_estimator"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 15,
+        "control_arm_only_lost": 13,
+        "both_lost": 12,
+        "neither_lost": 23,
+        "discordant_pairs": 28,
+        "mcnemar_chi2_continuity_corrected": 0.03571428571428571,
+        "mcnemar_p_approx": 0.8501067391385259
+      },
+      "placebo_plain_unit_error": {
+        "case_rate": 0.566006600660066,
+        "control_rate": 0.5465465465465466,
+        "difference": 0.019460054113519476,
+        "difference_ci95": {
+          "low": -0.03203633710093665,
+          "high": 0.07059564185469881
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      }
+    }
+  ],
+  "numpy_version": "2.4.6"
+}
