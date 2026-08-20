@@ -21,37 +21,37 @@ Labels are weak preannotations that no human has reviewed.
 
 | Arm | Absent cues | Substitution | Deletion | Context lost | Substitution share of resolved |
 |---|---:|---:|---:|---:|---:|
-| cue word is dialect-marked | 52 | 16 | 2 | 34 | 0.889 |
-| cue word is plain | 16 | 8 | 2 | 6 | 0.800 |
+| cue word is dialect-marked | 37 | 9 | 2 | 26 | 0.818 |
+| cue word is plain | 8 | 2 | 2 | 4 | 0.500 |
 
-- Distinct replacement surfaces in the dialect arm: 15
+- Distinct replacement surfaces in the dialect arm: 8
 
 | Cue category, dialect arm | Absent | Substitution share of resolved |
 |---|---:|---:|
-| negation | 52 | 0.889 |
+| negation | 37 | 0.818 |
 
 ## faster_whisper_large_v3
 
 | Arm | Absent cues | Substitution | Deletion | Context lost | Substitution share of resolved |
 |---|---:|---:|---:|---:|---:|
-| cue word is dialect-marked | 51 | 13 | 5 | 33 | 0.722 |
-| cue word is plain | 18 | 9 | 4 | 5 | 0.692 |
+| cue word is dialect-marked | 37 | 5 | 5 | 27 | 0.500 |
+| cue word is plain | 8 | 1 | 4 | 3 | 0.200 |
 
-- Distinct replacement surfaces in the dialect arm: 13
+- Distinct replacement surfaces in the dialect arm: 5
 
 | Cue category, dialect arm | Absent | Substitution share of resolved |
 |---|---:|---:|
-| negation | 51 | 0.722 |
+| negation | 37 | 0.500 |
 
 ## wav2vec2_korean
 
 | Arm | Absent cues | Substitution | Deletion | Context lost | Substitution share of resolved |
 |---|---:|---:|---:|---:|---:|
-| cue word is dialect-marked | 137 | 18 | 5 | 114 | 0.783 |
-| cue word is plain | 94 | 22 | 2 | 70 | 0.917 |
+| cue word is dialect-marked | 116 | 15 | 5 | 96 | 0.750 |
+| cue word is plain | 75 | 16 | 2 | 57 | 0.889 |
 
-- Distinct replacement surfaces in the dialect arm: 18
+- Distinct replacement surfaces in the dialect arm: 15
 
 | Cue category, dialect arm | Absent | Substitution share of resolved |
 |---|---:|---:|
-| negation | 137 | 0.783 |
+| negation | 116 | 0.750 |

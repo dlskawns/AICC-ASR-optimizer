@@ -49,7 +49,12 @@ from rich.console import Console
 from run_dialect_attribution_probe import label_index, payload_for, target_utterance
 
 JsonObject: TypeAlias = dict[str, JsonValue]
-Outcome: TypeAlias = Literal["dialect_surface_preserved", "standard_normalised", "cue_absent", "unresolved_eojeol"]
+Outcome: TypeAlias = Literal[
+    "dialect_surface_preserved",
+    "standard_normalised",
+    "cue_morpheme_only",
+    "cue_absent",
+]
 
 BOOTSTRAP_DRAWS: Final[int] = 10000
 RANDOM_SEED: Final[int] = 20260818
@@ -67,6 +72,7 @@ class CueCase:
     category: str
     dialect_surface: str
     standard_surface: str
+    cue_span_text: str
 
 
 @dataclass(frozen=True, slots=True)
@@ -117,11 +123,20 @@ def resolve_surfaces(utterance: JsonObject, evidence: str) -> tuple[str, str] | 
     return None
 
 
-def classify(hypothesis: str, dialect_surface: str, standard_surface: str) -> Outcome:
+def classify(hypothesis: str, dialect_surface: str, standard_surface: str, cue_span_text: str = "") -> Outcome:
+    """Decide what happened to the cue, accepting three ways for its meaning to survive.
+
+    Matching only the canonical cue string would score a perfectly transcribed dialect form as a loss,
+    because the mined cue is the standard spelling. Matching only the full eojeol would score an
+    inflectional variant as a loss even though the cue morpheme is plainly there. The cue counts as
+    surviving if any of the three forms reaches the hypothesis, and the outcome records which one.
+    """
     if eojeol_initial(hypothesis, dialect_surface):
         return "dialect_surface_preserved"
     if clean(standard_surface) != clean(dialect_surface) and eojeol_initial(hypothesis, standard_surface):
         return "standard_normalised"
+    if cue_span_text and eojeol_initial(hypothesis, cue_span_text):
+        return "cue_morpheme_only"
     return "cue_absent"
 
 
@@ -151,6 +166,7 @@ def build_cases(split_dir: Path, label_root: Path) -> list[CueCase]:
                 category=text_field(row, "cue_category"),
                 dialect_surface=surfaces[0],
                 standard_surface=surfaces[1],
+                cue_span_text=text_field(row, "cue_span_text"),
             ),
         )
     return cases
@@ -162,7 +178,17 @@ def score(cases: list[CueCase], asr: dict[str, JsonObject]) -> list[Scored]:
         row = asr.get(case.review_id)
         if row is None:
             continue
-        scored.append(Scored(case, classify(text_field(row, "hypothesis"), case.dialect_surface, case.standard_surface)))
+        scored.append(
+            Scored(
+                case,
+                classify(
+                    text_field(row, "hypothesis"),
+                    case.dialect_surface,
+                    case.standard_surface,
+                    case.cue_span_text,
+                ),
+            ),
+        )
     return scored
 
 
@@ -178,6 +204,7 @@ def outcome_block(rows: list[Scored]) -> JsonObject:
         "counts": dict(counts.most_common()),
         "dialect_surface_preserved_rate": rate(counts["dialect_surface_preserved"], total),
         "standard_normalised_rate": rate(counts["standard_normalised"], total),
+        "cue_morpheme_only_rate": rate(counts["cue_morpheme_only"], total),
         "cue_absent_rate": rate(counts["cue_absent"], total),
     }
 
@@ -256,14 +283,16 @@ def format_block(result: JsonObject) -> str:
     lines = [
         f"## {result['model']}",
         "",
-        "| Arm | Cues | Dialect surface kept | Normalised to standard | Cue absent |",
-        "|---|---:|---:|---:|---:|",
+        "| Arm | Cues | Dialect surface kept | Normalised to standard | Cue morpheme only | Cue absent |",
+        "|---|---:|---:|---:|---:|---:|",
         f"| cue word is dialect-marked | {dialect['cues']} | "
         f"{float(dialect['dialect_surface_preserved_rate']):.3f} | "
-        f"{float(dialect['standard_normalised_rate']):.3f} | {float(dialect['cue_absent_rate']):.3f} |",
+        f"{float(dialect['standard_normalised_rate']):.3f} | "
+        f"{float(dialect['cue_morpheme_only_rate']):.3f} | {float(dialect['cue_absent_rate']):.3f} |",
         f"| cue word is plain | {plain['cues']} | "
         f"{float(plain['dialect_surface_preserved_rate']):.3f} | "
-        f"{float(plain['standard_normalised_rate']):.3f} | {float(plain['cue_absent_rate']):.3f} |",
+        f"{float(plain['standard_normalised_rate']):.3f} | "
+        f"{float(plain['cue_morpheme_only_rate']):.3f} | {float(plain['cue_absent_rate']):.3f} |",
         "",
     ]
     if gap.get("comparable"):
@@ -294,7 +323,8 @@ def format_block(result: JsonObject) -> str:
     )
     lines.extend(
         f"| {name} | {stats['cues']} | {float(stats['dialect_surface_preserved_rate']):.3f} | "
-        f"{float(stats['standard_normalised_rate']):.3f} | {float(stats['cue_absent_rate']):.3f} |"
+        f"{float(stats['standard_normalised_rate']):.3f} | {float(stats['cue_morpheme_only_rate']):.3f} | "
+        f"{float(stats['cue_absent_rate']):.3f} |"
         for name, stats in categories.items()
         if isinstance(stats, dict)
     )
@@ -309,7 +339,13 @@ def write_readme(output_dir: Path, results: list[JsonObject]) -> None:
         "mixes two outcomes a contact centre would treat very differently: the ASR writing the standard form\n"
         "of the same cue, where the business meaning survives, and the cue disappearing outright, where it\n"
         "does not. This run separates them.\n\n"
-        "`standard_normalised` is not damage. Only `cue_absent` is.\n\n"
+        "Three outcomes preserve the business meaning and one does not. `dialect_surface_preserved` means the\n"
+        "ASR wrote the dialect form as spoken. `standard_normalised` means it wrote the standard form of the same\n"
+        "word. `cue_morpheme_only` means the inflection changed but the cue morpheme is plainly there. Only\n"
+        "`cue_absent` is AICC damage.\n\n"
+        "Accepting all three matters. Matching the canonical cue string alone scores a perfectly transcribed\n"
+        "dialect form as a loss, because the mined cue carries the standard spelling, and that bias falls only on\n"
+        "the dialect arm. Matching the full eojeol alone scores an inflectional variant as a loss.\n\n"
         "The cohort line re-tests the Busan-versus-other question at cue level, where round 4 could only test\n"
         "it at whole-utterance level.\n\n"
         "Labels are weak preannotations that no human has reviewed.\n\n"
@@ -323,7 +359,7 @@ def write_outputs(results: list[JsonObject], output_dir: Path) -> None:
         "analysis": "cue_error_type_decomposition",
         "random_seed": RANDOM_SEED,
         "label_status": "weak_preannotation_not_gold",
-        "outcome_rule": "dialect surface kept, else standard form of the same eojeol present, else absent",
+        "outcome_rule": "dialect surface kept, else standard form of the same eojeol, else the cue morpheme, else absent",
         "results": list(results),
         "numpy_version": np.__version__,
     }

@@ -21,40 +21,39 @@ Labels are weak preannotations that no human has reviewed.
 
 | Arm | Absent cues | Substitution | Deletion | Context lost | Substitution share of resolved |
 |---|---:|---:|---:|---:|---:|
-| cue word is dialect-marked | 87 | 24 | 4 | 59 | 0.857 |
-| cue word is plain | 41 | 17 | 3 | 21 | 0.850 |
-
-- Distinct replacement surfaces in the dialect arm: 21
-
-| Cue category, dialect arm | Absent | Substitution share of resolved |
-|---|---:|---:|
-| confirmation | 85 | 0.846 |
-| negation | 2 | 1.000 |
-
-## faster_whisper_large_v3
-
-| Arm | Absent cues | Substitution | Deletion | Context lost | Substitution share of resolved |
-|---|---:|---:|---:|---:|---:|
-| cue word is dialect-marked | 72 | 15 | 9 | 48 | 0.625 |
-| cue word is plain | 37 | 14 | 0 | 23 | 1.000 |
+| cue word is dialect-marked | 75 | 17 | 4 | 54 | 0.810 |
+| cue word is plain | 24 | 6 | 3 | 15 | 0.667 |
 
 - Distinct replacement surfaces in the dialect arm: 14
 
 | Cue category, dialect arm | Absent | Substitution share of resolved |
 |---|---:|---:|
-| confirmation | 69 | 0.591 |
-| negation | 3 | 1.000 |
+| confirmation | 75 | 0.810 |
+
+## faster_whisper_large_v3
+
+| Arm | Absent cues | Substitution | Deletion | Context lost | Substitution share of resolved |
+|---|---:|---:|---:|---:|---:|
+| cue word is dialect-marked | 65 | 11 | 9 | 45 | 0.550 |
+| cue word is plain | 23 | 5 | 0 | 18 | 1.000 |
+
+- Distinct replacement surfaces in the dialect arm: 10
+
+| Cue category, dialect arm | Absent | Substitution share of resolved |
+|---|---:|---:|
+| confirmation | 64 | 0.550 |
+| negation | 1 | n/a |
 
 ## wav2vec2_korean
 
 | Arm | Absent cues | Substitution | Deletion | Context lost | Substitution share of resolved |
 |---|---:|---:|---:|---:|---:|
-| cue word is dialect-marked | 208 | 24 | 7 | 177 | 0.774 |
-| cue word is plain | 163 | 26 | 3 | 134 | 0.897 |
+| cue word is dialect-marked | 198 | 22 | 7 | 169 | 0.759 |
+| cue word is plain | 132 | 17 | 3 | 112 | 0.850 |
 
-- Distinct replacement surfaces in the dialect arm: 24
+- Distinct replacement surfaces in the dialect arm: 22
 
 | Cue category, dialect arm | Absent | Substitution share of resolved |
 |---|---:|---:|
-| confirmation | 187 | 0.759 |
-| negation | 21 | 1.000 |
+| confirmation | 181 | 0.750 |
+| negation | 17 | 1.000 |

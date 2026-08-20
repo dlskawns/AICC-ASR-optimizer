@@ -13,17 +13,18 @@ ASR is substantially less stable on dialect-marked eojeol units than on non-dial
 1. [AGENTS.md](AGENTS.md): mandatory lab rules, agent roles, and output shape.
 2. [This handoff](HANDOFF.md): current state, claims, risks, and next steps.
 3. [Dialect attribution probe README](research/experiments/runs/aihub_119_dialect_attribution_probe/README.md): run-level status and reproduction commands.
-4. [Pilot round 8 report](research/experiments/runs/aihub_119_pilot_round8/README.md): what a lost cue becomes, substitution versus deletion. Most current.
-5. [Pilot round 7 report](research/experiments/runs/aihub_119_pilot_round7/README.md): how much of the round 6 loss is real damage, negation generalisation, and cue-level cohort test.
-6. [Pilot round 6 report](research/experiments/runs/aihub_119_pilot_round6/README.md): cue-bearing dialect eojeols, the positive result that completes the round 4-5-6 arc.
-7. [Pilot round 5 report](research/experiments/runs/aihub_119_pilot_round5/README.md): within-speaker paired test of dialect versus AICC critical-span loss.
-8. [Pilot round 4 report](research/experiments/runs/aihub_119_pilot_round4/README.md): the 300-utterance speaker-disjoint holdout.
-9. [Pilot round 3 report](research/experiments/runs/aihub_119_pilot_round3/README.md): mining-rule repair and the non-Whisper Korean baseline.
-10. [Pilot round 2 report](research/experiments/runs/aihub_119_pilot_round2/README.md): clustered significance, model-scale ablation, and the critical-span metric audit.
-11. [Pilot conclusion report](research/experiments/runs/aihub_119_dialect_attribution_probe/pilot_conclusion_report.md): round 1 conclusion, plots, and paper-safe interpretation. Partly superseded by rounds 2 and 3.
-12. [Text-only audit report](research/experiments/runs/aihub_119_dialect_attribution_probe/text_audit_report.md): refined harmful-vs-acceptable semantic audit.
-13. [Audio review packet](research/experiments/runs/aihub_119_dialect_audio_review/README.md): the 16-unit human/audio confirmation packet and reviewer protocol.
-14. [Next actions](research/experiments/runs/aihub_119_next_actions/README.md): current task queue and download stop point.
+4. [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md): the corrected cue-preservation rule and the numbers it changes. This overrides the cue figures printed in rounds 6, 7, and 8.
+5. [Pilot round 8 report](research/experiments/runs/aihub_119_pilot_round8/README.md): what a lost cue becomes, substitution versus deletion.
+6. [Pilot round 7 report](research/experiments/runs/aihub_119_pilot_round7/README.md): how much of the round 6 loss is real damage, negation generalisation, and cue-level cohort test.
+7. [Pilot round 6 report](research/experiments/runs/aihub_119_pilot_round6/README.md): cue-bearing dialect eojeols, the positive result that completes the round 4-5-6 arc.
+8. [Pilot round 5 report](research/experiments/runs/aihub_119_pilot_round5/README.md): within-speaker paired test of dialect versus AICC critical-span loss.
+9. [Pilot round 4 report](research/experiments/runs/aihub_119_pilot_round4/README.md): the 300-utterance speaker-disjoint holdout.
+10. [Pilot round 3 report](research/experiments/runs/aihub_119_pilot_round3/README.md): mining-rule repair and the non-Whisper Korean baseline.
+11. [Pilot round 2 report](research/experiments/runs/aihub_119_pilot_round2/README.md): clustered significance, model-scale ablation, and the critical-span metric audit.
+12. [Pilot conclusion report](research/experiments/runs/aihub_119_dialect_attribution_probe/pilot_conclusion_report.md): round 1 conclusion, plots, and paper-safe interpretation. Partly superseded by rounds 2 and 3.
+13. [Text-only audit report](research/experiments/runs/aihub_119_dialect_attribution_probe/text_audit_report.md): refined harmful-vs-acceptable semantic audit.
+14. [Audio review packet](research/experiments/runs/aihub_119_dialect_audio_review/README.md): the 16-unit human/audio confirmation packet and reviewer protocol.
+15. [Next actions](research/experiments/runs/aihub_119_next_actions/README.md): current task queue and download stop point.
 
 Optional background:
 
@@ -44,13 +45,13 @@ Safe current claims:
 
 > Rebuilt at utterance level, the link is not there at the resolution this pilot can see. In 63 within-speaker pairs, an utterance carrying dialect marking loses no more AICC critical spans than the same speaker's length-matched dialect-free utterance: +0.028 [-0.056, 0.114] for `medium`, -0.018 [-0.102, 0.066] for `large-v3`, +0.023 [-0.151, 0.198] for wav2vec2, with signs disagreeing and a clean placebo on non-dialect unit error. The dialect penalty appears to be local to the dialect tokens rather than a whole-utterance degradation.
 
-> When the AICC cue word is itself a dialect-marked eojeol, it is lost far more often. In 250 within-speaker pairs where the same speaker produces the same cue category once on a dialect-marked eojeol and once on a plain one, cue loss is 0.488 versus 0.092 for `medium`, 0.436 versus 0.092 for `large-v3`, and 0.872 versus 0.524 for wav2vec2. All three exclude zero, permutation p is below 5e-05, McNemar p is at most 1.5e-16, and the placebo on non-dialect unit error is null in all three. Read with the round 5 null, the dialect penalty is local to dialect tokens and turns into AICC damage only where those tokens carry business cues.
+> When the AICC cue word is itself a dialect-marked eojeol, it is lost far more often. Under the corrected preservation rule, cue loss in the dialect arm versus the plain arm is 0.309 against 0.096 for `medium`, 0.267 against 0.092 for `large-v3`, and 0.815 against 0.528 for wav2vec2 on the confirmation split, and 0.202 against 0.043, 0.202 against 0.043, and 0.634 against 0.405 on the negation split. All six gaps exclude zero, at +0.16 to +0.29. The placebo on non-dialect unit error is null throughout. Read with the round 5 null, the dialect penalty is local to dialect tokens and turns into AICC damage only where those tokens carry business cues.
 
-> About half of that cue loss is harmless. Resolving each cue's dialect and standard surfaces splits the outcome three ways, and for Whisper 35 to 40 percent of dialect-marked cues are normalised to the standard form, which preserves the business meaning. The genuine damage gap is +0.194 [0.117, 0.268] for `medium`, +0.148 [0.075, 0.221] for `large-v3`, +0.204 [0.131, 0.277] for wav2vec2. Surface string matching overstates AICC damage by roughly a factor of two.
+> A large share of that cue loss is harmless. Outcomes split four ways: the dialect form written as spoken, the standard form of the same word, the cue morpheme surviving under different inflection, and the cue gone. For Whisper, 34 to 48 percent of dialect-marked cues land in the two middle classes, where the business meaning survives.
 
-> The effect is not confirmation-only. Rebuilt with a negation quota, 185 negation pairs reproduce it in all three baselines: genuine damage gaps of +0.198 [0.121, 0.274], +0.181 [0.105, 0.258], +0.241 [0.143, 0.333], McNemar p from 3.3e-09 to 8.4e-07, placebos null. Across three models and two cue categories the genuine gap sits between 0.15 and 0.25.
+> The effect is not confirmation-only. A negation-only split of 185 pairs reproduces it in all three baselines at +0.159, +0.159, and +0.228.
 
-> A damaged cue is usually replaced, not dropped. Among the cases whose position can be aligned against surviving neighbour eojeols, substitution outnumbers deletion in all six model-by-category combinations, at 0.63 to 0.89 of resolved cases. Downstream that means a confident wrong reading rather than a detectable gap, which a confidence threshold or missing-value guard would not catch.
+> A damaged cue is usually replaced, not dropped. Among the cases whose position can be aligned against surviving neighbour eojeols, substitution outnumbers deletion in five of six model-by-category combinations and ties in the sixth, at 0.50 to 0.82 of resolved cases. Downstream that means a confident wrong reading rather than a detectable gap, which a confidence threshold or missing-value guard would not catch.
 
 > No substitution dictionary exists. Of the substitutions observed, almost every replacement surface is unique: 21 distinct for 24 in `medium`, 14 for 15 in `large-v3`, 24 for 24 in wav2vec2. Post-hoc string mapping is not a viable correction; the fix has to be acoustic or model-level.
 
@@ -127,6 +128,14 @@ Round 2, all automatic and requiring no human review:
 - After repair, critical-span strict loss is 0.103 [0.019, 0.203] for `medium` and 0.069 [0.000, 0.161] for `large-v3`, over 58 scorable spans.
 - Amount spans, previously reported at 91.7% loss, are at 0 loss once numerals are compared by value.
 
+Metric correction, applied after round 8:
+
+- The cue-preservation test now accepts the dialect surface, the standard form of the same eojeol, or the bare cue morpheme. Previously it tested only the canonical cue string, which carries the standard spelling.
+- That bias hit the dialect arm alone: 40 of 243 dialect-arm cases on the confirmation split were perfectly transcribed dialect forms scored as losses.
+- Corrected gaps are +0.213, +0.175, +0.287 on the confirmation split and +0.159, +0.159, +0.228 on the negation split. All still exclude zero; round 6's +0.396 does not stand.
+- Corrected substitution shares are 0.50 to 0.82, so round 8's "all six combinations" becomes five plus one tie.
+- Rounds 4 and 5 are unaffected: round 4 already accepted both dialect and standard surfaces, and round 5 does not use cue-position judgements.
+
 Round 8, also fully automatic:
 
 - Absent cues were split into substitution and deletion by anchoring on the cue's surviving neighbour eojeols; unalignable cases are reported as `context_lost` rather than forced.
@@ -186,6 +195,7 @@ Run directory:
 
 Primary reports:
 
+- [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md)
 - [Pilot round 8 report](research/experiments/runs/aihub_119_pilot_round8/README.md)
 - [Cue substitution, confirmation split](research/experiments/runs/aihub_119_cue_substitution/README.md)
 - [Cue substitution, negation split](research/experiments/runs/aihub_119_negation_substitution/README.md)
@@ -357,7 +367,7 @@ Everything reachable without a human has been done through round 3: `large-v3` a
 - Many dialect mismatches are harmless normalizations, so a WER-only paper would be weak.
 - The critical-span label set is weak and partly artificial. The phantom-label filter removes labels that name no real eojeol, but it cannot tell whether a surviving eojeol carried business meaning.
 - The dialect-to-AICC-damage link is now measured twice with opposite outcomes, and the resolution is that the effect is local. Round 5's utterance-level null stands; round 6's cue-level positive stands. Do not quote either alone.
-- Round 6's surface numbers overstate damage about twofold; round 7's genuine gaps are the ones to quote.
+- Cue figures printed in rounds 6, 7, and 8 came from a biased preservation rule and are superseded. The mined cue carries the standard spelling, so a perfectly transcribed dialect form was scored as a loss, and that bias fell only on the dialect arm. Quote the metric correction document instead.
 - The thesis has to be narrow to be true. The AICC angle cannot rest on whole-utterance degradation, which round 5 rules out. It rests on the dialect tokens themselves and on the cue positions they land on.
 - The round 5 null is underpowered against small effects, roughly below 0.10.
 - Absolute error rates are not comparable across the three baselines; the wav2vec2 CTC output differs in orthography and training domain. Only within-model contrasts are.

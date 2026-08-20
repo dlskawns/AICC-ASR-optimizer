@@ -1,5 +1,7 @@
 # Pilot Round 8: 잃은 cue는 무엇이 되는가
 
+> **정정 있음.** 이 문서의 cue 손실 수치는 편향된 판정 기준으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따른다.
+
 [Round 7](../aihub_119_pilot_round7/README.md)은 방언 cue의 실제 피해를 "방언 표면도 표준형도 없음"으로 정의했다. AICC 관점에서는 그 안에서 다시 갈린다.
 
 - **삭제**: cue 자리가 비어 있다. 신호가 없다는 사실 자체를 하류에서 감지할 수 있다.

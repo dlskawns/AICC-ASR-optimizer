@@ -6,159 +6,148 @@
     {
       "model": "faster_whisper_medium",
       "dialect_arm": {
-        "absent_cues": 87,
+        "absent_cues": 75,
         "counts": {
-          "context_lost": 59,
-          "substitution": 24,
+          "context_lost": 54,
+          "substitution": 17,
           "deletion": 4
         },
-        "resolved_cues": 28,
-        "substitution_share_of_resolved": 0.8571428571428571,
-        "deletion_share_of_resolved": 0.14285714285714285,
-        "context_lost_share": 0.6781609195402298
+        "resolved_cues": 21,
+        "substitution_share_of_resolved": 0.8095238095238095,
+        "deletion_share_of_resolved": 0.19047619047619047,
+        "context_lost_share": 0.72
       },
       "plain_arm": {
-        "absent_cues": 41,
+        "absent_cues": 24,
         "counts": {
-          "context_lost": 21,
+          "context_lost": 15,
+          "substitution": 6,
+          "deletion": 3
+        },
+        "resolved_cues": 9,
+        "substitution_share_of_resolved": 0.6666666666666666,
+        "deletion_share_of_resolved": 0.3333333333333333,
+        "context_lost_share": 0.625
+      },
+      "dialect_arm_by_category": {
+        "confirmation": {
+          "absent_cues": 75,
+          "counts": {
+            "context_lost": 54,
+            "substitution": 17,
+            "deletion": 4
+          },
+          "resolved_cues": 21,
+          "substitution_share_of_resolved": 0.8095238095238095,
+          "deletion_share_of_resolved": 0.19047619047619047,
+          "context_lost_share": 0.72
+        }
+      },
+      "distinct_replacement_surfaces": 14
+    },
+    {
+      "model": "faster_whisper_large_v3",
+      "dialect_arm": {
+        "absent_cues": 65,
+        "counts": {
+          "context_lost": 45,
+          "substitution": 11,
+          "deletion": 9
+        },
+        "resolved_cues": 20,
+        "substitution_share_of_resolved": 0.55,
+        "deletion_share_of_resolved": 0.45,
+        "context_lost_share": 0.6923076923076923
+      },
+      "plain_arm": {
+        "absent_cues": 23,
+        "counts": {
+          "context_lost": 18,
+          "substitution": 5
+        },
+        "resolved_cues": 5,
+        "substitution_share_of_resolved": 1.0,
+        "deletion_share_of_resolved": 0.0,
+        "context_lost_share": 0.782608695652174
+      },
+      "dialect_arm_by_category": {
+        "confirmation": {
+          "absent_cues": 64,
+          "counts": {
+            "context_lost": 44,
+            "substitution": 11,
+            "deletion": 9
+          },
+          "resolved_cues": 20,
+          "substitution_share_of_resolved": 0.55,
+          "deletion_share_of_resolved": 0.45,
+          "context_lost_share": 0.6875
+        },
+        "negation": {
+          "absent_cues": 1,
+          "counts": {
+            "context_lost": 1
+          },
+          "resolved_cues": 0,
+          "substitution_share_of_resolved": null,
+          "deletion_share_of_resolved": null,
+          "context_lost_share": 1.0
+        }
+      },
+      "distinct_replacement_surfaces": 10
+    },
+    {
+      "model": "wav2vec2_korean",
+      "dialect_arm": {
+        "absent_cues": 198,
+        "counts": {
+          "context_lost": 169,
+          "substitution": 22,
+          "deletion": 7
+        },
+        "resolved_cues": 29,
+        "substitution_share_of_resolved": 0.7586206896551724,
+        "deletion_share_of_resolved": 0.2413793103448276,
+        "context_lost_share": 0.8535353535353535
+      },
+      "plain_arm": {
+        "absent_cues": 132,
+        "counts": {
+          "context_lost": 112,
           "substitution": 17,
           "deletion": 3
         },
         "resolved_cues": 20,
         "substitution_share_of_resolved": 0.85,
         "deletion_share_of_resolved": 0.15,
-        "context_lost_share": 0.5121951219512195
+        "context_lost_share": 0.8484848484848485
       },
       "dialect_arm_by_category": {
         "confirmation": {
-          "absent_cues": 85,
+          "absent_cues": 181,
           "counts": {
-            "context_lost": 59,
-            "substitution": 22,
-            "deletion": 4
-          },
-          "resolved_cues": 26,
-          "substitution_share_of_resolved": 0.8461538461538461,
-          "deletion_share_of_resolved": 0.15384615384615385,
-          "context_lost_share": 0.6941176470588235
-        },
-        "negation": {
-          "absent_cues": 2,
-          "counts": {
-            "substitution": 2
-          },
-          "resolved_cues": 2,
-          "substitution_share_of_resolved": 1.0,
-          "deletion_share_of_resolved": 0.0,
-          "context_lost_share": 0.0
-        }
-      },
-      "distinct_replacement_surfaces": 21
-    },
-    {
-      "model": "faster_whisper_large_v3",
-      "dialect_arm": {
-        "absent_cues": 72,
-        "counts": {
-          "context_lost": 48,
-          "substitution": 15,
-          "deletion": 9
-        },
-        "resolved_cues": 24,
-        "substitution_share_of_resolved": 0.625,
-        "deletion_share_of_resolved": 0.375,
-        "context_lost_share": 0.6666666666666666
-      },
-      "plain_arm": {
-        "absent_cues": 37,
-        "counts": {
-          "context_lost": 23,
-          "substitution": 14
-        },
-        "resolved_cues": 14,
-        "substitution_share_of_resolved": 1.0,
-        "deletion_share_of_resolved": 0.0,
-        "context_lost_share": 0.6216216216216216
-      },
-      "dialect_arm_by_category": {
-        "confirmation": {
-          "absent_cues": 69,
-          "counts": {
-            "context_lost": 47,
-            "substitution": 13,
-            "deletion": 9
-          },
-          "resolved_cues": 22,
-          "substitution_share_of_resolved": 0.5909090909090909,
-          "deletion_share_of_resolved": 0.4090909090909091,
-          "context_lost_share": 0.6811594202898551
-        },
-        "negation": {
-          "absent_cues": 3,
-          "counts": {
-            "substitution": 2,
-            "context_lost": 1
-          },
-          "resolved_cues": 2,
-          "substitution_share_of_resolved": 1.0,
-          "deletion_share_of_resolved": 0.0,
-          "context_lost_share": 0.3333333333333333
-        }
-      },
-      "distinct_replacement_surfaces": 14
-    },
-    {
-      "model": "wav2vec2_korean",
-      "dialect_arm": {
-        "absent_cues": 208,
-        "counts": {
-          "context_lost": 177,
-          "substitution": 24,
-          "deletion": 7
-        },
-        "resolved_cues": 31,
-        "substitution_share_of_resolved": 0.7741935483870968,
-        "deletion_share_of_resolved": 0.22580645161290322,
-        "context_lost_share": 0.8509615384615384
-      },
-      "plain_arm": {
-        "absent_cues": 163,
-        "counts": {
-          "context_lost": 134,
-          "substitution": 26,
-          "deletion": 3
-        },
-        "resolved_cues": 29,
-        "substitution_share_of_resolved": 0.896551724137931,
-        "deletion_share_of_resolved": 0.10344827586206896,
-        "context_lost_share": 0.8220858895705522
-      },
-      "dialect_arm_by_category": {
-        "confirmation": {
-          "absent_cues": 187,
-          "counts": {
-            "context_lost": 158,
-            "substitution": 22,
+            "context_lost": 153,
+            "substitution": 21,
             "deletion": 7
           },
-          "resolved_cues": 29,
-          "substitution_share_of_resolved": 0.7586206896551724,
-          "deletion_share_of_resolved": 0.2413793103448276,
-          "context_lost_share": 0.8449197860962567
+          "resolved_cues": 28,
+          "substitution_share_of_resolved": 0.75,
+          "deletion_share_of_resolved": 0.25,
+          "context_lost_share": 0.8453038674033149
         },
         "negation": {
-          "absent_cues": 21,
+          "absent_cues": 17,
           "counts": {
-            "context_lost": 19,
-            "substitution": 2
+            "context_lost": 16,
+            "substitution": 1
           },
-          "resolved_cues": 2,
+          "resolved_cues": 1,
           "substitution_share_of_resolved": 1.0,
           "deletion_share_of_resolved": 0.0,
-          "context_lost_share": 0.9047619047619048
+          "context_lost_share": 0.9411764705882353
         }
       },
-      "distinct_replacement_surfaces": 24
+      "distinct_replacement_surfaces": 22
     }
   ],
   "numpy_version": "2.4.6"

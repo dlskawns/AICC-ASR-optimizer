@@ -65,6 +65,7 @@ class Case:
     category: str
     dialect_surface: str
     standard_surface: str
+    cue_span_text: str
     reference_tokens: tuple[str, ...]
     cue_index: int
 
@@ -144,6 +145,7 @@ def build_cases(split_dir: Path, label_root: Path) -> list[Case]:
                 category=text_field(row, "cue_category"),
                 dialect_surface=text_field(eojeols[cue_index], "eojeol"),
                 standard_surface=text_field(eojeols[cue_index], "standard") or text_field(eojeols[cue_index], "eojeol"),
+                cue_span_text=text_field(row, "cue_span_text"),
                 reference_tokens=tuple(text_field(eojeol, "eojeol") for eojeol in eojeols),
                 cue_index=cue_index,
             ),
@@ -313,7 +315,12 @@ def write_outputs(results: list[JsonObject], cases: dict[str, list[Judged]], out
 
 
 def absent_cases(cases: list[Case], asr: dict[str, JsonObject]) -> list[Judged]:
-    """Keep only the cues round 7 would call absent, then judge how they were absent."""
+    """Keep only genuinely absent cues, then judge how they were absent.
+
+    A cue survives if the dialect surface, the standard form of the same eojeol, or the bare cue
+    morpheme reaches the hypothesis. Accepting all three matters: the mined cue carries the standard
+    spelling, so testing it alone would treat a perfectly transcribed dialect form as a loss.
+    """
     judged: list[Judged] = []
     for case in cases:
         row = asr.get(case.review_id)
@@ -321,9 +328,8 @@ def absent_cases(cases: list[Case], asr: dict[str, JsonObject]) -> list[Judged]:
             continue
         hypothesis = text_field(row, "hypothesis")
         tokens = [token for token in hypothesis.split() if clean(token)]
-        if present(tokens, case.dialect_surface):
-            continue
-        if clean(case.standard_surface) != clean(case.dialect_surface) and present(tokens, case.standard_surface):
+        surviving = (case.dialect_surface, case.standard_surface, case.cue_span_text)
+        if any(surface and present(tokens, surface) for surface in surviving):
             continue
         judged.append(judge(case, hypothesis))
     return judged
