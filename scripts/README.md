@@ -286,3 +286,24 @@ uv run scripts/compare_dialect_control_pairs.py \
 ```
 
 Scores the pairs with a paired bootstrap, a within-pair arm-swap permutation, and McNemar. Read the placebo line first: non-dialect unit error should be similar in both arms, and if it is not, the pairs differ in something beyond dialect marking and the critical-span number cannot be trusted.
+
+## Cue-Bearing Dialect Split
+
+```bash
+uv run scripts/build_cue_bearing_dialect_split.py \
+  data/raw/aihub_gyeongsang_119 \
+  research/experiments/runs/aihub_119_busan_slice/manifest.jsonl.gz \
+  --output-dir research/experiments/runs/aihub_119_cue_bearing_split
+```
+
+Use this to test whether dialect marking hurts an AICC cue when the cue word itself is the dialect-marked eojeol. Those cases are too rare to catch by sampling, five of ninety-three in the round 4 holdout, so this scans the whole label set for them and pairs each with an utterance where the same speaker carries the same cue category on a plain eojeol. Speaker, recording, and cue category are fixed inside a pair. The surviving cue inventory is dominated by confirmation markers, so the split cannot speak for amount or intent cues.
+
+## Cue-Bearing Pair Comparison
+
+```bash
+uv run scripts/compare_cue_bearing_pairs.py \
+  research/experiments/runs/aihub_119_cue_bearing_split \
+  --output-dir research/experiments/runs/aihub_119_cue_bearing_comparison
+```
+
+Scores the cue pairs with a paired bootstrap, a within-pair arm-swap permutation, and McNemar, and breaks the result down by cue category. Read the placebo line first: non-dialect unit error should not differ between arms.

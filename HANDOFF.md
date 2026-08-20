@@ -6,21 +6,22 @@ This is the first file a new agent/session should read after `AGENTS.md`.
 
 ## One-Line State
 
-ASR is substantially less stable on dialect-marked eojeol units than on non-dialect units. The gap survives utterance-level clustering, reproduces across three baselines (`faster-whisper:medium`, `faster-whisper:large-v3`, a Korean wav2vec2 CTC model), and grows rather than shrinks on a 300-utterance holdout that shares no recording with the pilot. The AICC critical-span layer needed both a metric repair and a mining-rule repair, and a within-speaker paired test now shows the dialect penalty does not propagate: utterances carrying dialect marking lose no more AICC critical spans than the same speaker's dialect-free utterances.
+ASR is substantially less stable on dialect-marked eojeol units than on non-dialect units. The gap survives utterance-level clustering, reproduces across three baselines (`faster-whisper:medium`, `faster-whisper:large-v3`, a Korean wav2vec2 CTC model), and grows rather than shrinks on a 300-utterance holdout that shares no recording with the pilot. The AICC critical-span layer needed both a metric repair and a mining-rule repair, and two within-speaker paired tests locate the damage: dialect marking elsewhere in an utterance costs nothing, but when the AICC cue word is itself the dialect-marked eojeol its loss rate roughly quadruples in Whisper. The penalty is local to dialect tokens and becomes AICC damage only where those tokens carry business cues.
 
 ## Read These First
 
 1. [AGENTS.md](AGENTS.md): mandatory lab rules, agent roles, and output shape.
 2. [This handoff](HANDOFF.md): current state, claims, risks, and next steps.
 3. [Dialect attribution probe README](research/experiments/runs/aihub_119_dialect_attribution_probe/README.md): run-level status and reproduction commands.
-4. [Pilot round 5 report](research/experiments/runs/aihub_119_pilot_round5/README.md): within-speaker paired test of dialect versus AICC critical-span loss. Most current.
-5. [Pilot round 4 report](research/experiments/runs/aihub_119_pilot_round4/README.md): the 300-utterance speaker-disjoint holdout.
-6. [Pilot round 3 report](research/experiments/runs/aihub_119_pilot_round3/README.md): mining-rule repair and the non-Whisper Korean baseline.
-7. [Pilot round 2 report](research/experiments/runs/aihub_119_pilot_round2/README.md): clustered significance, model-scale ablation, and the critical-span metric audit.
-8. [Pilot conclusion report](research/experiments/runs/aihub_119_dialect_attribution_probe/pilot_conclusion_report.md): round 1 conclusion, plots, and paper-safe interpretation. Partly superseded by rounds 2 and 3.
-9. [Text-only audit report](research/experiments/runs/aihub_119_dialect_attribution_probe/text_audit_report.md): refined harmful-vs-acceptable semantic audit.
-10. [Audio review packet](research/experiments/runs/aihub_119_dialect_audio_review/README.md): the 16-unit human/audio confirmation packet and reviewer protocol.
-11. [Next actions](research/experiments/runs/aihub_119_next_actions/README.md): current task queue and download stop point.
+4. [Pilot round 6 report](research/experiments/runs/aihub_119_pilot_round6/README.md): cue-bearing dialect eojeols, the positive result that completes the round 4-5-6 arc. Most current.
+5. [Pilot round 5 report](research/experiments/runs/aihub_119_pilot_round5/README.md): within-speaker paired test of dialect versus AICC critical-span loss.
+6. [Pilot round 4 report](research/experiments/runs/aihub_119_pilot_round4/README.md): the 300-utterance speaker-disjoint holdout.
+7. [Pilot round 3 report](research/experiments/runs/aihub_119_pilot_round3/README.md): mining-rule repair and the non-Whisper Korean baseline.
+8. [Pilot round 2 report](research/experiments/runs/aihub_119_pilot_round2/README.md): clustered significance, model-scale ablation, and the critical-span metric audit.
+9. [Pilot conclusion report](research/experiments/runs/aihub_119_dialect_attribution_probe/pilot_conclusion_report.md): round 1 conclusion, plots, and paper-safe interpretation. Partly superseded by rounds 2 and 3.
+10. [Text-only audit report](research/experiments/runs/aihub_119_dialect_attribution_probe/text_audit_report.md): refined harmful-vs-acceptable semantic audit.
+11. [Audio review packet](research/experiments/runs/aihub_119_dialect_audio_review/README.md): the 16-unit human/audio confirmation packet and reviewer protocol.
+12. [Next actions](research/experiments/runs/aihub_119_next_actions/README.md): current task queue and download stop point.
 
 Optional background:
 
@@ -41,6 +42,8 @@ Safe current claims:
 
 > Rebuilt at utterance level, the link is not there at the resolution this pilot can see. In 63 within-speaker pairs, an utterance carrying dialect marking loses no more AICC critical spans than the same speaker's length-matched dialect-free utterance: +0.028 [-0.056, 0.114] for `medium`, -0.018 [-0.102, 0.066] for `large-v3`, +0.023 [-0.151, 0.198] for wav2vec2, with signs disagreeing and a clean placebo on non-dialect unit error. The dialect penalty appears to be local to the dialect tokens rather than a whole-utterance degradation.
 
+> When the AICC cue word is itself a dialect-marked eojeol, it is lost far more often. In 250 within-speaker pairs where the same speaker produces the same cue category once on a dialect-marked eojeol and once on a plain one, cue loss is 0.488 versus 0.092 for `medium`, 0.436 versus 0.092 for `large-v3`, and 0.872 versus 0.524 for wav2vec2. All three exclude zero, permutation p is below 5e-05, McNemar p is at most 1.5e-16, and the placebo on non-dialect unit error is null in all three. Read with the round 5 null, the dialect penalty is local to dialect tokens and turns into AICC damage only where those tokens carry business cues.
+
 > A Korean AICC critical-span metric cannot be built from string containment, and neither can its label set. Substring scoring reported 91.7% loss on amounts that were only a numeral-notation difference and near-total preservation on single-syllable markers that matched inside unrelated words. Substring mining additionally produced labels that named no real eojeol: 21.6% of the weak critical-span labels. Re-mining with eojeol-boundary rules brings that to 1.8%.
 
 Do not yet claim:
@@ -48,7 +51,8 @@ Do not yet claim:
 - Busan dialect is uniquely harder than other Gyeongsang dialects. On the holdout, with intervals half as wide as the pilot's, all three baselines still straddle zero and disagree on sign: -0.023 [-0.132, 0.087], -0.017 [-0.125, 0.091], 0.011 [-0.055, 0.077]. This is now a powered null, not an unknown.
 - Every dialect ASR surface error harms AICC text analytics.
 - The critical-span loss rate is an AICC task failure rate. The labels are weak and unreviewed.
-- Dialect marking has no effect on AICC critical-span loss. Round 5 detected none, but its intervals are about 0.17 wide, so effects below roughly 0.10 remain possible.
+- Dialect marking has no effect on AICC critical-span loss. Round 5 detected none at utterance level, but round 6 found a large effect once the cue word itself is dialect-marked. The correct statement is that the effect is local, not absent.
+- The round 6 effect generalises across cue categories. It rests on confirmation markers: 220 of the 250 pairs, and the 30 negation pairs show near-zero loss in both Whisper arms.
 - Dialect-marked critical spans are lost more often than other spans. Only 4 spans in the pilot and 5 in the holdout are dialect-marked, so that contrast stays underpowered at both sizes.
 - `large-v3` is better than `medium` on dialect. The pilot showed a small gap reduction that the holdout does not reproduce: 4.05x versus 4.02x, with overlapping intervals.
 - Effect sizes from the pilot and the holdout are interchangeable. The two splits were sampled differently, so always name the split.
@@ -110,6 +114,15 @@ Round 2, all automatic and requiring no human review:
 - After repair, critical-span strict loss is 0.103 [0.019, 0.203] for `medium` and 0.069 [0.000, 0.161] for `large-v3`, over 58 scorable spans.
 - Amount spans, previously reported at 91.7% loss, are at 0 loss once numerals are compared by value.
 
+Round 6, also fully automatic:
+
+- The full label set was scanned for utterances where a dialect-marked eojeol itself carries an AICC cue: 829 such cue-bearing dialect eojeols against 56018 non-dialect cue occurrences.
+- 250 within-speaker, within-category pairs were built across 250 speakers and 213 recordings, 500 clips, 42.32 minutes.
+- Cue loss when the cue word is dialect-marked versus not: 0.488 vs 0.092 (`medium`), 0.436 vs 0.092 (`large-v3`), 0.872 vs 0.524 (wav2vec2).
+- Discordant pairs are heavily one-sided: 108 to 9, 96 to 10, 102 to 15.
+- Placebos are null in all three models, so the pairing holds.
+- The cue inventory is confirmation 220 and negation 30; amount and intent cues effectively never land on a dialect-marked eojeol in this corpus.
+
 Round 5, also fully automatic:
 
 - 63 within-speaker control pairs were built: each pair is one speaker in one recording, a dialect-bearing utterance against a length-matched dialect-free utterance, both carrying critical spans.
@@ -144,6 +157,9 @@ Run directory:
 
 Primary reports:
 
+- [Pilot round 6 report](research/experiments/runs/aihub_119_pilot_round6/README.md)
+- [Cue-bearing dialect split](research/experiments/runs/aihub_119_cue_bearing_split/README.md)
+- [Cue-bearing comparison](research/experiments/runs/aihub_119_cue_bearing_comparison/README.md)
 - [Pilot round 5 report](research/experiments/runs/aihub_119_pilot_round5/README.md)
 - [Dialect control pairs](research/experiments/runs/aihub_119_dialect_control_pairs/README.md)
 - [Dialect control comparison](research/experiments/runs/aihub_119_dialect_control_comparison/README.md)
@@ -188,6 +204,8 @@ Machine-readable summaries:
 - `research/experiments/runs/aihub_119_holdout_critical_spans/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_pairs/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_comparison/summary.json`
+- `research/experiments/runs/aihub_119_cue_bearing_split/summary.json`
+- `research/experiments/runs/aihub_119_cue_bearing_comparison/summary.json`
 - `research/experiments/runs/aihub_119_next_actions/summary.json`
 
 Local-only restricted files:
@@ -205,7 +223,10 @@ Local-only restricted files:
 - `research/experiments/runs/aihub_119_dialect_control_pairs/asr_input_manifest.local.jsonl`
 - `research/experiments/runs/aihub_119_dialect_control_pairs/control_annotations.local.jsonl`
 - `data/interim/aihub_119_holdout_clips/`
+- `research/experiments/runs/aihub_119_cue_bearing_split/asr_input_manifest.local.jsonl`
+- `research/experiments/runs/aihub_119_cue_bearing_split/cue_annotations.local.jsonl`
 - `data/interim/aihub_119_control_clips/`
+- `data/interim/aihub_119_cue_clips/`
 - `research/experiments/runs/aihub_119_critical_span_preservation/critical_span_cases.local.jsonl`
 - `research/experiments/runs/aihub_119_critical_span_preservation_large_v3/critical_span_cases.local.jsonl`
 - `research/experiments/runs/aihub_119_dialect_attribution_probe/dialect_asr_error_cases.local.jsonl`
@@ -273,8 +294,9 @@ Everything reachable without a human has been done through round 3: `large-v3` a
 ## Medium-Term Next Leads
 
 1. Freeze accepted pilot semantic annotations after the 16-row audio review.
-2. Raise the paired test's power. 63 pairs resolve effects down to about 0.10; several hundred pairs would reach 0.05 and settle whether the round 5 null is real or merely undetected.
-3. Mine a second holdout balanced across AICC categories. The current holdout has 48 negation and 42 confirmation spans but zero amount spans, because it was sampled on dialect eojeols.
+2. Decompose round 6 by cohort, to check whether the Busan null from round 4 also holds at cue level.
+3. Expand the negation pairs to the hundreds, so round 6 is not a confirmation-only result. Classify the round 6 losses by error type as well: normalised to standard, substituted, or dropped, since the three carry different AICC risk.
+4. Mine a second holdout balanced across AICC categories. The current holdout has 48 negation and 42 confirmation spans but zero amount spans, because it was sampled on dialect eojeols.
 4. Stratify or balance the holdout by speaker sex and age band.
 5. Have a human confirm that re-mined cue eojeols actually carry business events. The boundary rule proves the label names a real eojeol, not that it means anything.
 6. Decide the AICC-condition story. AI-Hub 119 is spontaneous conversation, not contact-centre speech, so either a contact-centre-like source is needed or the telephone condition must be simulated and stated as such.
@@ -286,7 +308,9 @@ Everything reachable without a human has been done through round 3: `large-v3` a
 - Busan-specific effect is not established; current evidence supports broader Gyeongsang dialect fragility, and the cohort gap shrinks to 0.006 at `large-v3`.
 - Many dialect mismatches are harmless normalizations, so a WER-only paper would be weak.
 - The critical-span label set is weak and partly artificial. The phantom-label filter removes labels that name no real eojeol, but it cannot tell whether a surviving eojeol carried business meaning.
-- The dialect-to-AICC-damage link now has a real measurement and it came back null. That is a limit on the project's original thesis, not a bug: the AICC angle cannot rest on whole-utterance degradation. It has to rest on the dialect tokens themselves, and on showing those tokens matter for downstream tasks.
+- The dialect-to-AICC-damage link is now measured twice with opposite outcomes, and the resolution is that the effect is local. Round 5's utterance-level null stands; round 6's cue-level positive stands. Do not quote either alone.
+- Round 6 is effectively a confirmation-marker result. Negation has 30 pairs and near-zero loss in both Whisper arms.
+- The thesis has to be narrow to be true. The AICC angle cannot rest on whole-utterance degradation, which round 5 rules out. It rests on the dialect tokens themselves and on the cue positions they land on.
 - The round 5 null is underpowered against small effects, roughly below 0.10.
 - Absolute error rates are not comparable across the three baselines; the wav2vec2 CTC output differs in orthography and training domain. Only within-model contrasts are.
 - Dataset licensing and raw transcript handling remain restricted; keep `.local.*` files out of shareable artifacts.
