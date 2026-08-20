@@ -1,5 +1,7 @@
 # Pilot Round 3: 라벨 채굴 규칙 수정과 비-Whisper 한국어 baseline
 
+> **정정 있음.** 이 문서의 어절 단위 오류율은 어절 경계를 보지 않는 판정으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따른다.
+
 [Round 2](../aihub_119_pilot_round2/README.md)에서 두 가지 미해결 리스크를 남겼다. 하나는 critical-span 라벨의 21.6%가 substring 채굴 아티팩트라는 것, 다른 하나는 실험이 Whisper 계열 하나에만 의존한다는 것이다. Round 3은 둘 다 처리했다.
 
 사람 검수는 여전히 수행되지 않았다. 모든 수치는 자동 계산이며 gold가 아니다.

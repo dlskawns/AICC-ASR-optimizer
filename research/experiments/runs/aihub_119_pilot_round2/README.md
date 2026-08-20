@@ -1,5 +1,7 @@
 # Pilot Round 2: 클러스터 유의성, 모델 스케일, 메트릭 감사
 
+> **정정 있음.** 이 문서의 어절 단위 오류율은 어절 경계를 보지 않는 판정으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따른다.
+
 Round 1([pilot_conclusion_report.md](../aihub_119_dialect_attribution_probe/pilot_conclusion_report.md))은 `faster-whisper:medium` 단일 모델, unit 독립 가정 p-value, substring 기반 span 매칭에 의존했다. Round 2는 그 세 가지를 모두 다시 검증했다.
 
 사람 검수는 아직 수행되지 않았다. 이 문서의 모든 수치는 자동 계산이며 gold가 아니다.

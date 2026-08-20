@@ -1,5 +1,7 @@
 # Faster-Whisper Medium Dialect Attribution Pilot
 
+> **정정 있음.** 이 문서의 오류율·비율·odds ratio는 어절 경계를 보지 않는 판정으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따른다.
+
 ## 결론
 
 현재 pilot 기준 결론은 명확하다. `faster-whisper:medium`은 같은 50개 utterance 안에서도 방언 표지 어절을 일반 어절보다 훨씬 더 자주 놓치거나 대체한다.

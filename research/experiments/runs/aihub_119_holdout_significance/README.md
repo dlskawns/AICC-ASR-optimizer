@@ -19,49 +19,49 @@ Outputs carry counts and statistics only, with no transcript text.
 
 - Utterances (clusters): 300
 - Dialect units: 352, non-dialect units: 2525
-- Dialect unit error rate: 0.631, cluster bootstrap 95% CI [0.576, 0.685]
-- Non-dialect unit error rate: 0.156, cluster bootstrap 95% CI [0.139, 0.173]
-- Difference: 0.475, cluster bootstrap 95% CI [0.418, 0.532]
-- Ratio: 4.05x, cluster bootstrap 95% CI [3.539, 4.655]
-- Mantel-Haenszel odds ratio stratified by utterance: 9.30 95% CI [7.057, 12.248]
-- Within-utterance permutation p: <5.00e-05 (20000 draws, 264 informative utterances, 0 draws at or beyond the observed gap)
-- Utterance composition alone explains a gap of 0.019, which is 4% of the raw gap; the dialect-attributable excess is 0.456
-- Naive unit-independent p: 3.31e-92 (design effect vs cluster bootstrap: 1.53)
+- Dialect unit error rate: 0.648, cluster bootstrap 95% CI [0.593, 0.701]
+- Non-dialect unit error rate: 0.204, cluster bootstrap 95% CI [0.185, 0.222]
+- Difference: 0.444, cluster bootstrap 95% CI [0.386, 0.501]
+- Ratio: 3.18x, cluster bootstrap 95% CI [2.809, 3.597]
+- Mantel-Haenszel odds ratio stratified by utterance: 6.73 95% CI [5.209, 8.704]
+- Within-utterance permutation p: <5.00e-05 (20000 draws, 280 informative utterances, 0 draws at or beyond the observed gap)
+- Utterance composition alone explains a gap of 0.018, which is 4% of the raw gap; the dialect-attributable excess is 0.426
+- Naive unit-independent p: 3.17e-71 (design effect vs cluster bootstrap: 1.38)
 
-- Busan dialect unit error rate: 0.619 (150 utterances)
-- Non-Busan Gyeongsang dialect unit error rate: 0.642 (150 utterances)
-- Cohort difference: -0.023, cluster bootstrap 95% CI [-0.132, 0.087]
+- Busan dialect unit error rate: 0.648 (150 utterances)
+- Non-Busan Gyeongsang dialect unit error rate: 0.648 (150 utterances)
+- Cohort difference: 0.000, cluster bootstrap 95% CI [-0.110, 0.106]
 
 ## faster-whisper:large-v3
 
 - Utterances (clusters): 300
 - Dialect units: 352, non-dialect units: 2525
-- Dialect unit error rate: 0.622, cluster bootstrap 95% CI [0.569, 0.677]
-- Non-dialect unit error rate: 0.155, cluster bootstrap 95% CI [0.138, 0.172]
-- Difference: 0.467, cluster bootstrap 95% CI [0.411, 0.525]
-- Ratio: 4.02x, cluster bootstrap 95% CI [3.482, 4.638]
-- Mantel-Haenszel odds ratio stratified by utterance: 8.74 95% CI [6.668, 11.460]
-- Within-utterance permutation p: <5.00e-05 (20000 draws, 260 informative utterances, 0 draws at or beyond the observed gap)
-- Utterance composition alone explains a gap of 0.016, which is 3% of the raw gap; the dialect-attributable excess is 0.452
-- Naive unit-independent p: 8.19e-90 (design effect vs cluster bootstrap: 1.57)
+- Dialect unit error rate: 0.648, cluster bootstrap 95% CI [0.594, 0.701]
+- Non-dialect unit error rate: 0.190, cluster bootstrap 95% CI [0.172, 0.209]
+- Difference: 0.458, cluster bootstrap 95% CI [0.401, 0.514]
+- Ratio: 3.41x, cluster bootstrap 95% CI [2.995, 3.875]
+- Mantel-Haenszel odds ratio stratified by utterance: 7.65 95% CI [5.887, 9.943]
+- Within-utterance permutation p: <5.00e-05 (20000 draws, 273 informative utterances, 0 draws at or beyond the observed gap)
+- Utterance composition alone explains a gap of 0.013, which is 3% of the raw gap; the dialect-attributable excess is 0.445
+- Naive unit-independent p: 8.05e-78 (design effect vs cluster bootstrap: 1.41)
 
-- Busan dialect unit error rate: 0.614 (150 utterances)
-- Non-Busan Gyeongsang dialect unit error rate: 0.631 (150 utterances)
-- Cohort difference: -0.017, cluster bootstrap 95% CI [-0.125, 0.091]
+- Busan dialect unit error rate: 0.659 (150 utterances)
+- Non-Busan Gyeongsang dialect unit error rate: 0.636 (150 utterances)
+- Cohort difference: 0.023, cluster bootstrap 95% CI [-0.085, 0.131]
 
 ## wav2vec2:wav2vec2-large-xlsr-korean
 
 - Utterances (clusters): 300
 - Dialect units: 352, non-dialect units: 2525
-- Dialect unit error rate: 0.886, cluster bootstrap 95% CI [0.852, 0.918]
-- Non-dialect unit error rate: 0.556, cluster bootstrap 95% CI [0.532, 0.581]
-- Difference: 0.330, cluster bootstrap 95% CI [0.291, 0.367]
-- Ratio: 1.59x, cluster bootstrap 95% CI [1.510, 1.680]
-- Mantel-Haenszel odds ratio stratified by utterance: 6.23 95% CI [4.359, 8.907]
+- Dialect unit error rate: 0.920, cluster bootstrap 95% CI [0.891, 0.947]
+- Non-dialect unit error rate: 0.614, cluster bootstrap 95% CI [0.590, 0.638]
+- Difference: 0.307, cluster bootstrap 95% CI [0.271, 0.341]
+- Ratio: 1.50x, cluster bootstrap 95% CI [1.429, 1.570]
+- Mantel-Haenszel odds ratio stratified by utterance: 7.29 95% CI [4.837, 10.991]
 - Within-utterance permutation p: <5.00e-05 (20000 draws, 300 informative utterances, 0 draws at or beyond the observed gap)
-- Utterance composition alone explains a gap of 0.027, which is 8% of the raw gap; the dialect-attributable excess is 0.303
-- Naive unit-independent p: 3.02e-32 (design effect vs cluster bootstrap: 0.49)
+- Utterance composition alone explains a gap of 0.023, which is 8% of the raw gap; the dialect-attributable excess is 0.283
+- Naive unit-independent p: 1.19e-29 (design effect vs cluster bootstrap: 0.44)
 
-- Busan dialect unit error rate: 0.892 (150 utterances)
-- Non-Busan Gyeongsang dialect unit error rate: 0.881 (150 utterances)
-- Cohort difference: 0.011, cluster bootstrap 95% CI [-0.055, 0.077]
+- Busan dialect unit error rate: 0.903 (150 utterances)
+- Non-Busan Gyeongsang dialect unit error rate: 0.938 (150 utterances)
+- Cohort difference: -0.034, cluster bootstrap 95% CI [-0.092, 0.021]

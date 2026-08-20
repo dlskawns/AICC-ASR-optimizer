@@ -96,9 +96,16 @@ def normalized(text: str) -> str:
     return re.sub(r"[^0-9A-Za-z가-힣]", "", text)
 
 
-def contains(hypothesis: str, value: str) -> bool:
+def carries(hypothesis: str, value: str) -> bool:
+    """True when some hypothesis eojeol opens with this reference surface.
+
+    Plain substring containment was the original rule and it is not safe here. Half of the dialect
+    units and a fifth of the non-dialect units are a single syllable, and a single syllable turns up
+    inside unrelated words constantly, so containment credits recognitions that never happened.
+    Requiring the eojeol boundary removes that.
+    """
     needle = normalized(value)
-    return bool(needle) and needle in normalized(hypothesis)
+    return bool(needle) and any(normalized(token).startswith(needle) for token in hypothesis.split() if normalized(token))
 
 
 def arm_outcome(manifest_row: JsonObject, annotation: JsonObject, hypothesis: str) -> Arm:
@@ -116,7 +123,7 @@ def arm_outcome(manifest_row: JsonObject, annotation: JsonObject, hypothesis: st
         if match_type == "absent":
             lost += 1
     plain_units = list_of_mappings(manifest_row.get("plain_units"))
-    plain_error = sum(1 for unit in plain_units if not contains(hypothesis, text_field(unit, "standard")))
+    plain_error = sum(1 for unit in plain_units if not carries(hypothesis, text_field(unit, "standard")))
     return Arm(scorable, lost, len(plain_units), plain_error)
 
 

@@ -93,9 +93,18 @@ def normalized(text: str) -> str:
     return re.sub(r"[^0-9A-Za-z가-힣]", "", text)
 
 
-def contains(hypothesis: str, value: str) -> bool:
+def carries(hypothesis: str, value: str) -> bool:
+    """True when some hypothesis eojeol opens with this reference surface.
+
+    Plain substring containment was the original rule and it is not safe here. Half of the dialect
+    units and a fifth of the non-dialect units are a single syllable, and a single syllable turns up
+    inside unrelated words constantly, so containment credits recognitions that never happened. It
+    does so unevenly too: units judged against two accepted surfaces gain less from the loophole than
+    units judged against one, which quietly widened the dialect-versus-plain gap. Requiring the eojeol
+    boundary removes that.
+    """
     needle = normalized(value)
-    return bool(needle) and needle in normalized(hypothesis)
+    return bool(needle) and any(normalized(token).startswith(needle) for token in hypothesis.split() if normalized(token))
 
 
 def cluster_for(row: JsonObject, hypothesis: str) -> Cluster:
@@ -111,9 +120,9 @@ def cluster_for(row: JsonObject, hypothesis: str) -> Cluster:
     dialect_error = sum(
         1
         for unit in dialect_units
-        if not contains(hypothesis, text_field(unit, "dialect")) and not contains(hypothesis, text_field(unit, "standard"))
+        if not carries(hypothesis, text_field(unit, "dialect")) and not carries(hypothesis, text_field(unit, "standard"))
     )
-    plain_error = sum(1 for unit in plain_units if not contains(hypothesis, text_field(unit, "standard")))
+    plain_error = sum(1 for unit in plain_units if not carries(hypothesis, text_field(unit, "standard")))
     return Cluster(
         review_id=text_field(row, "review_id"),
         cohort=text_field(row, "cohort"),

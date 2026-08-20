@@ -30,7 +30,7 @@ import numpy as np
 import typer
 from build_dialect_taxonomy import JsonValue, list_of_mappings, text_field
 from rich.console import Console
-from run_dialect_attribution_probe import contains, load_jsonl, write_jsonl
+from run_dialect_attribution_probe import carries, load_jsonl, write_jsonl
 
 JsonObject: TypeAlias = dict[str, JsonValue]
 DialectOutcome: TypeAlias = Literal["surface_preserved", "standard_normalized", "missing_or_substituted"]
@@ -65,15 +65,15 @@ def asr_index(path: Path) -> dict[str, JsonObject]:
 
 
 def dialect_outcome(unit: JsonObject, hypothesis: str) -> DialectOutcome:
-    if contains(hypothesis, text_field(unit, "dialect")):
+    if carries(hypothesis, text_field(unit, "dialect")):
         return "surface_preserved"
-    if contains(hypothesis, text_field(unit, "standard")):
+    if carries(hypothesis, text_field(unit, "standard")):
         return "standard_normalized"
     return "missing_or_substituted"
 
 
 def plain_outcome(unit: JsonObject, hypothesis: str) -> PlainOutcome:
-    if contains(hypothesis, text_field(unit, "standard")):
+    if carries(hypothesis, text_field(unit, "standard")):
         return "standard_preserved"
     return "plain_error"
 

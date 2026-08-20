@@ -94,9 +94,18 @@ def normalized(text: str) -> str:
     return re.sub(r"[^0-9A-Za-z가-힣]", "", text)
 
 
-def contains(hypothesis: str, value: str) -> bool:
+def carries(hypothesis: str, value: str) -> bool:
+    """True when some hypothesis eojeol opens with this reference surface.
+
+    Plain substring containment was the original rule and it is not safe here. Half of the dialect
+    units and a fifth of the non-dialect units are a single syllable, and a single syllable turns up
+    inside unrelated words constantly, so containment credits recognitions that never happened. It
+    does so unevenly too: units judged against two accepted surfaces gain less from the loophole than
+    units judged against one, which quietly widened the dialect-versus-plain gap. Requiring the eojeol
+    boundary removes that.
+    """
     needle = normalized(value)
-    return bool(needle) and needle in normalized(hypothesis)
+    return bool(needle) and any(normalized(token).startswith(needle) for token in hypothesis.split() if normalized(token))
 
 
 def analysis_units(row: JsonObject, utterance: JsonObject, clip_dir: Path) -> JsonObject:
@@ -154,10 +163,10 @@ def update_counts(counters: Counter[str], manifest: JsonObject, hypothesis: str)
         standard = text_field(unit, "standard")
         counters[f"{cohort}:dialect_total"] += 1
         counters[f"category:{category}:total"] += 1
-        if contains(hypothesis, dialect):
+        if carries(hypothesis, dialect):
             counters[f"{cohort}:dialect_surface_preserved"] += 1
             continue
-        if contains(hypothesis, standard):
+        if carries(hypothesis, standard):
             counters[f"{cohort}:dialect_standard_normalized"] += 1
             continue
         counters[f"{cohort}:dialect_error"] += 1
@@ -165,7 +174,7 @@ def update_counts(counters: Counter[str], manifest: JsonObject, hypothesis: str)
     for unit in list_of_mappings(manifest.get("plain_units")):
         standard = text_field(unit, "standard")
         counters[f"{cohort}:plain_total"] += 1
-        if not contains(hypothesis, standard):
+        if not carries(hypothesis, standard):
             counters[f"{cohort}:plain_error"] += 1
 
 

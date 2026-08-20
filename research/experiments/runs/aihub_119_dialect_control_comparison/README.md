@@ -21,7 +21,7 @@ Labels are weak preannotations that no human has reviewed.
 - Paired difference: +0.028, 95% CI [-0.056, 0.114] — crosses zero
 - Arm-swap permutation p: 5.541e-01
 - Discordant pairs: 7 dialect-only vs 5 control-only, McNemar p 0.773
-- Placebo, non-dialect unit error: 0.173 vs 0.159, difference +0.014 95% CI [-0.029, 0.058] — crosses zero
+- Placebo, non-dialect unit error: 0.224 vs 0.218, difference +0.007 95% CI [-0.049, 0.062] — crosses zero
 
 ## faster_whisper_large_v3
 
@@ -31,7 +31,7 @@ Labels are weak preannotations that no human has reviewed.
 - Paired difference: -0.018, 95% CI [-0.102, 0.066] — crosses zero
 - Arm-swap permutation p: 7.042e-01
 - Discordant pairs: 5 dialect-only vs 7 control-only, McNemar p 0.773
-- Placebo, non-dialect unit error: 0.150 vs 0.176, difference -0.026 95% CI [-0.068, 0.018] — crosses zero
+- Placebo, non-dialect unit error: 0.190 vs 0.210, difference -0.020 95% CI [-0.075, 0.035] — crosses zero
 
 ## wav2vec2_korean
 
@@ -41,4 +41,4 @@ Labels are weak preannotations that no human has reviewed.
 - Paired difference: +0.023, 95% CI [-0.151, 0.198] — crosses zero
 - Arm-swap permutation p: 8.107e-01
 - Discordant pairs: 15 dialect-only vs 13 control-only, McNemar p 0.850
-- Placebo, non-dialect unit error: 0.566 vs 0.547, difference +0.019 95% CI [-0.032, 0.071] — crosses zero
+- Placebo, non-dialect unit error: 0.620 vs 0.614, difference +0.006 95% CI [-0.051, 0.062] — crosses zero

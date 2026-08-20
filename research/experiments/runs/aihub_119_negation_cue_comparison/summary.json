@@ -48,12 +48,12 @@
         }
       },
       "placebo_plain_unit_error": {
-        "dialect_arm_rate": 0.1469135802469136,
-        "plain_arm_rate": 0.13308977035490605,
-        "difference": 0.013823809892007544,
+        "dialect_arm_rate": 0.20308641975308642,
+        "plain_arm_rate": 0.1884133611691023,
+        "difference": 0.014673058583984128,
         "difference_ci95": {
-          "low": -0.013498083051251376,
-          "high": 0.04061560813033323
+          "low": -0.017167732568736962,
+          "high": 0.04650753789121901
         },
         "crosses_zero": true,
         "draws": 10000
@@ -104,12 +104,12 @@
         }
       },
       "placebo_plain_unit_error": {
-        "dialect_arm_rate": 0.15123456790123457,
-        "plain_arm_rate": 0.13987473903966596,
-        "difference": 0.01135982886156861,
+        "dialect_arm_rate": 0.1993827160493827,
+        "plain_arm_rate": 0.18162839248434237,
+        "difference": 0.017754323565040336,
         "difference_ci95": {
-          "low": -0.015939353427205996,
-          "high": 0.03949425993741046
+          "low": -0.01288851840442905,
+          "high": 0.049288413372194397
         },
         "crosses_zero": true,
         "draws": 10000
@@ -160,12 +160,12 @@
         }
       },
       "placebo_plain_unit_error": {
-        "dialect_arm_rate": 0.5993827160493828,
-        "plain_arm_rate": 0.5678496868475992,
-        "difference": 0.03153302920178358,
+        "dialect_arm_rate": 0.6666666666666666,
+        "plain_arm_rate": 0.6310020876826722,
+        "difference": 0.035664578983994444,
         "difference_ci95": {
-          "low": -0.0083410749102601,
-          "high": 0.07214782777425233
+          "low": -0.0026405389463267244,
+          "high": 0.07411032470892472
         },
         "crosses_zero": true,
         "draws": 10000

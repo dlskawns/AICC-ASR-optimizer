@@ -20,7 +20,7 @@ Labels are weak preannotations that no human has reviewed.
 - Paired difference: +0.227, 95% CI [0.162, 0.292] — excludes zero
 - Arm-swap permutation p: <5.000e-05
 - Discordant pairs: 45 dialect-only vs 3 plain-only, McNemar p 3.262e-09
-- Placebo, non-dialect unit error: 0.147 vs 0.133, difference +0.014 95% CI [-0.013, 0.041] — crosses zero
+- Placebo, non-dialect unit error: 0.203 vs 0.188, difference +0.015 95% CI [-0.017, 0.047] — crosses zero
 
 | Cue category | Pairs | Dialect-marked arm loss | Plain arm loss |
 |---|---:|---:|---:|
@@ -34,7 +34,7 @@ Labels are weak preannotations that no human has reviewed.
 - Paired difference: +0.232, 95% CI [0.168, 0.303] — excludes zero
 - Arm-swap permutation p: <5.000e-05
 - Discordant pairs: 46 dialect-only vs 3 plain-only, McNemar p 1.973e-09
-- Placebo, non-dialect unit error: 0.151 vs 0.140, difference +0.011 95% CI [-0.016, 0.039] — crosses zero
+- Placebo, non-dialect unit error: 0.199 vs 0.182, difference +0.018 95% CI [-0.013, 0.049] — crosses zero
 
 | Cue category | Pairs | Dialect-marked arm loss | Plain arm loss |
 |---|---:|---:|---:|
@@ -48,7 +48,7 @@ Labels are weak preannotations that no human has reviewed.
 - Paired difference: +0.276, 95% CI [0.173, 0.373] — excludes zero
 - Arm-swap permutation p: <5.000e-05
 - Discordant pairs: 77 dialect-only vs 26 plain-only, McNemar p 8.365e-07
-- Placebo, non-dialect unit error: 0.599 vs 0.568, difference +0.032 95% CI [-0.008, 0.072] — crosses zero
+- Placebo, non-dialect unit error: 0.667 vs 0.631, difference +0.036 95% CI [-0.003, 0.074] — crosses zero
 
 | Cue category | Pairs | Dialect-marked arm loss | Plain arm loss |
 |---|---:|---:|---:|
