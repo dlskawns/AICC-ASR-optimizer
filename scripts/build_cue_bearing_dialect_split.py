@@ -182,7 +182,12 @@ def collect(
     return marked, plain
 
 
-def pair_hits(marked: list[CueHit], plain: list[CueHit], per_speaker: int) -> list[tuple[CueHit, CueHit]]:
+def pair_hits(
+    marked: list[CueHit],
+    plain: list[CueHit],
+    per_speaker: int,
+    categories: tuple[str, ...] | None = None,
+) -> list[tuple[CueHit, CueHit]]:
     """Match each cue-bearing dialect hit to a same-speaker, same-category, non-dialect hit."""
     pool: dict[tuple[str, str], list[CueHit]] = defaultdict(list)
     for hit in plain:
@@ -193,6 +198,8 @@ def pair_hits(marked: list[CueHit], plain: list[CueHit], per_speaker: int) -> li
     taken: Counter[str] = Counter()
     pairs: list[tuple[CueHit, CueHit]] = []
     for hit in sorted(marked, key=lambda item: (item.speaker_key, item.category, item.utterance_id)):
+        if categories is not None and hit.category not in categories:
+            continue
         if taken[hit.speaker_key] >= per_speaker:
             continue
         candidates = pool.get((hit.speaker_key, hit.category), [])
@@ -378,6 +385,10 @@ def main(
     pilot_audio_dir: Annotated[Path, typer.Option("--pilot-audio-dir")] = Path("data/interim/aihub_119_pilot_audio"),
     per_speaker: Annotated[int, typer.Option("--per-speaker", min=1)] = 1,
     max_pairs: Annotated[int, typer.Option("--max-pairs", min=1)] = 250,
+    category: Annotated[
+        list[str] | None,
+        typer.Option("--category", help="Restrict to these cue categories; repeatable."),
+    ] = None,
     padding_seconds: Annotated[float, typer.Option("--padding-seconds", min=0.0)] = 0.25,
 ) -> None:
     if not slice_manifest_path.exists():
@@ -395,7 +406,10 @@ def main(
     console.print("Scanning label set for cue-bearing dialect eojeols")
     marked, plain = collect(label_root, slices, speakers, available, excluded)
     console.print(f"Found {len(marked)} cue-bearing dialect hits and {len(plain)} non-dialect cue hits")
-    pairs = pair_hits(marked, plain, per_speaker)[:max_pairs]
+    wanted = tuple(category) if category else None
+    if wanted:
+        console.print(f"Restricting to cue categories: {', '.join(wanted)}")
+    pairs = pair_hits(marked, plain, per_speaker, wanted)[:max_pairs]
     if not pairs:
         console.print("No pair could be formed.")
         raise typer.Exit(code=1)
