@@ -1,6 +1,6 @@
 # Pilot Round 7: 피해의 실제 크기, 카테고리 일반화, cue 수준 코호트
 
-> **정정 있음.** 이 문서의 cue 손실 수치는 편향된 판정 기준으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따른다.
+> **정정 있음.** 이 문서의 cue 수치는 정렬을 쓰지 않는 판정 기준으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따르며, 정정 4에서 negation 결과와 대체·삭제 결론이 바뀐다.
 
 [Round 6](../aihub_119_pilot_round6/README.md)은 세 가지를 남겼다. 손실이 실제 업무 피해인지 표기 차이인지 구분하지 않았고, 사실상 confirmation 단독 결과였으며, 코호트 분해를 하지 않았다. Round 7은 셋을 모두 처리했다.
 

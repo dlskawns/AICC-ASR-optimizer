@@ -1,0 +1,383 @@
+{
+  "analysis": "cue_scoring_by_sequence_alignment",
+  "random_seed": 20260821,
+  "label_status": "weak_preannotation_not_gold",
+  "scoring_rule": "reference eojeols aligned to hypothesis tokens; each cue judged against its aligned token only",
+  "results": [
+    {
+      "model": "faster_whisper_medium",
+      "pairs": 243,
+      "distinct_speakers": 243,
+      "dialect_arm": {
+        "cues": 243,
+        "counts": {
+          "standard_normalised": 80,
+          "dialect_surface_preserved": 72,
+          "deleted": 48,
+          "substituted": 36,
+          "cue_morpheme_only": 7
+        },
+        "damaged": 84,
+        "damage_rate": 0.345679012345679,
+        "substitution_share_of_damage": 0.42857142857142855
+      },
+      "plain_arm": {
+        "cues": 243,
+        "counts": {
+          "dialect_surface_preserved": 204,
+          "deleted": 20,
+          "cue_morpheme_only": 11,
+          "substituted": 8
+        },
+        "damaged": 28,
+        "damage_rate": 0.11522633744855967,
+        "substitution_share_of_damage": 0.2857142857142857
+      },
+      "damage_gap": {
+        "dialect_arm_rate": 0.345679012345679,
+        "plain_arm_rate": 0.11522633744855967,
+        "difference": 0.23045267489711932,
+        "difference_ci95": {
+          "low": 0.15637860082304528,
+          "high": 0.30452674897119336
+        },
+        "crosses_zero": false,
+        "draws": 10000
+      },
+      "damage_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 0,
+        "two_sided_p_value": 4.999750012499375e-05,
+        "p_note": "resolution_floor_reached"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 75,
+        "plain_arm_only_lost": 19,
+        "both_lost": 9,
+        "neither_lost": 140,
+        "discordant_pairs": 94,
+        "mcnemar_chi2_continuity_corrected": 32.180851063829785,
+        "mcnemar_p_approx": 1.4046838066380623e-08
+      },
+      "placebo_plain_unit_error": {
+        "dialect_arm_rate": 0.2471632955106068,
+        "plain_arm_rate": 0.22490135905304692,
+        "difference": 0.02226193645755989,
+        "difference_ci95": {
+          "low": -0.010091796882002398,
+          "high": 0.0545203975305361
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      },
+      "dialect_arm_by_category": {
+        "confirmation": {
+          "cues": 214,
+          "counts": {
+            "standard_normalised": 73,
+            "dialect_surface_preserved": 56,
+            "deleted": 44,
+            "substituted": 35,
+            "cue_morpheme_only": 6
+          },
+          "damaged": 79,
+          "damage_rate": 0.3691588785046729,
+          "substitution_share_of_damage": 0.4430379746835443
+        },
+        "negation": {
+          "cues": 29,
+          "counts": {
+            "dialect_surface_preserved": 16,
+            "standard_normalised": 7,
+            "deleted": 4,
+            "cue_morpheme_only": 1,
+            "substituted": 1
+          },
+          "damaged": 5,
+          "damage_rate": 0.1724137931034483,
+          "substitution_share_of_damage": 0.2
+        }
+      },
+      "dialect_arm_by_cohort": {
+        "busan": {
+          "cues": 139,
+          "counts": {
+            "dialect_surface_preserved": 46,
+            "standard_normalised": 39,
+            "deleted": 27,
+            "substituted": 23,
+            "cue_morpheme_only": 4
+          },
+          "damaged": 50,
+          "damage_rate": 0.3597122302158273,
+          "substitution_share_of_damage": 0.46
+        },
+        "gyeongsang_other": {
+          "cues": 104,
+          "counts": {
+            "standard_normalised": 41,
+            "dialect_surface_preserved": 26,
+            "deleted": 21,
+            "substituted": 13,
+            "cue_morpheme_only": 3
+          },
+          "damaged": 34,
+          "damage_rate": 0.3269230769230769,
+          "substitution_share_of_damage": 0.38235294117647056
+        }
+      },
+      "distinct_replacement_surfaces": 23
+    },
+    {
+      "model": "faster_whisper_large_v3",
+      "pairs": 243,
+      "distinct_speakers": 243,
+      "dialect_arm": {
+        "cues": 243,
+        "counts": {
+          "standard_normalised": 96,
+          "dialect_surface_preserved": 72,
+          "deleted": 48,
+          "substituted": 22,
+          "cue_morpheme_only": 5
+        },
+        "damaged": 70,
+        "damage_rate": 0.2880658436213992,
+        "substitution_share_of_damage": 0.3142857142857143
+      },
+      "plain_arm": {
+        "cues": 243,
+        "counts": {
+          "dialect_surface_preserved": 209,
+          "deleted": 20,
+          "cue_morpheme_only": 7,
+          "substituted": 7
+        },
+        "damaged": 27,
+        "damage_rate": 0.1111111111111111,
+        "substitution_share_of_damage": 0.25925925925925924
+      },
+      "damage_gap": {
+        "dialect_arm_rate": 0.2880658436213992,
+        "plain_arm_rate": 0.1111111111111111,
+        "difference": 0.1769547325102881,
+        "difference_ci95": {
+          "low": 0.1111111111111111,
+          "high": 0.24691358024691357
+        },
+        "crosses_zero": false,
+        "draws": 10000
+      },
+      "damage_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 0,
+        "two_sided_p_value": 4.999750012499375e-05,
+        "p_note": "resolution_floor_reached"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 60,
+        "plain_arm_only_lost": 17,
+        "both_lost": 10,
+        "neither_lost": 156,
+        "discordant_pairs": 77,
+        "mcnemar_chi2_continuity_corrected": 22.90909090909091,
+        "mcnemar_p_approx": 1.6984666430537984e-06
+      },
+      "placebo_plain_unit_error": {
+        "dialect_arm_rate": 0.21558954119388257,
+        "plain_arm_rate": 0.1985971065322227,
+        "difference": 0.016992434661659866,
+        "difference_ci95": {
+          "low": -0.013311484339308885,
+          "high": 0.04729448392105851
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      },
+      "dialect_arm_by_category": {
+        "confirmation": {
+          "cues": 214,
+          "counts": {
+            "standard_normalised": 86,
+            "dialect_surface_preserved": 56,
+            "deleted": 46,
+            "substituted": 22,
+            "cue_morpheme_only": 4
+          },
+          "damaged": 68,
+          "damage_rate": 0.3177570093457944,
+          "substitution_share_of_damage": 0.3235294117647059
+        },
+        "negation": {
+          "cues": 29,
+          "counts": {
+            "dialect_surface_preserved": 16,
+            "standard_normalised": 10,
+            "deleted": 2,
+            "cue_morpheme_only": 1
+          },
+          "damaged": 2,
+          "damage_rate": 0.06896551724137931,
+          "substitution_share_of_damage": 0.0
+        }
+      },
+      "dialect_arm_by_cohort": {
+        "busan": {
+          "cues": 139,
+          "counts": {
+            "dialect_surface_preserved": 50,
+            "standard_normalised": 47,
+            "deleted": 22,
+            "substituted": 17,
+            "cue_morpheme_only": 3
+          },
+          "damaged": 39,
+          "damage_rate": 0.2805755395683453,
+          "substitution_share_of_damage": 0.4358974358974359
+        },
+        "gyeongsang_other": {
+          "cues": 104,
+          "counts": {
+            "standard_normalised": 49,
+            "deleted": 26,
+            "dialect_surface_preserved": 22,
+            "substituted": 5,
+            "cue_morpheme_only": 2
+          },
+          "damaged": 31,
+          "damage_rate": 0.2980769230769231,
+          "substitution_share_of_damage": 0.16129032258064516
+        }
+      },
+      "distinct_replacement_surfaces": 19
+    },
+    {
+      "model": "wav2vec2_korean",
+      "pairs": 243,
+      "distinct_speakers": 243,
+      "dialect_arm": {
+        "cues": 243,
+        "counts": {
+          "substituted": 145,
+          "deleted": 55,
+          "dialect_surface_preserved": 31,
+          "standard_normalised": 7,
+          "cue_morpheme_only": 5
+        },
+        "damaged": 200,
+        "damage_rate": 0.823045267489712,
+        "substitution_share_of_damage": 0.725
+      },
+      "plain_arm": {
+        "cues": 243,
+        "counts": {
+          "substituted": 106,
+          "dialect_surface_preserved": 81,
+          "deleted": 34,
+          "cue_morpheme_only": 22
+        },
+        "damaged": 140,
+        "damage_rate": 0.5761316872427984,
+        "substitution_share_of_damage": 0.7571428571428571
+      },
+      "damage_gap": {
+        "dialect_arm_rate": 0.823045267489712,
+        "plain_arm_rate": 0.5761316872427984,
+        "difference": 0.24691358024691357,
+        "difference_ci95": {
+          "low": 0.16872427983539096,
+          "high": 0.3251028806584363
+        },
+        "crosses_zero": false,
+        "draws": 10000
+      },
+      "damage_permutation": {
+        "test": "within_pair_arm_swap_permutation",
+        "draws": 20000,
+        "extreme_draws": 0,
+        "two_sided_p_value": 4.999750012499375e-05,
+        "p_note": "resolution_floor_reached"
+      },
+      "mcnemar": {
+        "dialect_arm_only_lost": 86,
+        "plain_arm_only_lost": 26,
+        "both_lost": 114,
+        "neither_lost": 17,
+        "discordant_pairs": 112,
+        "mcnemar_chi2_continuity_corrected": 31.080357142857142,
+        "mcnemar_p_approx": 2.475640264578362e-08
+      },
+      "placebo_plain_unit_error": {
+        "dialect_arm_rate": 0.6561420818944252,
+        "plain_arm_rate": 0.6523454625164402,
+        "difference": 0.0037966193779850332,
+        "difference_ci95": {
+          "low": -0.029486991275284452,
+          "high": 0.03632055778191205
+        },
+        "crosses_zero": true,
+        "draws": 10000
+      },
+      "dialect_arm_by_category": {
+        "confirmation": {
+          "cues": 214,
+          "counts": {
+            "substituted": 133,
+            "deleted": 48,
+            "dialect_surface_preserved": 26,
+            "standard_normalised": 4,
+            "cue_morpheme_only": 3
+          },
+          "damaged": 181,
+          "damage_rate": 0.8457943925233645,
+          "substitution_share_of_damage": 0.7348066298342542
+        },
+        "negation": {
+          "cues": 29,
+          "counts": {
+            "substituted": 12,
+            "deleted": 7,
+            "dialect_surface_preserved": 5,
+            "standard_normalised": 3,
+            "cue_morpheme_only": 2
+          },
+          "damaged": 19,
+          "damage_rate": 0.6551724137931034,
+          "substitution_share_of_damage": 0.631578947368421
+        }
+      },
+      "dialect_arm_by_cohort": {
+        "busan": {
+          "cues": 139,
+          "counts": {
+            "substituted": 88,
+            "deleted": 22,
+            "dialect_surface_preserved": 20,
+            "standard_normalised": 5,
+            "cue_morpheme_only": 4
+          },
+          "damaged": 110,
+          "damage_rate": 0.7913669064748201,
+          "substitution_share_of_damage": 0.8
+        },
+        "gyeongsang_other": {
+          "cues": 104,
+          "counts": {
+            "substituted": 57,
+            "deleted": 33,
+            "dialect_surface_preserved": 11,
+            "standard_normalised": 2,
+            "cue_morpheme_only": 1
+          },
+          "damaged": 90,
+          "damage_rate": 0.8653846153846154,
+          "substitution_share_of_damage": 0.6333333333333333
+        }
+      },
+      "distinct_replacement_surfaces": 121
+    }
+  ],
+  "numpy_version": "2.5.2"
+}

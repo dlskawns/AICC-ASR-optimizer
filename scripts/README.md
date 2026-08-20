@@ -348,3 +348,13 @@ uv run scripts/score_units_by_alignment.py \
 ```
 
 This is the quoting standard for dialect versus non-dialect unit error rates. Prefer it over `run_dialect_significance_tests.py`, which searches for a reference surface anywhere in the hypothesis and so lets a one-syllable unit match any eojeol beginning with it; half the dialect units here are one syllable. This script aligns the reference eojeol sequence to the hypothesis tokens by edit distance, with substitution cost taken from character similarity, and judges each unit only against the token aligned to its position. Keeping both scripts is deliberate: running them side by side gives the sensitivity analysis over scoring rules.
+
+## Aligned Cue Scoring
+
+```bash
+uv run scripts/score_cues_by_alignment.py \
+  research/experiments/runs/aihub_119_cue_bearing_split \
+  --output-dir research/experiments/runs/aihub_119_cue_aligned
+```
+
+This is the quoting standard for cue-level results, replacing `compare_cue_bearing_pairs.py` and `classify_cue_substitution.py`, which searched the whole hypothesis for a surface. Here the reference eojeol sequence is aligned to the hypothesis tokens and each cue is judged against its aligned token only, giving five outcomes: dialect surface kept, normalised to standard, cue morpheme only, substituted, deleted. The first three preserve business meaning. Substitution versus deletion falls out of the alignment rather than being inferred from surviving neighbours, so every case resolves; the neighbour method left about two thirds unresolved and its surviving sample leaned toward substitutions.

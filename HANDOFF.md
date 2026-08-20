@@ -49,13 +49,13 @@ Safe current claims:
 
 > Rebuilt at utterance level, the link is not there at the resolution this pilot can see. In 63 within-speaker pairs, an utterance carrying dialect marking loses no more AICC critical spans than the same speaker's length-matched dialect-free utterance: +0.028 [-0.056, 0.114] for `medium`, -0.018 [-0.102, 0.066] for `large-v3`, +0.023 [-0.151, 0.198] for wav2vec2, with signs disagreeing and a clean placebo on non-dialect unit error. The dialect penalty appears to be local to the dialect tokens rather than a whole-utterance degradation.
 
-> When the AICC cue word is itself a dialect-marked eojeol, it is lost far more often. Under the corrected preservation rule, cue loss in the dialect arm versus the plain arm is 0.309 against 0.096 for `medium`, 0.267 against 0.092 for `large-v3`, and 0.815 against 0.528 for wav2vec2 on the confirmation split, and 0.202 against 0.043, 0.202 against 0.043, and 0.634 against 0.405 on the negation split. All six gaps exclude zero, at +0.16 to +0.29. The placebo on non-dialect unit error is null throughout. Read with the round 5 null, the dialect penalty is local to dialect tokens and turns into AICC damage only where those tokens carry business cues.
+> When a confirmation cue is itself a dialect-marked eojeol, it is damaged far more often. Scored by alignment, damage rates in the dialect arm versus the plain arm are 0.346 against 0.115 for `medium`, 0.288 against 0.111 for `large-v3`, and 0.823 against 0.576 for wav2vec2, gaps of +0.230, +0.177, and +0.247, all excluding zero with McNemar p from 1.4e-08 to 1.7e-06. The placebo on non-dialect unit error is null throughout. Read with the round 5 null, the dialect penalty is local to dialect tokens and turns into AICC damage only where those tokens carry business cues.
 
 > A large share of that cue loss is harmless. Outcomes split four ways: the dialect form written as spoken, the standard form of the same word, the cue morpheme surviving under different inflection, and the cue gone. For Whisper, 34 to 48 percent of dialect-marked cues land in the two middle classes, where the business meaning survives.
 
-> The effect is not confirmation-only. A negation-only split of 185 pairs reproduces it in all three baselines at +0.159, +0.159, and +0.228.
+> Negation is weaker and only partly significant. On 185 negation pairs scored by alignment the gap is +0.077 [-0.005, 0.158] for `medium`, which does not exclude zero, +0.098 [0.022, 0.175] for `large-v3`, and +0.175 [0.071, 0.279] for wav2vec2. The earlier claim that negation reproduces the effect in all three baselines came from the pre-alignment rule and does not survive.
 
-> A damaged cue is usually replaced, not dropped. Among the cases whose position can be aligned against surviving neighbour eojeols, substitution outnumbers deletion in five of six model-by-category combinations and ties in the sixth, at 0.50 to 0.82 of resolved cases. Downstream that means a confident wrong reading rather than a detectable gap, which a confidence threshold or missing-value guard would not catch.
+> Whether a damaged cue is replaced or dropped depends on the architecture. Alignment resolves every case, where round 8's neighbour-anchoring left two thirds unresolved, and it reverses that round's conclusion for Whisper: substitution accounts for 0.21 to 0.43 of damage in `medium` and `large-v3`, so deletion is the more common failure there. Only the CTC model is substitution-dominant, at 0.69 to 0.73. The alignment cost model prefers substitution over deletion, so Whisper's deletion majority is not an artefact of the scoring.
 
 > No substitution dictionary exists. Of the substitutions observed, almost every replacement surface is unique: 21 distinct for 24 in `medium`, 14 for 15 in `large-v3`, 24 for 24 in wav2vec2. Post-hoc string mapping is not a viable correction; the fix has to be acoustic or model-level.
 
@@ -69,7 +69,7 @@ Do not yet claim:
 - Dialect marking has no effect on AICC critical-span loss. Round 5 detected none at utterance level, but round 6 found a large effect once the cue word itself is dialect-marked. The correct statement is that the effect is local, not absent.
 - Round 6's headline numbers as AICC damage. Round 7 shows about half of that loss is standard-form normalisation, which preserves meaning. Quote the genuine gap, not the surface gap.
 - Generalisation to amount, date/time, or intent cues. Those categories effectively never land on a dialect-marked eojeol in this corpus, so no test is possible here.
-- The substitution-versus-deletion split as a property of all lost cues. Roughly two thirds of absent cues are `context_lost` and could not be aligned, and the resolved subset may lean toward easier utterances. For wav2vec2 only about 15 percent resolve at all.
+- Round 8's substitution-dominance claim. Alignment resolves every case and reverses it for Whisper.
 - That substitution always flips the meaning. The classifier only establishes that something other than the cue sits in its position.
 - Dialect-marked critical spans are lost more often than other spans. Only 4 spans in the pilot and 5 in the holdout are dialect-marked, so that contrast stays underpowered at both sizes.
 - `large-v3` is better than `medium` on dialect. The pilot showed a small gap reduction that the holdout does not reproduce: 4.05x versus 4.02x, with overlapping intervals.
@@ -132,9 +132,17 @@ Round 2, all automatic and requiring no human review:
 - After repair, critical-span strict loss is 0.103 [0.019, 0.203] for `medium` and 0.069 [0.000, 0.161] for `large-v3`, over 58 scorable spans.
 - Amount spans, previously reported at 91.7% loss, are at 0 loss once numerals are compared by value.
 
-Metric correction, applied after round 8, in three parts:
+Metric correction, applied after round 8, in four parts:
 
-Part 3, sequence alignment, now the quoting standard:
+Part 4, alignment for cue scoring, now the quoting standard:
+
+- Cue metrics still searched the whole hypothesis while unit metrics had moved to alignment. Cues are now judged against their aligned token only, with five outcomes: dialect surface kept, standard normalised, cue morpheme only, substituted, deleted.
+- Confirmation holds: gaps +0.230, +0.177, +0.247, McNemar p 1.4e-08 to 1.7e-06.
+- Negation weakens: +0.077 [-0.005, 0.158] for `medium` no longer excludes zero, `large-v3` drops to p 0.018, only wav2vec2 stays clearly significant.
+- Substitution versus deletion reverses for Whisper: substitution is 0.21 to 0.43 of damage, so deletion dominates. Only the CTC model is substitution-heavy. Round 8's low resolution rate had biased its sample toward substitutions.
+- Meaning still survives often: 65 to 71 percent of dialect-marked confirmation cues and 75 to 77 percent of negation cues land in a meaning-preserving class in Whisper.
+
+Part 3, sequence alignment for unit scoring:
 
 - Even the eojeol-boundary rule ignores position, so a one-syllable unit still matched any eojeol starting with it. Half the dialect units are one syllable.
 - Reference eojeols are now aligned to hypothesis tokens by edit distance, with substitution cost from character similarity, and each unit is judged only against its aligned token.
@@ -221,6 +229,8 @@ Primary reports:
 - [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md)
 - [Aligned unit scoring, pilot](research/experiments/runs/aihub_119_aligned_pilot/README.md)
 - [Aligned unit scoring, holdout](research/experiments/runs/aihub_119_aligned_holdout/README.md)
+- [Aligned cue scoring, confirmation](research/experiments/runs/aihub_119_cue_aligned/README.md)
+- [Aligned cue scoring, negation](research/experiments/runs/aihub_119_negation_cue_aligned/README.md)
 - [Pilot round 8 report](research/experiments/runs/aihub_119_pilot_round8/README.md)
 - [Cue substitution, confirmation split](research/experiments/runs/aihub_119_cue_substitution/README.md)
 - [Cue substitution, negation split](research/experiments/runs/aihub_119_negation_substitution/README.md)
@@ -275,6 +285,8 @@ Machine-readable summaries:
 - `research/experiments/runs/aihub_119_holdout_significance/summary.json`
 - `research/experiments/runs/aihub_119_aligned_pilot/summary.json`
 - `research/experiments/runs/aihub_119_aligned_holdout/summary.json`
+- `research/experiments/runs/aihub_119_cue_aligned/summary.json`
+- `research/experiments/runs/aihub_119_negation_cue_aligned/summary.json`
 - `research/experiments/runs/aihub_119_holdout_critical_spans/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_pairs/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_comparison/summary.json`

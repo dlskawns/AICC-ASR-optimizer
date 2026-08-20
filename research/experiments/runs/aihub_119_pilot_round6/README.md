@@ -1,6 +1,6 @@
 # Pilot Round 6: cue 자체가 방언 표지일 때
 
-> **정정 있음.** 이 문서의 cue 손실 수치는 편향된 판정 기준으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따른다.
+> **정정 있음.** 이 문서의 cue 수치는 정렬을 쓰지 않는 판정 기준으로 계산됐다. 정정된 수치는 [지표 정정](../aihub_119_metric_correction/README.md)을 따르며, 정정 4에서 negation 결과와 대체·삭제 결론이 바뀐다.
 
 [Round 5](../aihub_119_pilot_round5/README.md)는 방언 표지가 발화 어딘가에 있다는 사실만으로는 AICC critical span 손실이 늘지 않는다는 null을 냈다. 그 해석은 "방언 취약성이 방언 토큰에 국소적"이라는 것이었고, 그렇다면 검증 가능한 예측이 따라온다.
 
