@@ -42,6 +42,8 @@ Safe current claims:
 
 > The gap is robust to how it is measured. Three progressively stricter scoring rules give holdout ratios of 4.05x, 3.18x, 2.81x for `medium` and 4.02x, 3.41x, 3.05x for `large-v3`. Every tightening shrinks the effect and none removes it; all six model-by-split combinations still exclude zero and stay significant under within-utterance permutation, at p below 5e-05 on the holdout and 1.1e-03 to 2.1e-03 on the smaller pilot. That convergence is itself evidence, and belongs in the paper as a sensitivity analysis.
 
+> The penalty holds in every speaker subgroup the data can support. Stratifying the holdout gives gaps of +0.436 [0.374, 0.499] for women and +0.388 [0.265, 0.508] for men, +0.461 [0.392, 0.529] for speakers in their twenties and +0.295 [0.159, 0.430] for those in their thirties, and +0.413 and +0.436 for the two cohorts, all excluding zero in all three baselines. The skewed composition of the holdout cannot confound the headline contrast anyway, since dialect and non-dialect units come from the same utterance by the same speaker, but this shows the result is not carried by one demographic slice either.
+
 > Text-only audit suggests many surface mismatches are acceptable standard or colloquial normalizations, so AICC evaluation must isolate harmful semantic shifts rather than treating every dialect-surface mismatch as task failure.
 
 > The dialect penalty is neither a model-capacity artifact, nor a Whisper artifact, nor a pilot-sample artifact. It reproduces in a Korean-specialised CTC architecture, and on the speaker-disjoint holdout it grows rather than shrinks: `medium` goes from 1.71x to 2.81x and `large-v3` from 1.90x to 3.05x.
@@ -78,7 +80,8 @@ Do not yet claim:
 - Dialect-marked critical spans are lost more often than other spans. Only 4 spans in the pilot and 5 in the holdout are dialect-marked, so that contrast stays underpowered at both sizes.
 - `large-v3` is better than `medium` on dialect. The pilot showed a small gap reduction that the holdout does not reproduce: 4.05x versus 4.02x, with overlapping intervals.
 - Effect sizes from the pilot and the holdout are interchangeable. The two splits were sampled differently, so always name the split.
-- Anything about speaker sex or age. The holdout is 228 female to 72 male and 205 of 300 are in their twenties, with no confound control.
+- That the age gradient is real. The gap looks larger for speakers in their twenties than in their thirties, +0.461 against +0.295 for `medium`, but the intervals are close and the teenage band has 15 speakers. Hypothesis only.
+- Anything about speakers aged sixty or over. There are three.
 - Anything comparing absolute error rates across the three baselines. The wav2vec2 CTC output differs in orthography and spacing and its training domain is read speech, so only the within-model dialect-versus-plain contrast is comparable.
 - Whisper is worse or better than Korean-specialized ASR systems.
 - Any adaptation/fine-tuning method solves the problem.
@@ -135,6 +138,14 @@ Round 2, all automatic and requiring no human review:
 - The AICC critical-span metric was rebuilt after a substring-based first pass produced three artifacts: numeral-notation false losses, single-syllable false preservations, and phantom labels.
 - After repair, critical-span strict loss is 0.103 [0.019, 0.203] for `medium` and 0.069 [0.000, 0.161] for `large-v3`, over 58 scorable spans.
 - Amount spans, previously reported at 91.7% loss, are at 0 loss once numerals are compared by value.
+
+Subgroup stratification, after the power check:
+
+- The dialect-versus-plain contrast is within-utterance, so speaker sex and age are held fixed by construction and cannot confound it. The open question was generality, not confounding.
+- Stratified by sex, age band, and cohort, every stratum large enough for an interval excludes zero, in all three baselines.
+- Sex makes no difference: +0.436 for women against +0.388 for men in `medium`, with heavily overlapping intervals.
+- Age shows a possible gradient, +0.461 in the twenties against +0.295 in the thirties, but intervals are close and the small bands cannot support it. Recorded as a hypothesis.
+- Bands too small for intervals, fifties at 19 speakers, teens at 15, sixty-plus at 3, all still show positive gaps.
 
 Negation power check, after consolidation:
 
@@ -245,6 +256,7 @@ Primary reports:
 
 - [Current results](research/experiments/runs/aihub_119_current_results/README.md)
 - [Negation power check](research/experiments/runs/aihub_119_negation_power_check/README.md)
+- [Stratified holdout](research/experiments/runs/aihub_119_stratified_holdout/README.md)
 - [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md)
 - [Control pairs rescored by alignment](research/experiments/runs/aihub_119_control_pairs_aligned/README.md)
 - [Aligned unit scoring, pilot](research/experiments/runs/aihub_119_aligned_pilot/README.md)
@@ -310,6 +322,7 @@ Machine-readable summaries:
 - `research/experiments/runs/aihub_119_control_pairs_aligned/summary.json`
 - `research/experiments/runs/aihub_119_negation_cue_split_wide/summary.json`
 - `research/experiments/runs/aihub_119_negation_wide_aligned/summary.json`
+- `research/experiments/runs/aihub_119_stratified_holdout/summary.json`
 - `research/experiments/runs/aihub_119_holdout_critical_spans/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_pairs/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_comparison/summary.json`

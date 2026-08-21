@@ -1,0 +1,450 @@
+{
+  "analysis": "stratified_aligned_unit_scoring",
+  "random_seed": 20260821,
+  "min_utterances_for_interval": 20,
+  "design_note": "the dialect versus plain contrast is within-utterance, so speaker attributes are held fixed by construction",
+  "results": [
+    {
+      "model": "faster_whisper_medium",
+      "overall": {
+        "utterances": 300,
+        "dialect_units": 352,
+        "plain_units": 2525,
+        "dialect_error_rate": 0.6590909090909091,
+        "plain_error_rate": 0.23445544554455444,
+        "difference": 0.4246354635463546,
+        "ratio": 2.811156326781327,
+        "interval_reported": true,
+        "difference_ci95": {
+          "low": 0.3682314369164436,
+          "high": 0.4802354813841184
+        },
+        "excludes_zero": true
+      },
+      "by_sex": {
+        "여성": {
+          "utterances": 228,
+          "dialect_units": 270,
+          "plain_units": 1949,
+          "dialect_error_rate": 0.6666666666666666,
+          "plain_error_rate": 0.23088763468445356,
+          "difference": 0.43577903198221307,
+          "ratio": 2.8874074074074074,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.37359255943322345,
+            "high": 0.4985793081851525
+          },
+          "excludes_zero": true
+        },
+        "남성": {
+          "utterances": 72,
+          "dialect_units": 82,
+          "plain_units": 576,
+          "dialect_error_rate": 0.6341463414634146,
+          "plain_error_rate": 0.2465277777777778,
+          "difference": 0.38761856368563685,
+          "ratio": 2.5723119203023015,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.2649769655088804,
+            "high": 0.508189122872977
+          },
+          "excludes_zero": true
+        }
+      },
+      "by_age_band": {
+        "20대": {
+          "utterances": 205,
+          "dialect_units": 241,
+          "plain_units": 1745,
+          "dialect_error_rate": 0.6846473029045643,
+          "plain_error_rate": 0.22349570200573066,
+          "difference": 0.46115160089883367,
+          "ratio": 3.0633578040217047,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.3923180685194508,
+            "high": 0.5285328284746379
+          },
+          "excludes_zero": true
+        },
+        "30대": {
+          "utterances": 58,
+          "dialect_units": 62,
+          "plain_units": 478,
+          "dialect_error_rate": 0.5483870967741935,
+          "plain_error_rate": 0.25313807531380755,
+          "difference": 0.29524902146038595,
+          "ratio": 2.1663556384964004,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.15935402545188732,
+            "high": 0.4304218574751809
+          },
+          "excludes_zero": true
+        },
+        "50대": {
+          "utterances": 19,
+          "dialect_units": 20,
+          "plain_units": 135,
+          "dialect_error_rate": 0.6,
+          "plain_error_rate": 0.2814814814814815,
+          "difference": 0.3185185185185185,
+          "ratio": 2.131578947368421,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        },
+        "10대": {
+          "utterances": 15,
+          "dialect_units": 21,
+          "plain_units": 117,
+          "dialect_error_rate": 0.8095238095238095,
+          "plain_error_rate": 0.24786324786324787,
+          "difference": 0.5616605616605617,
+          "ratio": 3.2660098522167487,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        },
+        "60대 이상": {
+          "utterances": 3,
+          "dialect_units": 8,
+          "plain_units": 50,
+          "dialect_error_rate": 0.5,
+          "plain_error_rate": 0.28,
+          "difference": 0.21999999999999997,
+          "ratio": 1.7857142857142856,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        }
+      },
+      "by_cohort": {
+        "busan": {
+          "utterances": 150,
+          "dialect_units": 176,
+          "plain_units": 1256,
+          "dialect_error_rate": 0.6704545454545454,
+          "plain_error_rate": 0.2571656050955414,
+          "difference": 0.413288940359004,
+          "ratio": 2.6070925978046717,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.33328453410477216,
+            "high": 0.4920054256262894
+          },
+          "excludes_zero": true
+        },
+        "gyeongsang_other": {
+          "utterances": 150,
+          "dialect_units": 176,
+          "plain_units": 1269,
+          "dialect_error_rate": 0.6477272727272727,
+          "plain_error_rate": 0.2119779353821907,
+          "difference": 0.43574933734508203,
+          "ratio": 3.055635349780331,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.3555112688592688,
+            "high": 0.515894944207209
+          },
+          "excludes_zero": true
+        }
+      }
+    },
+    {
+      "model": "faster_whisper_large_v3",
+      "overall": {
+        "utterances": 300,
+        "dialect_units": 352,
+        "plain_units": 2525,
+        "dialect_error_rate": 0.65625,
+        "plain_error_rate": 0.21544554455445544,
+        "difference": 0.4408044554455446,
+        "ratio": 3.0460133272058822,
+        "interval_reported": true,
+        "difference_ci95": {
+          "low": 0.3860854466734194,
+          "high": 0.49610595504171445
+        },
+        "excludes_zero": true
+      },
+      "by_sex": {
+        "여성": {
+          "utterances": 228,
+          "dialect_units": 270,
+          "plain_units": 1949,
+          "dialect_error_rate": 0.6666666666666666,
+          "plain_error_rate": 0.2124166239096973,
+          "difference": 0.45425004275696934,
+          "ratio": 3.1384863123993556,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.3921054311316088,
+            "high": 0.5150729808458023
+          },
+          "excludes_zero": true
+        },
+        "남성": {
+          "utterances": 72,
+          "dialect_units": 82,
+          "plain_units": 576,
+          "dialect_error_rate": 0.6219512195121951,
+          "plain_error_rate": 0.22569444444444445,
+          "difference": 0.3962567750677507,
+          "ratio": 2.7557223264540336,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.2782149071853829,
+            "high": 0.5095653432203617
+          },
+          "excludes_zero": true
+        }
+      },
+      "by_age_band": {
+        "20대": {
+          "utterances": 205,
+          "dialect_units": 241,
+          "plain_units": 1745,
+          "dialect_error_rate": 0.6804979253112033,
+          "plain_error_rate": 0.20802292263610314,
+          "difference": 0.47247500267510023,
+          "ratio": 3.2712641313169417,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.40469408642105936,
+            "high": 0.5376315605564368
+          },
+          "excludes_zero": true
+        },
+        "30대": {
+          "utterances": 58,
+          "dialect_units": 62,
+          "plain_units": 478,
+          "dialect_error_rate": 0.5645161290322581,
+          "plain_error_rate": 0.23640167364016737,
+          "difference": 0.3281144553920907,
+          "ratio": 2.387953182986012,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.192618117306499,
+            "high": 0.46245100842783377
+          },
+          "excludes_zero": true
+        },
+        "50대": {
+          "utterances": 19,
+          "dialect_units": 20,
+          "plain_units": 135,
+          "dialect_error_rate": 0.55,
+          "plain_error_rate": 0.23703703703703705,
+          "difference": 0.312962962962963,
+          "ratio": 2.3203125,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        },
+        "10대": {
+          "utterances": 15,
+          "dialect_units": 21,
+          "plain_units": 117,
+          "dialect_error_rate": 0.8095238095238095,
+          "plain_error_rate": 0.19658119658119658,
+          "difference": 0.612942612942613,
+          "ratio": 4.118012422360248,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        },
+        "60대 이상": {
+          "utterances": 3,
+          "dialect_units": 8,
+          "plain_units": 50,
+          "dialect_error_rate": 0.5,
+          "plain_error_rate": 0.26,
+          "difference": 0.24,
+          "ratio": 1.923076923076923,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        }
+      },
+      "by_cohort": {
+        "busan": {
+          "utterances": 150,
+          "dialect_units": 176,
+          "plain_units": 1256,
+          "dialect_error_rate": 0.6761363636363636,
+          "plain_error_rate": 0.2300955414012739,
+          "difference": 0.4460408222350898,
+          "ratio": 2.9385026737967914,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.36778583372011825,
+            "high": 0.5230957777675754
+          },
+          "excludes_zero": true
+        },
+        "gyeongsang_other": {
+          "utterances": 150,
+          "dialect_units": 176,
+          "plain_units": 1269,
+          "dialect_error_rate": 0.6363636363636364,
+          "plain_error_rate": 0.20094562647754138,
+          "difference": 0.43541800988609497,
+          "ratio": 3.166844919786096,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.35824916297210935,
+            "high": 0.5130189167651612
+          },
+          "excludes_zero": true
+        }
+      }
+    },
+    {
+      "model": "wav2vec2_korean",
+      "overall": {
+        "utterances": 300,
+        "dialect_units": 352,
+        "plain_units": 2525,
+        "dialect_error_rate": 0.9005681818181818,
+        "plain_error_rate": 0.6233663366336634,
+        "difference": 0.2772018451845184,
+        "ratio": 1.4446852980247198,
+        "interval_reported": true,
+        "difference_ci95": {
+          "low": 0.23858389153207937,
+          "high": 0.3141611526038818
+        },
+        "excludes_zero": true
+      },
+      "by_sex": {
+        "여성": {
+          "utterances": 228,
+          "dialect_units": 270,
+          "plain_units": 1949,
+          "dialect_error_rate": 0.9037037037037037,
+          "plain_error_rate": 0.6254489481785531,
+          "difference": 0.27825475552515055,
+          "ratio": 1.4448880381612128,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.23398633893481438,
+            "high": 0.3198863325970946
+          },
+          "excludes_zero": true
+        },
+        "남성": {
+          "utterances": 72,
+          "dialect_units": 82,
+          "plain_units": 576,
+          "dialect_error_rate": 0.8902439024390244,
+          "plain_error_rate": 0.6163194444444444,
+          "difference": 0.27392445799458,
+          "ratio": 1.4444520783236001,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.19457701773395025,
+            "high": 0.34765757112990847
+          },
+          "excludes_zero": true
+        }
+      },
+      "by_age_band": {
+        "20대": {
+          "utterances": 205,
+          "dialect_units": 241,
+          "plain_units": 1745,
+          "dialect_error_rate": 0.9004149377593361,
+          "plain_error_rate": 0.6011461318051576,
+          "difference": 0.2992688059541785,
+          "ratio": 1.4978303778742053,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.25155691730822066,
+            "high": 0.3443794810341739
+          },
+          "excludes_zero": true
+        },
+        "30대": {
+          "utterances": 58,
+          "dialect_units": 62,
+          "plain_units": 478,
+          "dialect_error_rate": 0.8870967741935484,
+          "plain_error_rate": 0.6736401673640168,
+          "difference": 0.2134566068295316,
+          "ratio": 1.316870366659988,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.11764607052498421,
+            "high": 0.305574565131982
+          },
+          "excludes_zero": true
+        },
+        "50대": {
+          "utterances": 19,
+          "dialect_units": 20,
+          "plain_units": 135,
+          "dialect_error_rate": 0.9,
+          "plain_error_rate": 0.7037037037037037,
+          "difference": 0.1962962962962963,
+          "ratio": 1.2789473684210526,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        },
+        "10대": {
+          "utterances": 15,
+          "dialect_units": 21,
+          "plain_units": 117,
+          "dialect_error_rate": 0.9047619047619048,
+          "plain_error_rate": 0.6068376068376068,
+          "difference": 0.297924297924298,
+          "ratio": 1.4909456740442657,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        },
+        "60대 이상": {
+          "utterances": 3,
+          "dialect_units": 8,
+          "plain_units": 50,
+          "dialect_error_rate": 1.0,
+          "plain_error_rate": 0.74,
+          "difference": 0.26,
+          "ratio": 1.3513513513513513,
+          "interval_reported": false,
+          "note": "fewer_than_20_utterances_descriptive_only"
+        }
+      },
+      "by_cohort": {
+        "busan": {
+          "utterances": 150,
+          "dialect_units": 176,
+          "plain_units": 1256,
+          "dialect_error_rate": 0.8863636363636364,
+          "plain_error_rate": 0.6138535031847133,
+          "difference": 0.27251013317892303,
+          "ratio": 1.4439334984082066,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.21784847223447826,
+            "high": 0.32507614097862664
+          },
+          "excludes_zero": true
+        },
+        "gyeongsang_other": {
+          "utterances": 150,
+          "dialect_units": 176,
+          "plain_units": 1269,
+          "dialect_error_rate": 0.9147727272727273,
+          "plain_error_rate": 0.6327817178881009,
+          "difference": 0.2819910093846264,
+          "ratio": 1.445637099513189,
+          "interval_reported": true,
+          "difference_ci95": {
+            "low": 0.22914460510835233,
+            "high": 0.33229776928907995
+          },
+          "excludes_zero": true
+        }
+      }
+    }
+  ],
+  "numpy_version": "2.5.2"
+}

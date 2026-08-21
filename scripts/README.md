@@ -371,3 +371,13 @@ uv run scripts/score_spans_by_alignment.py \
 ```
 
 The alignment-standard replacement for `compare_dialect_control_pairs.py`. Each critical span is located at its evidence eojeol and judged only against the token aligned to that position. This is the utterance-level test of whether dialect marking anywhere in a sentence costs AICC spans; it came back null under both the old and the new rule.
+
+## Stratified Unit Scoring
+
+```bash
+uv run scripts/stratify_unit_scoring.py \
+  research/experiments/runs/aihub_119_speaker_independent_split \
+  --output-dir research/experiments/runs/aihub_119_stratified_holdout
+```
+
+Use this to answer whether the dialect penalty is carried by one demographic slice. Note what it is not for: the headline contrast is within-utterance, so speaker sex and age are already held fixed on both sides and cannot confound it. The question is generality. The script splits the alignment-scored holdout by sex, age band, and cohort and reports the gap inside each, withholding intervals from strata under twenty utterances rather than printing something the sample cannot support.
