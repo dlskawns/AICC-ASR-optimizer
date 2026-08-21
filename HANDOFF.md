@@ -56,6 +56,8 @@ Safe current claims:
 
 > Negation is weaker and only partly significant. On 185 negation pairs scored by alignment the gap is +0.077 [-0.005, 0.158] for `medium`, which does not exclude zero, +0.098 [0.022, 0.175] for `large-v3`, and +0.175 [0.071, 0.279] for wav2vec2. The earlier claim that negation reproduces the effect in all three baselines came from the pre-alignment rule and does not survive.
 
+> Whether `medium`'s negation null is real or merely underpowered cannot be settled with this corpus. Widening to 290 pairs moved the permutation p only from 0.084 to 0.060, implying roughly four times the current sample would be needed, and clean one-pair-per-speaker matching tops out at 185. The extra pairs also broke `large-v3`'s placebo, at +0.034 [0.005, 0.064], so the wider split is the lower-quality one. Quote the 185-pair configuration.
+
 > Whether a damaged cue is replaced or dropped depends on the architecture. Alignment resolves every case, where round 8's neighbour-anchoring left two thirds unresolved, and it reverses that round's conclusion for Whisper: substitution accounts for 0.21 to 0.43 of damage in `medium` and `large-v3`, so deletion is the more common failure there. Only the CTC model is substitution-dominant, at 0.69 to 0.73. The alignment cost model prefers substitution over deletion, so Whisper's deletion majority is not an artefact of the scoring.
 
 > No substitution dictionary exists. Of the substitutions observed, almost every replacement surface is unique: 21 distinct for 24 in `medium`, 14 for 15 in `large-v3`, 24 for 24 in wav2vec2. Post-hoc string mapping is not a viable correction; the fix has to be acoustic or model-level.
@@ -71,6 +73,7 @@ Do not yet claim:
 - Round 6's headline numbers as AICC damage. Round 7 shows about half of that loss is standard-form normalisation, which preserves meaning. Quote the genuine gap, not the surface gap.
 - Generalisation to amount, date/time, or intent cues. Those categories effectively never land on a dialect-marked eojeol in this corpus, so no test is possible here.
 - Round 8's substitution-dominance claim. Alignment resolves every case and reverses it for Whisper.
+- Any negation figure from the 290-pair split. Its `large-v3` placebo excludes zero, so that arm pairing is compromised.
 - That substitution always flips the meaning. The classifier only establishes that something other than the cue sits in its position.
 - Dialect-marked critical spans are lost more often than other spans. Only 4 spans in the pilot and 5 in the holdout are dialect-marked, so that contrast stays underpowered at both sizes.
 - `large-v3` is better than `medium` on dialect. The pilot showed a small gap reduction that the holdout does not reproduce: 4.05x versus 4.02x, with overlapping intervals.
@@ -132,6 +135,14 @@ Round 2, all automatic and requiring no human review:
 - The AICC critical-span metric was rebuilt after a substring-based first pass produced three artifacts: numeral-notation false losses, single-syllable false preservations, and phantom labels.
 - After repair, critical-span strict loss is 0.103 [0.019, 0.203] for `medium` and 0.069 [0.000, 0.161] for `large-v3`, over 58 scorable spans.
 - Amount spans, previously reported at 91.7% loss, are at 0 loss once numerals are compared by value.
+
+Negation power check, after consolidation:
+
+- The one loose end in the results was `medium`'s borderline negation result at permutation p 0.084.
+- Statistics were first moved to speaker-level clustering, both the bootstrap and the arm-swap permutation, so a design with several pairs per speaker stays valid. At one pair per speaker the new code reproduces the old numbers exactly.
+- The split was widened from 185 to 290 pairs by allowing up to four pairs per speaker. `medium` moved to +0.071 [0.003, 0.142] with permutation p 0.060, so the bootstrap and the permutation now disagree and the question stays open.
+- Widening also broke `large-v3`'s placebo. The added pairs come from speakers already present, and their later utterances match less well.
+- Conclusion: not answerable here. Clean matching caps at 185 pairs and the effect needs roughly four times that.
 
 Consolidation, after the corrections:
 
@@ -233,6 +244,7 @@ Run directory:
 Primary reports:
 
 - [Current results](research/experiments/runs/aihub_119_current_results/README.md)
+- [Negation power check](research/experiments/runs/aihub_119_negation_power_check/README.md)
 - [Metric correction](research/experiments/runs/aihub_119_metric_correction/README.md)
 - [Control pairs rescored by alignment](research/experiments/runs/aihub_119_control_pairs_aligned/README.md)
 - [Aligned unit scoring, pilot](research/experiments/runs/aihub_119_aligned_pilot/README.md)
@@ -296,6 +308,8 @@ Machine-readable summaries:
 - `research/experiments/runs/aihub_119_cue_aligned/summary.json`
 - `research/experiments/runs/aihub_119_negation_cue_aligned/summary.json`
 - `research/experiments/runs/aihub_119_control_pairs_aligned/summary.json`
+- `research/experiments/runs/aihub_119_negation_cue_split_wide/summary.json`
+- `research/experiments/runs/aihub_119_negation_wide_aligned/summary.json`
 - `research/experiments/runs/aihub_119_holdout_critical_spans/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_pairs/summary.json`
 - `research/experiments/runs/aihub_119_dialect_control_comparison/summary.json`

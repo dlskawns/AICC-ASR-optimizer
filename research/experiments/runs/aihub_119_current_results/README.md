@@ -84,6 +84,8 @@ placebo는 세 모델 모두 0을 포함한다.
 
 medium은 유의하지 않다. "모든 업무 cue에서 성립한다"고 쓰면 안 된다. 현재 근거는 **confirmation에서 강하고, negation에서 약하며 모델에 따라 갈린다**.
 
+`medium`의 무효과가 검정력 부족인지 확인하려 쌍을 290개로 늘려봤으나 결판나지 않았다. p가 0.084에서 0.060으로 움직였을 뿐이고, 쌍을 늘리자 large-v3의 placebo가 깨졌다. 상세는 [negation 검정력 점검](../aihub_119_negation_power_check/README.md). 인용은 placebo를 모두 통과하는 185쌍 구성을 쓴다.
+
 amount·date_time·intent_cue는 이 코퍼스에서 방언 표지 어절에 거의 실리지 않아 검정 자체가 불가능하다.
 
 ## 4. 피해의 절반 이상은 의미가 살아남는다

@@ -1,0 +1,20 @@
+{
+  "design": "within_speaker_within_category_pairing_of_cue_bearing_eojeols",
+  "label_status": "weak_preannotation_not_gold",
+  "cue_bearing_dialect_hits_found": 829,
+  "non_dialect_cue_hits_found": 56018,
+  "pairs_built": 290,
+  "distinct_speakers": 185,
+  "distinct_recordings": 156,
+  "cohort_counts": {
+    "busan": 160,
+    "gyeongsang_other": 130
+  },
+  "cue_category_counts": {
+    "negation": 290
+  },
+  "clips": 580,
+  "total_clip_minutes": 50.32,
+  "clip_dir": "data/interim/aihub_119_cue_clips",
+  "matching_rule": "same speaker, same cue category, cue eojeol dialect-marked versus not"
+}

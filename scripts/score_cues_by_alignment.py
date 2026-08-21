@@ -39,7 +39,7 @@ from typing import Annotated, Final, Literal, TypeAlias, assert_never
 import numpy as np
 import typer
 from build_dialect_taxonomy import JsonValue, list_of_mappings, text_field
-from compare_cue_bearing_pairs import Arm, Pair, arm_swap_permutation, mcnemar, paired_bootstrap
+from compare_cue_bearing_pairs import Arm, Pair, mcnemar
 from rich.console import Console
 from run_dialect_attribution_probe import label_index, payload_for, target_utterance
 from score_units_by_alignment import align, normalized
@@ -213,6 +213,90 @@ def build_pairs(
     return pairs, flat
 
 
+def speaker_groups(pairs: list[Pair]) -> list[list[int]]:
+    grouped: dict[str, list[int]] = defaultdict(list)
+    for index, pair in enumerate(pairs):
+        grouped[pair.speaker_key].append(index)
+    return [indices for _, indices in sorted(grouped.items())]
+
+
+def rate(numerator: float, denominator: float) -> float:
+    return numerator / denominator if denominator else float("nan")
+
+
+def arm_arrays(pairs: list[Pair], numerator: str, denominator: str) -> tuple[np.ndarray, ...]:
+    return (
+        np.array([getattr(p.dialect_arm, numerator) for p in pairs], dtype=np.float64),
+        np.array([getattr(p.dialect_arm, denominator) for p in pairs], dtype=np.float64),
+        np.array([getattr(p.plain_arm, numerator) for p in pairs], dtype=np.float64),
+        np.array([getattr(p.plain_arm, denominator) for p in pairs], dtype=np.float64),
+    )
+
+
+def speaker_bootstrap(
+    pairs: list[Pair],
+    numerator: str,
+    denominator: str,
+    rng: np.random.Generator,
+    draws: int,
+) -> JsonObject:
+    """Resample speakers, not pairs, so a speaker contributing several pairs moves as one unit."""
+    a_num, a_den, b_num, b_den = arm_arrays(pairs, numerator, denominator)
+    groups = speaker_groups(pairs)
+    picks = rng.integers(0, len(groups), size=(draws, len(groups)))
+    differences = np.empty(draws, dtype=np.float64)
+    for draw in range(draws):
+        index = np.concatenate([groups[choice] for choice in picks[draw]])
+        differences[draw] = rate(a_num[index].sum(), a_den[index].sum()) - rate(
+            b_num[index].sum(), b_den[index].sum(),
+        )
+    finite = differences[np.isfinite(differences)]
+    low, high = np.percentile(finite, [2.5, 97.5])
+    observed = rate(a_num.sum(), a_den.sum()) - rate(b_num.sum(), b_den.sum())
+    return {
+        "resampling_unit": "speaker",
+        "speakers": len(groups),
+        "dialect_arm_rate": rate(a_num.sum(), a_den.sum()),
+        "plain_arm_rate": rate(b_num.sum(), b_den.sum()),
+        "difference": observed,
+        "difference_ci95": {"low": float(low), "high": float(high)},
+        "crosses_zero": bool(low <= 0 <= high),
+        "draws": draws,
+    }
+
+
+def speaker_arm_swap(
+    pairs: list[Pair],
+    numerator: str,
+    denominator: str,
+    rng: np.random.Generator,
+    draws: int,
+) -> JsonObject:
+    """Swap arms a whole speaker at a time, which respects dependence between one speaker's pairs."""
+    a_num, a_den, b_num, b_den = arm_arrays(pairs, numerator, denominator)
+    groups = speaker_groups(pairs)
+    swap = rng.integers(0, 2, size=(draws, len(groups))).astype(bool)
+    per_pair = np.zeros((draws, len(pairs)), dtype=bool)
+    for position, indices in enumerate(groups):
+        per_pair[:, indices] = swap[:, position][:, None]
+    left_num = np.where(per_pair, b_num, a_num).sum(axis=1)
+    left_den = np.where(per_pair, b_den, a_den).sum(axis=1)
+    right_num = np.where(per_pair, a_num, b_num).sum(axis=1)
+    right_den = np.where(per_pair, a_den, b_den).sum(axis=1)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        null = (left_num / left_den) - (right_num / right_den)
+    observed = rate(a_num.sum(), a_den.sum()) - rate(b_num.sum(), b_den.sum())
+    finite = null[np.isfinite(null)]
+    extreme = int(np.sum(np.abs(finite) >= abs(observed) - 1e-12))
+    return {
+        "test": "speaker_level_arm_swap_permutation",
+        "draws": int(finite.size),
+        "extreme_draws": extreme,
+        "two_sided_p_value": (extreme + 1) / (finite.size + 1),
+        "p_note": "resolution_floor_reached" if extreme == 0 else "add_one_estimator",
+    }
+
+
 def outcome_block(rows: list[Scored]) -> JsonObject:
     counts = Counter(row.outcome for row in rows)
     total = len(rows)
@@ -241,10 +325,12 @@ def analyze(pairs: list[Pair], flat: list[Scored], model: str) -> JsonObject:
         "distinct_speakers": len({pair.speaker_key for pair in pairs}),
         "dialect_arm": outcome_block(dialect_arm),
         "plain_arm": outcome_block(plain_arm),
-        "damage_gap": paired_bootstrap(pairs, "cue_lost", "cue_scorable", rng, BOOTSTRAP_DRAWS),
-        "damage_permutation": arm_swap_permutation(pairs, "cue_lost", "cue_scorable", rng, PERMUTATION_DRAWS),
+        "pairs_per_speaker_max": max(len(group) for group in speaker_groups(pairs)),
+        "damage_gap": speaker_bootstrap(pairs, "cue_lost", "cue_scorable", rng, BOOTSTRAP_DRAWS),
+        "damage_permutation": speaker_arm_swap(pairs, "cue_lost", "cue_scorable", rng, PERMUTATION_DRAWS),
         "mcnemar": mcnemar(pairs),
-        "placebo_plain_unit_error": paired_bootstrap(pairs, "plain_error", "plain_total", rng, BOOTSTRAP_DRAWS),
+        "mcnemar_note": "treats pairs as independent; read it only when each speaker contributes one pair",
+        "placebo_plain_unit_error": speaker_bootstrap(pairs, "plain_error", "plain_total", rng, BOOTSTRAP_DRAWS),
         "dialect_arm_by_category": {name: outcome_block(rows) for name, rows in sorted(by_category.items())},
         "dialect_arm_by_cohort": {name: outcome_block(rows) for name, rows in sorted(by_cohort.items())},
         "distinct_replacement_surfaces": len({row.replacement for row in dialect_arm if row.replacement}),
